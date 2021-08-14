@@ -367,5 +367,17 @@ Quick
 <script  src="/js/boot.js" ></script>
 
 
-</body>
+<!-- hexo injector body_end start -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+  </script><!-- hexo injector body_end end --></body>
 </html>
