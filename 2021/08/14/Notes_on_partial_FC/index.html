@@ -204,7 +204,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      910 字
+      909 字
     </span>
   
 
@@ -295,13 +295,15 @@
 <p> 训练次数：CASIA： 32K ； MS！MV2 180K； Glint360K 600K.</p>
 </li>
 <li><p>自身Ablation</p>
-<p> 比较不同的sample rate, 以及all-sample 和只对negative class sample<br> 评价指标：Average Cos Diatnce，因为使用了CosFace和Arc Face的损失函数，度量$x<em>i$与$W</em>{y_i}$间的余弦距离<br> <img src="https://i.loli.net/2021/08/15/43dKpjCLtfSJ16v.png" srcset="/img/loading.gif" lazyload alt="image-20210717094807189" style="zoom:50%;" /></p>
+<p> 比较不同的sample rate, 以及all-sample 和只对negative class sample<br> 评价指标：Average Cos Diatnce，因为使用了CosFace和Arc Face的损失函数，度量<script type="math/tex">x_i</script> ,<script type="math/tex">W_{y_i}</script>间的余弦距离<br> <img src="https://i.loli.net/2021/08/15/43dKpjCLtfSJ16v.png" srcset="/img/loading.gif" lazyload alt="image-20210717094807189" style="zoom:50%;" /></p>
 <p> <img src="https://i.loli.net/2021/08/15/r8xdvhPjUKLzR7O.png" srcset="/img/loading.gif" lazyload alt="image-20210717094939172" style="zoom:50%;" /><br> 评估在不同的分类数量情况下的内存使用情况<br> <img src="https://i.loli.net/2021/08/15/ywXRMfK24xJtrHc.png" srcset="/img/loading.gif" lazyload alt="image-20210717095831255"></p>
 </li>
 <li><p>和其他同类方法比较</p>
-<p> <img src="https://i.loli.net/2021/08/15/1GxVTFIYbv9m5s3.png" srcset="/img/loading.gif" lazyload alt="image-20210717095513744" style="zoom:50%;" /></p>
-<p> <img src="/Users/zhangzhiwei/Documents/★计算机视觉&计算机图形学(CV & Graphics)/❀人脸识别/2021.04.28 戴口罩人脸识别比赛/相关Paper/7.PartialFC/assets/image-20210717095601380.png" srcset="/img/loading.gif" lazyload alt="image-20210717095601380" style="zoom:50%;" /></p>
 </li>
+</ol>
+<p><img src="https://i.loli.net/2021/08/15/1GxVTFIYbv9m5s3.png" srcset="/img/loading.gif" lazyload alt="image-20210717095513744" style="zoom:50%;" /></p>
+<p><img src="https://i.loli.net/2021/08/15/nfsvX9QTZkBRDqa.png" srcset="/img/loading.gif" lazyload alt="image-20210717095601380" style="zoom:50%;" /></p>
+<ol>
 <li><p>和其他不同类方法比较(看总榜)<br> <img src="https://i.loli.net/2021/08/15/vXkL96DZQta4wbH.png" srcset="/img/loading.gif" lazyload alt="image-20210717095254291" style="zoom:50%;" /></p>
 </li>
 <li><p>该文章的长处和不足<br> 长处：<br> ① 在<strong>ID量</strong>特别大的时候，到达十几万甚至百万时，开一个较大的batch-size也不用担心爆GPU显存<br> ② 扔掉大部分negative class确实很节约训练时间，而且loss损失不大</p>
