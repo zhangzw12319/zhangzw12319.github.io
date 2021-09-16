@@ -154,6 +154,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/music/">
+                <i class="iconfont icon-music"></i>
+                每日音乐
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
@@ -251,7 +263,7 @@
             <h1 style="display: none">Partial FC--Training 10 Million Identities on a Single Machine[阅读笔记]</h1>
             
             <div class="markdown-body">
-              <h1 id="Partial-FC—Training-10-Million-Identities-on-a-Single-Machine-阅读笔记"><a href="#Partial-FC—Training-10-Million-Identities-on-a-Single-Machine-阅读笔记" class="headerlink" title="Partial FC—Training 10 Million Identities on a Single Machine[阅读笔记]"></a>Partial FC—Training 10 Million Identities on a Single Machine[阅读笔记]</h1><p>[TOC]</p>
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="Partial-FC—Training-10-Million-Identities-on-a-Single-Machine-阅读笔记"><a href="#Partial-FC—Training-10-Million-Identities-on-a-Single-Machine-阅读笔记" class="headerlink" title="Partial FC—Training 10 Million Identities on a Single Machine[阅读笔记]"></a>Partial FC—Training 10 Million Identities on a Single Machine[阅读笔记]</h1><p>[TOC]</p>
 <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><ol>
 <li>传统的DataParallel模式，无法解决大数据集(包含几十万至千万ID, 千万至亿个训练样本)训练时，分类器的矩阵参数$W_{NK \times d}$爆显存的问题($N$是Batch数量，$K$是GPU个数，d是Feature Map的维度)</li>
 <li>ModelParallel模式能够有效解决1中问题：通过将矩阵$W$按$N$的维度拆分成多个子矩阵放在不同GPU上即可。但是该模式无法解决$logits_{N \times C}$当$C$很大时爆显存的问题</li>

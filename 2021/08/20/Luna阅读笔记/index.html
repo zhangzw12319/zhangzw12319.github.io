@@ -154,6 +154,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/music/">
+                <i class="iconfont icon-music"></i>
+                每日音乐
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
@@ -251,7 +263,7 @@
             <h1 style="display: none">Luna--Linear Unified Nested Attention[阅读笔记]</h1>
             
             <div class="markdown-body">
-              <h1 id="Neural-IPS在投-2021-Luna—Linear-Unified-Nested-Attention-阅读笔记"><a href="#Neural-IPS在投-2021-Luna—Linear-Unified-Nested-Attention-阅读笔记" class="headerlink" title="(Neural IPS在投,2021) Luna—Linear Unified Nested Attention[阅读笔记]"></a>(Neural IPS在投,2021) Luna—Linear Unified Nested Attention[阅读笔记]</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>传统Transformer中的注意力机制计算量是平方级别的。本文提出了Luna，Linear Unified Nested Attention 的方法，通过增加一个额外的固定长度的序列作为输入和输出，把平方级别的注意力计算拆分成两个线性时间的计算步骤来做近似，并且该固定长度的序列可以存储足够的上下文相关信息(Contexual Infomation)。</p>
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="Neural-IPS在投-2021-Luna—Linear-Unified-Nested-Attention-阅读笔记"><a href="#Neural-IPS在投-2021-Luna—Linear-Unified-Nested-Attention-阅读笔记" class="headerlink" title="(Neural IPS在投,2021) Luna—Linear Unified Nested Attention[阅读笔记]"></a>(Neural IPS在投,2021) Luna—Linear Unified Nested Attention[阅读笔记]</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>传统Transformer中的注意力机制计算量是平方级别的。本文提出了Luna，Linear Unified Nested Attention 的方法，通过增加一个额外的固定长度的序列作为输入和输出，把平方级别的注意力计算拆分成两个线性时间的计算步骤来做近似，并且该固定长度的序列可以存储足够的上下文相关信息(Contexual Infomation)。</p>
 <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><ol>
 <li>想提出一个简单有效减低计算复杂度的方法<ul>
 <li>传统的注意力机制的计算和存储都是$O(n^2)$的($n$表示序列的长度)，但是对于长序列输入，序列间相关性往往是稀疏的(不是完全图)</li>
