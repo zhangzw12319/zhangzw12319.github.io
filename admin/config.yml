@@ -101,15 +101,21 @@ collections:
     name: pages
     delete: false
     files:
-      - name: music-index.md
-        label: 每日一乐(1/1)
-        file: source/music/index.md
+      - name: 课程笔记：算法设计与分析(0).md
+        label: ''
+        file: source/课程笔记：算法设计与分析(0).md
         editor:
           preview: true
         fields: *ref_0
       - name: about-index.md
         label: about
         file: source/about/index.md
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: music-index.md
+        label: 每日一乐(1/1)
+        file: source/music/index.md
         editor:
           preview: true
         fields: *ref_0
