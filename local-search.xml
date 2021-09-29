@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>课程笔记：强化学习(2)——Bellman方程的动态规划求解</title>
+    <link href="/2021/09/29/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A02/"/>
+    <url>/2021/09/29/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A02/</url>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="课程笔记：强化学习-2"><a href="#课程笔记：强化学习-2" class="headerlink" title="课程笔记：强化学习(2)"></a>课程笔记：强化学习(2)</h1><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><div class="note note-info">            <p>本节只是非常粗略的把动态规划的要点总结一下，是课堂笔记纲要，并非详细讲解。先占个坑，以后有空再补</p>          </div><ol><li><p>动态规划需要满足的条件：</p><ol><li><p>最优子结构(Optimal substructure):</p><ul><li><p>原问题的最优解一定也是子问题的最优解。例如，一个输入长度为N的序列的某个Scheduling问题（记为T(1，N) ) 的最优解，拆分后一定也是其子问题T(1,N/2-1), T(N/2, N)的最优解。</p></li><li><p>子问题的最优解可以通过某种形式组合和计算，得到原问题的最优解</p></li></ul></li><li><p>重叠子问题</p><ul><li>子问题与原问题有同样的format和structure</li></ul></li><li><p>无后效性</p><ul><li>计算原问题最优解时，不会对子问题最优解产生影响。</li></ul><div class="note note-success">            <p>马尔科夫链和马尔科夫决策过程满足上述三个条件的，因为:</p><ul><li>Bellman方程将原问题递归的分解为规模更小的子问题</li><li>子问题拥有同样的format和structure</li><li>Que？ 有疑问，虽然马尔科夫过程强调每个state只与上一个state有关，与其他state无关($P(x<em>n|x_1,x_2,\dots,x</em>{n-1}) = P(x<em>n| x</em>{n-1})$)，但这是保证MDP无后效性的原因嘛？因为通过迭代的方式求解贝尔曼方程，value早晚会传播到很多时间段以后的。</li></ul>          </div></li></ol></li><li><p>Dynamic Planning in MDP:</p><ol><li>For prediction(Policy Evaluation):<br> Input: MDP $<S,A,P,R,\gamma>$ 和策略$\pi$ or MRP$<S, P^\pi, R^\pi, \gamma>$(没有显示的策略表示，是Implicit Policy)<br> Output: value function $v<em>\pi$<br> 对Policy Evaluation的理解：给定一个策略，通过贝尔曼方程迭代求出所有状态的价值$v</em>\pi(s)$</li><li>For control:<br> Input: MDP $<S,A,P,R,\gamma>$<br> Output: 最优价值函数$v<em>*$和最优策略$\pi</em>*$</li></ol></li><li><p>Bellman方程:</p><p><strong>(State-) Value Function:</strong></p><p><img src="https://i.loli.net/2021/09/29/7yIKAVjkGHTbXeU.png" alt="image-20210929174143894" style="zoom:80%;" /></p><script type="math/tex; mode=display">\begin{align}v_\pi(s) &= \sum_{a}\pi(a|s)q_\pi(s,a)\\&= \sum_a\,\pi(a|s)(R_s^a+\gamma \sum_{s'}(P_{ss'}^a\,v_\pi(s')))(代入q_\pi(s',a)公式)\end{align}</script><p>求Optimal $v_*(s)$(把求期望操作$\rightarrow$找$\operatorname {arg\,max}$操作)：</p><p><img src="https://i.loli.net/2021/09/29/x9D7TQga6GShrsi.png" alt="image-20210929203919230" style="zoom:80%;" /></p><script type="math/tex; mode=display">\begin{align}v_*(s) &= \underset{a}\max\{R_s^a+\gamma \sum_{s'}P_{ss'}^a\,v_\pi(s')\}\end{align}</script></li></ol><p>  <strong>Action Function:</strong></p><p>  <img src="https://i.loli.net/2021/09/29/VMlc1N2g4DPJo5I.png" alt="image-20210929174301352" style="zoom: 80%;" /></p><script type="math/tex; mode=display">  \begin{align}  q_*(s, a) &= R_{s}^a + \gamma\sum_{s'}\, P_{ss'}^a v_\pi(s') \\  (or&= \sum_{s'}\, P_{ss'}^a (R_{ss'}^a + v_\pi(s')) ) (考虑奖励R_s^a是否与s'有关)\\  &=R_s^a + \gamma\sum_{s'}\,P_{ss'}^a\sum_{a'}\pi(a'|s')q_\pi(s', a') (代入v_\pi(s')公式)\\  \end{align}</script><p>  求Optimal $q_*(s, a)$时(把求期望操作$\rightarrow$找$\operatorname {arg\,max}$操作)：</p><p>  <img src="https://i.loli.net/2021/09/29/xIVUrmEWBt4Nlzf.png" alt="image-20210929204248905" style="zoom:80%;" /></p><script type="math/tex; mode=display">  q_*(s, a) = R_s^a + \gamma \sum_{s'}\,P_{ss'}^a{\underset{a'}\max\,}q_\pi(s', a'))</script><h2 id="Policy-Evaluation"><a href="#Policy-Evaluation" class="headerlink" title="Policy Evaluation"></a>Policy Evaluation</h2><p><img src="https://i.loli.net/2021/09/29/ghzERuXiC1MtsQp.png" alt="image-20210929211939079"></p><p>给定一个policy $ \pi $，评估/衡量在$ \pi$下每个状态的value function.</p><h2 id="Policy-Iteration"><a href="#Policy-Iteration" class="headerlink" title="Policy Iteration"></a>Policy Iteration</h2><p><img src="https://i.loli.net/2021/09/29/2THt83175YAOZRJ.png" alt="image-20210929212427612"></p><p>这个是通过贪心的策略来迭代得到最好的policy。基本思想是$ \pi(s) = \underset{a}{\operatorname{arg\,max}}\, q(s, a)$，即在state function 固定情况下，通过贪心的选择给自己带来最大受益的action a 来作为自己的策略。可以证明经过多次迭代后，策略能收敛到贪心策略下的最优解上。</p><h2 id="Value-Iteration"><a href="#Value-Iteration" class="headerlink" title="Value Iteration"></a>Value Iteration</h2><p><img src="https://i.loli.net/2021/09/29/NpwbPFi3k52uedH.png" alt="image-20210929213203328"></p><p>这个的特点是没有给定任何显示的(explicit)策略$ \pi $, 而是只求解state function。</p><p>与Policy Evaluation 和Policy Iteration 不同， 前两者都出现了$\pi(a|s)$这个东西，也就是说每个状态下选择某个动作的概率是被记录的，并且可能随着算法也会迭代更新；而Value Iteration 每次选择受益最大的动作来更新value。</p><p>等迭代结束，value全部求出来后，最后一遍求解$\pi$。</p><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><img src="https://i.loli.net/2021/09/29/pNR9Q8biXWH2GOq.png" alt="image-20210929213757669"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>课程笔记</category>
+      
+      <category>强化学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>课程笔记</tag>
+      
+      <tag>强化学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>课程笔记:算法分析与设计(0)</title>
     <link href="/2021/09/25/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/"/>
     <url>/2021/09/25/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/</url>
