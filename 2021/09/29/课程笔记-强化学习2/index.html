@@ -190,7 +190,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://i.loli.net/2021/08/14/j5BKhpRcUVb4wzk.jpg') no-repeat center center;
+         style="background: url('https://i.loli.net/2021/09/30/c6T4CF1OPVjt2Hf.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -222,7 +222,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      876 字
+      875 字
     </span>
   
 
@@ -293,15 +293,15 @@
 <li>计算原问题最优解时，不会对子问题最优解产生影响。</li>
 </ul>
 <div class="note note-success">
-            <p>马尔科夫链和马尔科夫决策过程满足上述三个条件的，因为:</p><ul><li>Bellman方程将原问题递归的分解为规模更小的子问题</li><li>子问题拥有同样的format和structure</li><li>Que？ 有疑问，虽然马尔科夫过程强调每个state只与上一个state有关，与其他state无关($P(x<em>n|x_1,x_2,\dots,x</em>{n-1}) = P(x<em>n| x</em>{n-1})$)，但这是保证MDP无后效性的原因嘛？因为通过迭代的方式求解贝尔曼方程，value早晚会传播到很多时间段以后的。</li></ul>
+            <p>马尔科夫链和马尔科夫决策过程满足上述三个条件的，因为:</p><ul><li>Bellman方程将原问题递归的分解为规模更小的子问题</li><li>子问题拥有同样的format和structure</li><li>Que？ 有疑问，虽然马尔科夫过程强调每个state只与上一个state有关，与其他state无关(<script type="math/tex">P(x_n|x_1,x_2,\dots,x_{n-1}) = P(x_n| x_{n-1})</script>)，但这是保证MDP无后效性的原因嘛？因为通过迭代的方式求解贝尔曼方程，value早晚会传播到很多时间段以后的。</li></ul>
           </div>
 </li>
 </ol>
 </li>
 <li><p>Dynamic Planning in MDP:</p>
 <ol>
-<li>For prediction(Policy Evaluation):<br> Input: MDP $<S,A,P,R,\gamma>$ 和策略$\pi$ or MRP$<S, P^\pi, R^\pi, \gamma>$(没有显示的策略表示，是Implicit Policy)<br> Output: value function $v<em>\pi$<br> 对Policy Evaluation的理解：给定一个策略，通过贝尔曼方程迭代求出所有状态的价值$v</em>\pi(s)$</li>
-<li>For control:<br> Input: MDP $<S,A,P,R,\gamma>$<br> Output: 最优价值函数$v<em>*$和最优策略$\pi</em>*$</li>
+<li>For prediction(Policy Evaluation):<br> Input: MDP <script type="math/tex"><S,A,P,R,\gamma></script> 和策略 $ \pi $ or MRP<script type="math/tex"><S, P^\pi, R^\pi, \gamma></script>(没有显示的策略表示，是Implicit Policy)<br> Output: value function <script type="math/tex">v_\pi</script><br> 对Policy Evaluation的理解：给定一个策略，通过贝尔曼方程迭代求出所有状态的价值 <script type="math/tex">v_\pi(s)</script></li>
+<li>For control:<br> Input: MDP <script type="math/tex"><S,A,P,R,\gamma></script><br> Output: 最优价值函数<script type="math/tex">v_*</script>和最优策略<script type="math/tex">\pi_*</script></li>
 </ol>
 </li>
 <li><p>Bellman方程:</p>
@@ -311,7 +311,7 @@
 \begin{align}
 v_\pi(s) &= \sum_{a}\pi(a|s)q_\pi(s,a)\\
 &= \sum_a\,\pi(a|s)(R_s^a+\gamma \sum_{s'}(P_{ss'}^a\,v_\pi(s')))(代入q_\pi(s',a)公式)
-\end{align}</script><p>求Optimal $v_*(s)$(把求期望操作$\rightarrow$找$\operatorname {arg\,max}$操作)：</p>
+\end{align}</script><p>求Optimal <script type="math/tex">v_*(s)</script>(把求期望操作$\rightarrow$找$\operatorname {arg\,max}$操作)：</p>
 <p><img src="https://i.loli.net/2021/09/29/x9D7TQga6GShrsi.png" srcset="/img/loading.gif" lazyload alt="image-20210929203919230" style="zoom:80%;" /></p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -326,17 +326,17 @@ v_*(s) &= \underset{a}\max\{R_s^a+\gamma \sum_{s'}P_{ss'}^a\,v_\pi(s')\}
   q_*(s, a) &= R_{s}^a + \gamma\sum_{s'}\, P_{ss'}^a v_\pi(s') \\
   (or&= \sum_{s'}\, P_{ss'}^a (R_{ss'}^a + v_\pi(s')) ) (考虑奖励R_s^a是否与s'有关)\\
   &=R_s^a + \gamma\sum_{s'}\,P_{ss'}^a\sum_{a'}\pi(a'|s')q_\pi(s', a') (代入v_\pi(s')公式)\\
-  \end{align}</script><p>  求Optimal $q_*(s, a)$时(把求期望操作$\rightarrow$找$\operatorname {arg\,max}$操作)：</p>
+  \end{align}</script><p>  求Optimal <script type="math/tex">q_*(s, a)</script>时(把求期望操作$\rightarrow$找$\operatorname {arg\,max}$操作)：</p>
 <p>  <img src="https://i.loli.net/2021/09/29/xIVUrmEWBt4Nlzf.png" srcset="/img/loading.gif" lazyload alt="image-20210929204248905" style="zoom:80%;" /></p>
 <script type="math/tex; mode=display">
   q_*(s, a) = R_s^a + \gamma \sum_{s'}\,P_{ss'}^a{\underset{a'}\max\,}q_\pi(s', a'))</script><h2 id="Policy-Evaluation"><a href="#Policy-Evaluation" class="headerlink" title="Policy Evaluation"></a>Policy Evaluation</h2><p><img src="https://i.loli.net/2021/09/29/ghzERuXiC1MtsQp.png" srcset="/img/loading.gif" lazyload alt="image-20210929211939079"></p>
-<p>给定一个policy $ \pi $，评估/衡量在$ \pi$下每个状态的value function.</p>
+<p>给定一个policy <script type="math/tex">\pi</script>，评估/衡量在<script type="math/tex">\pi</script>下每个状态的value function.</p>
 <h2 id="Policy-Iteration"><a href="#Policy-Iteration" class="headerlink" title="Policy Iteration"></a>Policy Iteration</h2><p><img src="https://i.loli.net/2021/09/29/2THt83175YAOZRJ.png" srcset="/img/loading.gif" lazyload alt="image-20210929212427612"></p>
-<p>这个是通过贪心的策略来迭代得到最好的policy。基本思想是$ \pi(s) = \underset{a}{\operatorname{arg\,max}}\, q(s, a)$，即在state function 固定情况下，通过贪心的选择给自己带来最大受益的action a 来作为自己的策略。可以证明经过多次迭代后，策略能收敛到贪心策略下的最优解上。</p>
+<p>这个是通过贪心的策略来迭代得到最好的policy。基本思想是<script type="math/tex">\pi(s) = \underset{a}{\operatorname{arg\,max}}\, q(s, a)</script>，即在state function 固定情况下，通过贪心的选择给自己带来最大受益的action a 来作为自己的策略。可以证明经过多次迭代后，策略能收敛到贪心策略下的最优解上。</p>
 <h2 id="Value-Iteration"><a href="#Value-Iteration" class="headerlink" title="Value Iteration"></a>Value Iteration</h2><p><img src="https://i.loli.net/2021/09/29/NpwbPFi3k52uedH.png" srcset="/img/loading.gif" lazyload alt="image-20210929213203328"></p>
-<p>这个的特点是没有给定任何显示的(explicit)策略$ \pi $, 而是只求解state function。</p>
-<p>与Policy Evaluation 和Policy Iteration 不同， 前两者都出现了$\pi(a|s)$这个东西，也就是说每个状态下选择某个动作的概率是被记录的，并且可能随着算法也会迭代更新；而Value Iteration 每次选择受益最大的动作来更新value。</p>
-<p>等迭代结束，value全部求出来后，最后一遍求解$\pi$。</p>
+<p>这个的特点是没有给定任何显示的(explicit)策略<script type="math/tex">\pi</script>, 而是只求解state function。</p>
+<p>与Policy Evaluation 和Policy Iteration 不同， 前两者都出现了<script type="math/tex">\pi(a|s)</script>这个东西，也就是说每个状态下选择某个动作的概率是被记录的，并且可能随着算法也会迭代更新；而Value Iteration 每次选择受益最大的动作来更新value。</p>
+<p>等迭代结束，value全部求出来后，最后一遍求解<script type="math/tex">\pi</script>。</p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><img src="https://i.loli.net/2021/09/29/pNR9Q8biXWH2GOq.png" srcset="/img/loading.gif" lazyload alt="image-20210929213757669"></p>
 
             </div>
