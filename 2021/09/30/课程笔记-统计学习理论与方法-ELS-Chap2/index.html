@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="这是我熬夜1：30-6：00也未能彻底搞完的笔记。仅做纪念，坚定新年。">
+  <meta name="description" content="这是我熬夜1：30-6：00也未能彻底搞完的笔记。仅做纪念，坚定信念。">
   <meta name="author" content="oier99">
   <meta name="keywords" content="">
   
-  <title>课程笔记-统计学习理论与方法_ELS_Chap2 - Oier99</title>
+  <title>课程笔记：统计学习理论与方法_ELS_Chap2 - Oier99</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="课程笔记-统计学习理论与方法_ELS_Chap2">
+            <span class="h2" id="subtitle" title="课程笔记：统计学习理论与方法_ELS_Chap2">
               
             </span>
 
@@ -222,7 +222,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.6k 字
+      2.7k 字
     </span>
   
 
@@ -266,7 +266,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">课程笔记-统计学习理论与方法_ELS_Chap2</h1>
+            <h1 style="display: none">课程笔记：统计学习理论与方法_ELS_Chap2</h1>
             
             <div class="markdown-body">
               <script src="/assets/js/APlayer.min.js"> </script><h1 id="课程笔记：统计学习理论与方法-ELS-Chap2"><a href="#课程笔记：统计学习理论与方法-ELS-Chap2" class="headerlink" title="课程笔记：统计学习理论与方法_ELS_Chap2"></a>课程笔记：统计学习理论与方法_ELS_Chap2</h1><p>📚书籍：《Elements of Statistical Learning》Chap 2 </p>
@@ -275,7 +275,7 @@
 <thead>
 <tr>
 <th style="text-align:center">输入变量(Input Variable)</th>
-<th style="text-align:center">$X$, 通常随机变量取值是<script type="math/tex">p</script>维随机向量(<script type="math/tex">X\in \R^p</script>),其每个分量可用下角标<script type="math/tex">X_i</script>表示是该维度特征的变量</th>
+<th style="text-align:center">$X$, 通常随机变量取值是<script type="math/tex">p</script>维随机向量(<script type="math/tex">X\in \mathbb{R}^p</script>),其每个分量可用下角标<script type="math/tex">X_i</script>表示是该维度特征的变量</th>
 </tr>
 </thead>
 <tbody>
@@ -305,7 +305,7 @@
  \hat{f}(x) &= \sum_{i=1}^{p} \hat{\beta}_iX_i + \hat{\beta}_0 \\
                       &= \hat{\beta}^TX \\
                       &= X^T\hat{\beta}
- \end{align}</script> 写成矩阵形式，其中<script type="math/tex">\textbf{X} \in \R^{N \times p}</script></li>
+ \end{align}</script> 写成矩阵形式，其中<script type="math/tex">\textbf{X} \in \mathbb{R}^{N \times p}</script></li>
 </ol>
 <script type="math/tex; mode=display">
 \hat{Y} = \textbf{X} \hat{\beta}</script><ol>
@@ -320,7 +320,7 @@
 <script type="math/tex; mode=display">
  \begin{align}
 
- \derivative{L}{\hat{\beta}} &= -2\textbf{X}^T(Y- \textbf{X}\hat{\beta}) = 0 \\
+ \frac{\partial{L}}{\partial \hat{\beta}} &= -2\textbf{X}^T(Y- \textbf{X}\hat{\beta}) = 0 \\
  \hat{\beta} &= (X^TX)^{-1}X^TY
  \end{align}</script></li>
 <li><p>思考一下两种数据分布情况对线性回归模型影响：</p>
@@ -401,7 +401,7 @@ MSE(x_0) &= E_\tau[f(x_0) - \hat{y_0}]^2 \\
 \end{align}</script><p>设训练集为<script type="math/tex">\tau</script>, 函数<script type="math/tex">f(x)</script>为准确的预测模型(has no bias), 计算<strong><script type="math/tex">X=x_0</script>这一测试点(test point)</strong>上的最小均方误差。由于<script type="math/tex">f(x)</script>为精准模型，因此其变化只与输入有关，因此在<script type="math/tex">\tau</script>的期望上可以看做是常数，就有如上变换。</p>
 <p>其中第一项是预测模型<script type="math/tex">\hat{y_0}</script>自身的方差， 第二项是预测模型与真实模型之间的Bias。对于方差来说，是由于对计算<script type="math/tex">y_0</script>时带来的数据方差(通常假设是<script type="math/tex">N(0,1)</script>的高斯噪声，方差由此带来)。对于Bias而言，一方面由于在<script type="math/tex">x_0</script>的邻域里采样，另一方面由于预测模型总会有误差(<script type="math/tex">N(0,1)</script>高斯噪声的均值)。</p>
 <div class="note note-warning">
-            <p>注意这里算MSE拆分时的$f(x<em>0)$与数据集<script type="math/tex">\tau</script>中的随机变量<script type="math/tex">Y</script>的取值不等价的。因为数据集中的标签<script type="math/tex">Y</script>往往充满噪声的，而我们假设理想数据集是满足某种分布<script type="math/tex">f(x)</script>，然后再该分布上加上噪声<script type="math/tex">\epsilon</script>才得到了数据集中的真实的<script type="math/tex">Y</script>。所以算bias时$$f(x_0) - E</em>\tau(\hat{y<em>0})<script type="math/tex">是不能写成</script> Y - E</em>\tau(\hat{y_0}) $$的。</p><p>后面我们算EPE的拆分时，把数据集中的真实$Y$放了进去，因此拆分中多了关于噪声的方差项。详细见下面介绍。</p>
+            <p>注意这里算MSE拆分时的<script type="math/tex">f(x_0)</script>与数据集<script type="math/tex">\tau</script>中的随机变量<script type="math/tex">Y</script>的取值不等价的。因为数据集中的标签<script type="math/tex">Y</script>往往充满噪声的，而我们假设理想数据集是满足某种分布<script type="math/tex">f(x)</script>，然后再该分布上加上噪声<script type="math/tex">\epsilon</script>才得到了数据集中的真实的<script type="math/tex">Y</script>。所以算bias时 <script type="math/tex">f(x_0) - E_\tau(\hat{y_0})</script> 是不能写成<script type="math/tex">Y - E_\tau(\hat{y_0})</script>的。</p><p>后面我们算EPE的拆分时，把数据集中的真实$Y$放了进去，因此拆分中多了关于噪声的方差项。详细见下面介绍。</p>
           </div>
 <h3 id="对于线性回归模型-Y-X-hat-beta-X-beta-epsilon"><a href="#对于线性回归模型-Y-X-hat-beta-X-beta-epsilon" class="headerlink" title="对于线性回归模型 Y = X\hat{\beta} = X\beta + \epsilon"></a>对于线性回归模型 <script type="math/tex">Y = X\hat{\beta} = X\beta + \epsilon</script></h3><p>假设数据集 <script type="math/tex">\tau</script>中<script type="math/tex">Y</script>与<script type="math/tex">X</script> 成近似线性分布，假设中间差个高斯噪声<script type="math/tex">N(0,I_p)</script></p>
 <p>由于</p>
@@ -423,7 +423,8 @@ where\,\, l_i(x_0) = (x_0^T(X^TX)^{-1}X^T)_i</script><p>下面，我们对整个
 EPE(x_0) &= E_{y_0 | x_0} E_\tau(y_0 - \hat{y_0})^2 \\
 &= Var(y_0|x_0) + E_\tau ((\hat{y_0} - E_\tau(\hat{y_0})^2)) + (E_\tau \hat{y_0} - x_0^T \beta)^2 \\
 &= \sigma^2(\epsilon) + E_\tau x_0^T(X^TX)^{-1}x_0 \sigma^2(\epsilon) + 0^2
-\end{align}</script><h2 id="维度灾难-Curse-of-Dimensionality"><a href="#维度灾难-Curse-of-Dimensionality" class="headerlink" title="维度灾难(Curse of Dimensionality)"></a>维度灾难(Curse of Dimensionality)</h2><h2 id="模型选择与误差-Model-Selection-and-Bias"><a href="#模型选择与误差-Model-Selection-and-Bias" class="headerlink" title="模型选择与误差(Model Selection and Bias)"></a>模型选择与误差(Model Selection and Bias)</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>《统计学习方法》第二版 李航
+\end{align}</script><h2 id="维度灾难-Curse-of-Dimensionality"><a href="#维度灾难-Curse-of-Dimensionality" class="headerlink" title="维度灾难(Curse of Dimensionality)"></a>维度灾难(Curse of Dimensionality)</h2><p>待填坑</p>
+<h2 id="模型选择与误差-Model-Selection-and-Bias"><a href="#模型选择与误差-Model-Selection-and-Bias" class="headerlink" title="模型选择与误差(Model Selection and Bias)"></a>模型选择与误差(Model Selection and Bias)</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>《统计学习方法》第二版 李航
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
@@ -437,7 +438,9 @@ EPE(x_0) &= E_{y_0 | x_0} E_\tau(y_0 - \hat{y_0})^2 \\
                     
                       <a class="hover-with-bg" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E4%B8%8E%E6%96%B9%E6%B3%95/">统计学习理论与方法</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%95%99%E6%9D%90%E7%AC%94%E8%AE%B0%EF%BC%8CElements-of-Statistical-Learning/">教材笔记，Elements of Statistical Learning</a>
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E6%9D%90%E7%AC%94%E8%AE%B0/">教材笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E6%9D%90%E7%AC%94%E8%AE%B0/Elements-of-Statistical-Learning/">Elements of Statistical Learning</a>
                     
                   </div>
                 
@@ -674,11 +677,9 @@ EPE(x_0) &= E_{y_0 | x_0} E_\tau(y_0 - \hat{y_0})^2 \\
 
 
   
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js"></script>
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
 
 
 
