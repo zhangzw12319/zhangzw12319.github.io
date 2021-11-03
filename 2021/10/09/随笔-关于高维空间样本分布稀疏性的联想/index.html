@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="本节只是非常粗略的把动态规划的要点总结一下，是课堂笔记纲要，并非详细讲解。先占个坑，以后有空再补">
+  <meta name="description" content="这是我手动定义的文章摘要">
   <meta name="author" content="oier99">
   <meta name="keywords" content="">
   
-  <title>课程笔记：强化学习(2)——Bellman方程的动态规划求解 - Oier99</title>
+  <title>随笔-关于高维空间样本分布稀疏性的联想 - Oier99</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -190,12 +190,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://i.loli.net/2021/09/30/c6T4CF1OPVjt2Hf.jpg') no-repeat center center;
+         style="background: url('https://i.loli.net/2021/09/25/NGX9KzhdUfDwCx3.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="课程笔记：强化学习(2)——Bellman方程的动态规划求解">
+            <span class="h2" id="subtitle" title="随笔-关于高维空间样本分布稀疏性的联想">
               
             </span>
 
@@ -210,8 +210,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-29 23:10" pubdate>
-        2021年9月29日 晚上
+      <time datetime="2021-10-09 22:26" pubdate>
+        2021年10月9日 晚上
       </time>
     </span>
   
@@ -222,7 +222,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      885 字
+      1k 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      10
        分钟
     </span>
   
@@ -266,79 +266,20 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">课程笔记：强化学习(2)——Bellman方程的动态规划求解</h1>
+            <h1 style="display: none">随笔-关于高维空间样本分布稀疏性的联想</h1>
             
             <div class="markdown-body">
-              <script src="/assets/js/APlayer.min.js"> </script><h1 id="课程笔记：强化学习-2-——Bellman方程的动态规划求解"><a href="#课程笔记：强化学习-2-——Bellman方程的动态规划求解" class="headerlink" title="课程笔记：强化学习(2)——Bellman方程的动态规划求解"></a>课程笔记：强化学习(2)——Bellman方程的动态规划求解</h1><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><div class="note note-info">
-            <p>本节只是非常粗略的把动态规划的要点总结一下，是课堂笔记纲要，并非详细讲解。先占个坑，以后有空再补</p>
-          </div>
-<ol>
-<li><p>动态规划需要满足的条件：</p>
-<ol>
-<li><p>最优子结构(Optimal substructure):</p>
-<ul>
-<li><p>原问题的最优解一定也是子问题的最优解。例如，一个输入长度为N的序列的某个Scheduling问题（记为T(1，N) ) 的最优解，拆分后一定也是其子问题T(1,N/2-1), T(N/2, N)的最优解。</p>
-</li>
-<li><p>子问题的最优解可以通过某种形式组合和计算，得到原问题的最优解</p>
-</li>
-</ul>
-</li>
-<li><p>重叠子问题</p>
-<ul>
-<li>子问题与原问题有同样的format和structure</li>
-</ul>
-</li>
-<li><p>无后效性</p>
-<ul>
-<li>计算原问题最优解时，不会对子问题最优解产生影响。</li>
-</ul>
-<div class="note note-success">
-            <p>马尔科夫链和马尔科夫决策过程满足上述三个条件的，因为:</p><ul><li>Bellman方程将原问题递归的分解为规模更小的子问题</li><li>子问题拥有同样的format和structure</li><li>Que？ 有疑问，虽然马尔科夫过程强调每个state只与上一个state有关，与其他state无关(<script type="math/tex">P(x_n|x_1,x_2,\dots,x_{n-1}) = P(x_n| x_{n-1})</script>)，但这是保证MDP无后效性的原因嘛？因为通过迭代的方式求解贝尔曼方程，value早晚会传播到很多时间段以后的。</li></ul>
-          </div>
-</li>
-</ol>
-</li>
-<li><p>Dynamic Planning in MDP:</p>
-<ol>
-<li>For prediction(Policy Evaluation):<br> Input: MDP <script type="math/tex"><S,A,P,R,\gamma></script> 和策略 $ \pi $ or MRP<script type="math/tex"><S, P^\pi, R^\pi, \gamma></script>(没有显示的策略表示，是Implicit Policy)<br> Output: value function <script type="math/tex">v_\pi</script><br> 对Policy Evaluation的理解：给定一个策略，通过贝尔曼方程迭代求出所有状态的价值 <script type="math/tex">v_\pi(s)</script></li>
-<li>For control:<br> Input: MDP <script type="math/tex"><S,A,P,R,\gamma></script><br> Output: 最优价值函数<script type="math/tex">v_*</script>和最优策略<script type="math/tex">\pi_*</script></li>
-</ol>
-</li>
-<li><p>Bellman方程:</p>
-<p><strong>(State-) Value Function:</strong></p>
-<p><img src="https://i.loli.net/2021/09/29/7yIKAVjkGHTbXeU.png" srcset="/img/loading.gif" lazyload alt="image-20210929174143894" style="zoom:80%;" /></p>
-<script type="math/tex; mode=display">
-\begin{align}
-v_\pi(s) &= \sum_{a}\pi(a|s)q_\pi(s,a)\\
-&= \sum_a\,\pi(a|s)(R_s^a+\gamma \sum_{s'}(P_{ss'}^a\,v_\pi(s')))(代入q_\pi(s',a)公式)
-\end{align}</script><p>求Optimal <script type="math/tex">v_*(s)</script>(把求期望操作$\rightarrow$找$\operatorname {arg\,max}$操作)：</p>
-<p><img src="https://i.loli.net/2021/09/29/x9D7TQga6GShrsi.png" srcset="/img/loading.gif" lazyload alt="image-20210929203919230" style="zoom:80%;" /></p>
-<script type="math/tex; mode=display">
-\begin{align}
-v_*(s) &= \underset{a}\max\{R_s^a+\gamma \sum_{s'}P_{ss'}^a\,v_\pi(s')\}
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="随笔：关于高维空间样本分布稀疏性的联想"><a href="#随笔：关于高维空间样本分布稀疏性的联想" class="headerlink" title="随笔：关于高维空间样本分布稀疏性的联想"></a>随笔：关于高维空间样本分布稀疏性的联想</h1><h2 id="背景提要"><a href="#背景提要" class="headerlink" title="背景提要"></a>背景提要</h2><div class="hljs code-wrapper"><pre><code>     在高维的向量空间中，假设有限个数的样本从一个均匀分布随机采样得到的，那么可以证明这些样本大多会倾向于分布在高维球体或立方体的面都附近(Surface)，而且即便是最近的两个样本之间的距离也会非常远，因为高维空间实在太稀疏了。比如在卷积神经网络使用的向量维度通常是1024维或2048维。
 
-\end{align}</script></li>
-</ol>
-<p>  <strong>Action Function:</strong></p>
-<p>  <img src="https://i.loli.net/2021/09/29/VMlc1N2g4DPJo5I.png" srcset="/img/loading.gif" lazyload alt="image-20210929174301352" style="zoom: 80%;" /></p>
-<script type="math/tex; mode=display">
-  \begin{align}
-  q_*(s, a) &= R_{s}^a + \gamma\sum_{s'}\, P_{ss'}^a v_\pi(s') \\
-  (or&= \sum_{s'}\, P_{ss'}^a (R_{ss'}^a + v_\pi(s')) ) (考虑奖励R_s^a是否与s'有关)\\
-  &=R_s^a + \gamma\sum_{s'}\,P_{ss'}^a\sum_{a'}\pi(a'|s')q_\pi(s', a') (代入v_\pi(s')公式)\\
-  \end{align}</script><p>  求Optimal <script type="math/tex">q_*(s, a)</script>时(把求期望操作$\rightarrow$找$\operatorname {arg\,max}$操作)：</p>
-<p>  <img src="https://i.loli.net/2021/09/29/xIVUrmEWBt4Nlzf.png" srcset="/img/loading.gif" lazyload alt="image-20210929204248905" style="zoom:80%;" /></p>
-<script type="math/tex; mode=display">
-  q_*(s, a) = R_s^a + \gamma \sum_{s'}\,P_{ss'}^a{\underset{a'}\max\,}q_\pi(s', a'))</script><h2 id="Policy-Evaluation"><a href="#Policy-Evaluation" class="headerlink" title="Policy Evaluation"></a>Policy Evaluation</h2><p><img src="https://i.loli.net/2021/09/29/ghzERuXiC1MtsQp.png" srcset="/img/loading.gif" lazyload alt="image-20210929211939079"></p>
-<p>给定一个policy <script type="math/tex">\pi</script>，评估/衡量在<script type="math/tex">\pi</script>下每个状态的value function.</p>
-<h2 id="Policy-Iteration"><a href="#Policy-Iteration" class="headerlink" title="Policy Iteration"></a>Policy Iteration</h2><p><img src="https://i.loli.net/2021/09/29/2THt83175YAOZRJ.png" srcset="/img/loading.gif" lazyload alt="image-20210929212427612"></p>
-<p>这个是通过贪心的策略来迭代得到最好的policy。基本思想是<script type="math/tex">\pi(s) = \underset{a}{\operatorname{arg\,max}}\, q(s, a)</script>，即在state function 固定情况下，通过贪心的选择给自己带来最大受益的action a 来作为自己的策略。可以证明经过多次迭代后，策略能收敛到贪心策略下的最优解上。</p>
-<h2 id="Value-Iteration"><a href="#Value-Iteration" class="headerlink" title="Value Iteration"></a>Value Iteration</h2><p><img src="https://i.loli.net/2021/09/29/NpwbPFi3k52uedH.png" srcset="/img/loading.gif" lazyload alt="image-20210929213203328"></p>
-<p>这个的特点是没有给定任何显示的(explicit)策略<script type="math/tex">\pi</script>, 而是只求解state function。</p>
-<p>与Policy Evaluation 和Policy Iteration 不同， 前两者都出现了<script type="math/tex">\pi(a|s)</script>这个东西，也就是说每个状态下选择某个动作的概率是被记录的，并且可能随着算法也会迭代更新；而Value Iteration 每次选择受益最大的动作来更新value。</p>
-<p>等迭代结束，value全部求出来后，最后一遍求解<script type="math/tex">\pi</script>。</p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><img src="https://i.loli.net/2021/09/29/pNR9Q8biXWH2GOq.png" srcset="/img/loading.gif" lazyload alt="image-20210929213757669"></p>
+     我一直在思考有没有一个形象化的比喻来直观地解释，或者类比一下这个现象。先想到了两个例子，但可能原理不同，也不一定贴切。
+</code></pre></div><h2 id="宇宙膨胀"><a href="#宇宙膨胀" class="headerlink" title="宇宙膨胀"></a>宇宙膨胀</h2><div class="hljs code-wrapper"><pre><code>     现代的宇宙学最大的一个发现就是，我们所处的宇宙是在不断膨胀的，就像一个正在不断被吹胀的气球一样，我们周围的星系在不断离我们远去。但是据说我们的宇宙的维度可能有11维(包括宏观维度和微观物质的维度)，即便我们的宇宙是高维空间，也不像是1024或2048维这么高的维度；而且宇宙空间会纯粹的数学上的向量空间是两个完全不同的系统，即便在某些性质上可能会有相似的交集。
+</code></pre></div><p>​        突然想起一句台词，”我们像星星一样近，我们像星星一样远。我们近得摩擦生电，我们远如天际云端。“</p>
+<h2 id="社交距离-amp-人际关系的疏远"><a href="#社交距离-amp-人际关系的疏远" class="headerlink" title="社交距离&amp;人际关系的疏远"></a>社交距离&amp;人际关系的疏远</h2><div class="hljs code-wrapper"><pre><code>     我想到的一个完全不相干，但是又很奇妙的比喻：人际关系的亲疏远近。有个比较普遍的现象：小时候很容易交到朋友和玩伴，建立一段Friendship的障碍没有那么大，小孩子之间的社交距离很近；但是随着我们逐渐长大，经历的事情越来越多，我们的心灵越来越社会化，会越发现建立一段Relationship会变得愈发困难。进入社会工作后，自己身边都是”同事“和陌生人，大家都很忙，彼此不想过度打扰，即便是你感觉再好的朋友距离也会比小时候变远，就好像在一段数轴上均匀分布的5个点可能离得很近，但是如果把这5个点随机撒入几十维的高维球中，那么即便是最近的两个点，其欧氏距离也比一维坐标轴上的距离要更遥远。
+</code></pre></div><p>​        那么比喻的相似点在哪里呢？年龄小的时候，我们所生活在一个低维的世界中，在这个世界中只有”吃饭“，”睡觉“，”写作业“，”玩“等较少的维度中。维度越低的时候，也是我们的心智越稚嫩简单的时候，对陌生人和这个世界容易充满信任。当我们慢慢长大，上大学，读研，工作，建立家庭，我们的生活维度在不断扩张，直到变成一个高维空间。在这个高维空间里，生活和工作中的遇到的人际关系会更加复杂，再也不是在象牙塔里如此的单纯，仿佛整个世界只由几个简单的维度构成。生活在一个高维空间里是很容易疲惫，就好像训练一个高维的神经网络模型一样困难。自然而然，在这个高维空间里，如果把每个人作为这个社会随机采样下的样本，样本之间的距离也会随之自然变远。</p>
+<div class="hljs code-wrapper"><pre><code>     PS: 居然查到了有《社会统计学》这门课，不过真正的社会统计学肯定不是像我这般的胡思乱想。
 
+     &quot;无尽的远方,无数的人们,都与我有关。&quot; 希望这句话能带给我一些安慰。
+</code></pre></div>
             </div>
             <hr>
             <div>
@@ -347,9 +288,7 @@ v_*(s) &= \underset{a}\max\{R_s^a+\gamma \sum_{s'}P_{ss'}^a\,v_\pi(s')\}
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
+                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
                     
                   </div>
                 
@@ -357,9 +296,7 @@ v_*(s) &= \underset{a}\max\{R_s^a+\gamma \sum_{s'}P_{ss'}^a\,v_\pi(s')\}
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">课程笔记</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
+                      <a class="hover-with-bg" href="/tags/%E9%AB%98%E7%BB%B4%E7%A9%BA%E9%97%B4%EF%BC%8C-%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/">高维空间， 维度灾难</a>
                     
                   </div>
                 
@@ -376,9 +313,9 @@ v_*(s) &= \underset{a}\max\{R_s^a+\gamma \sum_{s'}P_{ss'}^a\,v_\pi(s')\}
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/30/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E4%B8%8E%E6%96%B9%E6%B3%95-ELS-Chap2/">
+                      <a href="/2021/10/10/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">课程笔记：统计学习理论与方法(ELS_Chap2)</span>
+                        <span class="hidden-mobile">课程笔记-矩阵理论(1)——线性代数知识回顾(上)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -386,8 +323,8 @@ v_*(s) &= \underset{a}\max\{R_s^a+\gamma \sum_{s'}P_{ss'}^a\,v_\pi(s')\}
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/09/25/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1/">
-                        <span class="hidden-mobile">课程笔记：算法分析与设计(0)</span>
+                      <a href="/2021/10/09/%E9%9A%8F%E7%AC%94-%E9%82%A3%E4%BA%9B%E5%9C%A8CV%E9%87%8C%E7%94%A8%E8%85%BB%E4%BA%86%E7%9A%84%E8%AF%9D%E6%9C%AF%E4%B8%8E%E8%AF%B4%E8%BE%9E/">
+                        <span class="hidden-mobile">随笔：那些在CV里用腻了的话术与说辞</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
