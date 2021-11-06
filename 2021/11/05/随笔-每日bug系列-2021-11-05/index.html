@@ -17,12 +17,28 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="zhangzw12319">
+  <meta name="author" content="oier99">
   <meta name="keywords" content="">
   
-  <title>归档 - Oier99</title>
+  <title>随笔-每日bug系列（2021-11-05） - Oier99</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -174,14 +190,56 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://i.loli.net/2021/08/14/sM7AP6KHcQ1SDxZ.jpg') no-repeat center center;
+         style="background: url('https://i.loli.net/2021/09/30/tfhTo6NrOJKRikm.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="随笔-每日bug系列（2021-11-05）">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      oier99
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-05 23:05" pubdate>
+        2021年11月5日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      289 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -198,58 +256,104 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 13 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/08/20/Luna%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Luna--Linear Unified Nested Attention[阅读笔记]</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2021/08/14/Notes_on_partial_FC/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Partial FC--Training 10 Million Identities on a Single Machine[阅读笔记]</span>
-      <time style="float: right;">08-14</time>
-    </a>
-  
-    
-    <a href="/2021/07/25/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hello World</span>
-      <time style="float: right;">07-25</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">随笔-每日bug系列（2021-11-05）</h1>
+            
+            <div class="markdown-body">
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="随笔-每日bug系列-2021-11-05"><a href="#随笔-每日bug系列-2021-11-05" class="headerlink" title="随笔-每日bug系列_2021-11-05"></a>随笔-每日bug系列_2021-11-05</h1><h2 id="Bug-1"><a href="#Bug-1" class="headerlink" title="Bug 1"></a>Bug 1</h2><p>计算矩阵特征值，求行列式$|\lambda I_n - A|$时，一定要写成</p>
+<script type="math/tex; mode=display">
+\left [
+\begin{array}{cccc}
+\lambda - a_{11} & -a_{12} & \cdots& -a_{1n}\\
+-a_{21} & \lambda -a_{22} & \cdots & -a_{2n}\\
+\vdots & \vdots & \vdots & \vdots 
+\end{array}
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
+\right ]</script><p>的形式，否则展开求解时极容易出错(今天计算行列式看着原矩阵脑补写特征多项式一连写错五次的痛，对自己的算术能力表示深刻怀疑)</p>
+<h2 id="Bug-2"><a href="#Bug-2" class="headerlink" title="Bug 2"></a>Bug 2</h2><p>记住 <script type="math/tex">A + 2= A + 2I_n</script>，是加在对角线元素上的，不是每个位置都加2。这个惯性错误犯了好多次了！！</p>
+<h2 id="Bug-3"><a href="#Bug-3" class="headerlink" title="Bug 3"></a>Bug 3</h2><p>相似矩阵有相同特征值，但逆命题不成立(即有相同特征值，包括每个特征值的代数重数也相同的两个矩阵不一定相似)。因为可能有不同的Jordan标准型形式。比如一个矩阵可以对角化，相似于某个对角阵；而另一个矩阵无法对角化，只能相似于某个Jordan标准型，相同特征值个数的Jordan标准型又有很多种，所以导致这两个矩阵无法相似。</p>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94/%E6%AF%8F%E6%97%A5bug%E7%B3%BB%E5%88%97/">每日bug系列</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA/">矩阵理论</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%89%B9%E5%BE%81%E5%80%BC/">特征值</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/04/%E8%AF%BE%E7%A8%8B%E4%B8%93%E9%A2%98-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA%E4%B9%8B%E7%9F%A9%E9%98%B5%E5%AF%B9%E8%A7%92%E5%8C%96%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%B1%87%E6%80%BB/">
+                        <span class="hidden-mobile">课程专题-矩阵理论之矩阵对角化的条件汇总</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -329,9 +433,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
 
 
 
@@ -361,9 +471,55 @@
 
 
 
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
 
 
 
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
 
 
 
