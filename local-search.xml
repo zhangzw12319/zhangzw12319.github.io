@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>课程专题-矩阵理论之矩阵对角化的条件汇总</title>
+    <link href="/2021/11/04/%E8%AF%BE%E7%A8%8B%E4%B8%93%E9%A2%98-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA%E4%B9%8B%E7%9F%A9%E9%98%B5%E5%AF%B9%E8%A7%92%E5%8C%96%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%B1%87%E6%80%BB/"/>
+    <url>/2021/11/04/%E8%AF%BE%E7%A8%8B%E4%B8%93%E9%A2%98-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA%E4%B9%8B%E7%9F%A9%E9%98%B5%E5%AF%B9%E8%A7%92%E5%8C%96%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%B1%87%E6%80%BB/</url>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="课程专题-矩阵理论之矩阵对角化的条件汇总"><a href="#课程专题-矩阵理论之矩阵对角化的条件汇总" class="headerlink" title="课程专题-矩阵理论之矩阵对角化的条件汇总"></a>课程专题-矩阵理论之矩阵对角化的条件汇总</h1><p>题记：整个初等矩阵理论中要考虑最重要的事情，就是如何尽可能将矩阵化简、压缩。不论是化简为最普世的Jordan标准型，还是更为特殊的矩阵能化简为对角矩阵，以至到后续的各种矩阵分解，都是在研究这一问题。</p><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><ol><li>定义了特征值，特征向量，特征多项式，特征子空间，相似变换等概念(自我回顾一下)。一些比较重要的性质（常识）</li></ol><ul><li><script type="math/tex; mode=display">\tr(A) = \sum \lambda_i$$（包括多重次数的特征值），$$|A|=\Pi \lambda_i</script></li><li>相似矩阵的特征值相同；但特征值相同不一定相似，因为两个矩阵特征值对应的特征子空间不一定一样。</li><li>属于不同特征值的特征向量必不可能相同;进一步，属于不同特征值的特征向量必线性无关。</li><li><script type="math/tex; mode=display">kA$$,$$A^m$$,$$A^{-1}$$(若$A$可逆)特征值分别是$$k\lambda$$, $$\lambda^m$$,$$\lambda^{-1}</script></li><li>实矩阵的特征值/特征向量有可能是复数，因此特征子空间的数域一般定义在复数上</li><li>特征子空间：特征子空间本质上是<script type="math/tex">(\lambda I- A)x=0</script>的解空间(除0以外)，若<script type="math/tex">x_1</script>和<script type="math/tex">x_2</script>都是<script type="math/tex">A</script>的属于<script type="math/tex">\lambda</script>的特征向量，则<script type="math/tex">k_1x_1+ k_2x_2</script>(<script type="math/tex">\ne 0</script>)也是属于<script type="math/tex">\lambda</script>的特征向量。</li></ul><ol><li>矩阵理论中为了更便捷地研究(玩耍)，引入了零化多项式和最小多项式的概念。<ul><li></li></ul></li></ol><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><ol><li>$n$阶矩阵可对角化的充分必要条件：<ul><li>矩阵有$n$个线性无关的特征向量(原理：这$n$个线性无关的特征向量正好构成了相似变换的可逆矩阵)</li><li>每个特征值的几何重数=代数重数(通常几何重数&lt;=代数重数)(原理：从Jordan标准型上直观的来解释一下，代数重数是Jordan标准型对角线上$\lambda$总共出现的次数，几何重数(特征子空间的维数)是特征值为<script type="math/tex">\lambda</script>的Jordan块<script type="math/tex">J_k(\lambda)</script>的块数，每一块对应一个特征子空间的基向量，块之间阶数不一样对应基向量之间是线性无关的。若代数重数=几何重数，则每个Jordan块大小为1，退化为对角矩阵) ？</li></ul></li><li>$n$阶矩阵的最小多项式没有重根<ul><li>零化多项式：特征多项式f()肯定是满足<script type="math/tex">f(A)=0</script></li><li><script type="math/tex">\lambda</script>是$A$的特征值充要条件：最小多项式$m(\lambda)=0$</li><li>相似矩阵有相同的最小多项式</li><li>分块对角矩阵的最小多项式是各块最小多项式的最小公倍式(对照分块对角阵的特征多项式= 各块最小多项式的乘积)</li></ul></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>课程笔记</category>
+      
+      <category>矩阵理论</category>
+      
+      <category>课程专题</category>
+      
+      <category>矩阵理论</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>矩阵对角化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>课程笔记-矩阵理论(1)——线性代数知识回顾(下)</title>
     <link href="/2021/10/11/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA1.5/"/>
     <url>/2021/10/11/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA1.5/</url>
@@ -120,7 +151,7 @@
     <link href="/2021/10/09/%E9%9A%8F%E7%AC%94-%E9%82%A3%E4%BA%9B%E5%9C%A8CV%E9%87%8C%E7%94%A8%E8%85%BB%E4%BA%86%E7%9A%84%E8%AF%9D%E6%9C%AF%E4%B8%8E%E8%AF%B4%E8%BE%9E/"/>
     <url>/2021/10/09/%E9%9A%8F%E7%AC%94-%E9%82%A3%E4%BA%9B%E5%9C%A8CV%E9%87%8C%E7%94%A8%E8%85%BB%E4%BA%86%E7%9A%84%E8%AF%9D%E6%9C%AF%E4%B8%8E%E8%AF%B4%E8%BE%9E/</url>
     
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="随笔：那些在CV里用腻了的话术与说辞"><a href="#随笔：那些在CV里用腻了的话术与说辞" class="headerlink" title="随笔：那些在CV里用腻了的话术与说辞"></a>随笔：那些在CV里用腻了的话术与说辞</h1><p>究其根源，深度学习是一个黑盒子(Black Box)，缺乏一套能够解释清楚深度神经网络的运作机理的数学理论，比如，能否解释深度网络究竟从海量数据中学到了什么，深度网络的反向传播过程的收敛条件，训练深度模型为什么花费那么长时间，究竟有多少时间是对学习真正有用的。由于缺乏理论支撑，很多搞深度学习应用的(如CV, NLP)大多follow这样的研究路线：通过紧跟研究”热点“，读paper参会看别人提出了哪些模型，然后想到一个”灵感“，提出一套自己魔改的结构，抱着试一试的心态做实验发现work了，再来解释一通，就去投稿发paper。所以很多paper(尤其搞CV/NLP + DL)都是从性能结果反向解释自己的神经网络结构，并且很多解释是基于经验和直觉的。</p><p>读多了后，发现有一些话术是比较Common的技巧，就是很多工作都愿意用上这些技巧来提点，写作时用上相似的话术去讲故事，总觉一下就觉得比较有意思。以后有空会继续补充。</p><ol><li>Multi-Resolution/Hierarchical/Pyramid Sturcture/Extract Feature at diferent scales</li><li>不同层次/级别的特征如何融合：Feature Fusion</li><li>分类问题/多模态问题/迁移学习问题: Intra-class variance &amp; Inter-class Variance(最小化类内XXX，最大化类间XXX,以保留判别性信息)</li><li>Global Part + Local Part 的多分支设计</li><li>Local Discriminative Part</li><li>粗粒度+细粒度(Coarse + Fine的设计)</li><li>Grouping操作，把相似的归纳到一起(比如聚类，相似度打分)，分类做loss</li><li>Feature Alignment, Domain Alignment, Pixel Alignment；各种Alignment</li></ol><p>(未完待续…)</p>]]></content>
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="随笔：那些在CV里用腻了的话术与说辞"><a href="#随笔：那些在CV里用腻了的话术与说辞" class="headerlink" title="随笔：那些在CV里用腻了的话术与说辞"></a>随笔：那些在CV里用腻了的话术与说辞</h1><p>究其根源，深度学习是一个黑盒子(Black Box)，缺乏一套能够解释清楚深度神经网络的运作机理的数学理论，比如，能否解释深度网络究竟从海量数据中学到了什么，深度网络的反向传播过程的收敛条件，训练深度模型为什么花费那么长时间，究竟有多少时间是对学习真正有用的。由于缺乏理论支撑，很多搞深度学习应用的(如CV, NLP)大多follow这样的研究路线：通过紧跟研究”热点“，读paper参会看别人提出了哪些模型，然后想到一个”灵感“，提出一套自己魔改的结构，抱着试一试的心态做实验发现work了，再来解释一通，就去投稿发paper。所以很多paper(尤其搞CV/NLP + DL)都是从性能结果反向解释自己的神经网络结构，并且很多解释是基于经验和直觉的。</p><p>读多了后，发现有一些话术是比较Common的技巧，就是很多工作都愿意用上这些技巧来提点，写作时用上相似的话术去讲故事，总觉一下就觉得比较有意思。以后有空会继续补充。</p><ol><li>Multi-Resolution/Hierarchical/Pyramid Sturcture/Extract Feature at diferent scales</li><li>不同层次/级别的特征如何融合：Feature Fusion</li><li>分类问题/多模态问题/迁移学习问题: Intra-class variance &amp; Inter-class Variance(最小化类内XXX，最大化类间XXX,以保留判别性信息)</li><li>Global Part + Local Part 的多分支设计</li><li>Local Discriminative Part</li><li>粗粒度+细粒度(Coarse + Fine的设计)</li><li>Grouping操作，把相似的归纳到一起(比如聚类，相似度打分)，分类做loss</li><li>Feature Alignment, Domain Alignment, Pixel Alignment；各种Alignment</li><li>Meta Learning + 各种领域；就近年会议review情况来看，元学习快被用烂了(烂大街的感觉)，基本是所有reviewer都觉得没啥可用的。把他作为主要创新点容易被喷novelty不够。</li></ol><p>(未完待续…)</p>]]></content>
     
     
     <categories>
