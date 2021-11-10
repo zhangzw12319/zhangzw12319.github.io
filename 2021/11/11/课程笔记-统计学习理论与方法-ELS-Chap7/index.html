@@ -288,7 +288,7 @@
 <div class="note note-primary">
             <p>📢注意，我们算误差时的Ground Truth(GT) <script type="math/tex">y</script>并不一定是真实的标签，因为获取数据的过程中无法避免有噪声存在(就比如用精密物理仪器测量的结果总会有无法避免的系统误差)。我们的损失函数是让模型的估计值<script type="math/tex">\hat{f}</script>和GT算误差，不是和<script type="math/tex">f(x)</script>算误差。</p>
           </div>
-<h2 id="Bias-variance-分解"><a href="#Bias-variance-分解" class="headerlink" title="Bias-variance 分解"></a>Bias-variance 分解</h2><p>假设：${(x<em>i,y_i)}$ 是从某个数据分布中采样得到的某个数据集$\tau$。数据的真实分布是<script type="math/tex">y = f(x) + \epsilon</script>，数据的真实标签是<script type="math/tex">f(x)</script>，但是我们获取数据集时总会有噪声<script type="math/tex">\epsilon</script>干扰。通常假设噪声服从均值为0的某个高斯分布。$$\epsilon \sim N(0, \sigma</em>{\epsilon}^2)$$</p>
+<h2 id="Bias-variance-分解"><a href="#Bias-variance-分解" class="headerlink" title="Bias-variance 分解"></a>Bias-variance 分解</h2><p>假设：<script type="math/tex">\{(x_i,y_i)\}</script> 是从某个数据分布中采样得到的某个数据集<script type="math/tex">\tau</script>。数据的真实分布是<script type="math/tex">y = f(x) + \epsilon</script>，数据的真实标签是<script type="math/tex">f(x)</script>，但是我们获取数据集时总会有噪声<script type="math/tex">\epsilon</script>干扰。通常假设噪声服从均值为0的某个高斯分布。<script type="math/tex">\epsilon \sim N(0, \sigma_{\epsilon}^2)</script></p>
 <p>考察在<script type="math/tex">X=x_0</script>一点上的单点泛化误差，其中求期望操作<script type="math/tex">E</script>是对所有的数据集<script type="math/tex">\tau</script>求的期望(Expectation over all the dataset <script type="math/tex">\tau</script>).<a name="t1">也就是说在这里，$\hat{f}(x_0)$也是随机变量，它的随机性来源于可能选取不同的数据集$\tau$ ；而$f(x_0)$的随机性只来源于$\epsilon$，二者独立无关联</a>。</p>
 <script type="math/tex; mode=display">
 \begin{align*}
@@ -330,7 +330,7 @@ Err(y_0, \hat{f}(x_0)) = \sigma_{\epsilon}^2 + E(f(x_0) - \hat{\beta}^Tx_0 )^2 +
 <script type="math/tex; mode=display">
 \frac{1}{N}\sum_{i=1}^N Err(y_0, \hat{f}(x_0)) = \sigma_{\epsilon}^2 + \sum_{i=1}^NE(f(x_0) - \hat{\beta}^Tx_0 )^2 + \frac{p}{N}\sigma_{\epsilon}^2</script><p>可以看出模型复杂度由数据量<script type="math/tex">N</script>和参数量<script type="math/tex">p</script>共同控制。</p>
 <div class="note note-primary">
-            <p>（这部分的推导需要用到矩阵的迹的性质）</p><script type="math/tex; mode=display">\tr(ABC) = \tr(BCA) = \tr(CAB)</script><script type="math/tex; mode=display">\sum_{i}(x_i y_i) = x^Ty = \tr (xy^T)</script>
+            <p>（这部分的推导需要用到矩阵的迹的性质）</p><script type="math/tex; mode=display">\text{tr}(ABC) = \text{tr}(BCA) = \text{tr}(CAB)</script><script type="math/tex; mode=display">\sum_{i}(x_i y_i) = x^Ty = \text{tr} (xy^T)</script>
           </div>
 <h2 id="乐观度"><a href="#乐观度" class="headerlink" title="乐观度"></a>乐观度</h2><p>乐观度(Optimisim)的概念主要是为了比较模型训练误差与泛化误差之间的差距，或者如何用训练误差去估计泛化误差。</p>
 <p>直接计算训练误差和泛化误差的差有困难，因为模型输入<script type="math/tex">x</script>都不固定。所以可以采用重采样的技术，原先训练集<script type="math/tex">(x,y)</script>,是训练时采样得到的标签，记为<script type="math/tex">y</script>；重采样是对相同的<script type="math/tex">x</script>, 再次采样<script type="math/tex">y^{\text{New}}</script>。</p>
@@ -349,7 +349,7 @@ Err(y_0, \hat{f}(x_0)) = \sigma_{\epsilon}^2 + E(f(x_0) - \hat{\beta}^Tx_0 )^2 +
 E_y(\text{Err}_{in}) = E_y(\overline{\text{err}}) + 2\cdot\frac{d}{N} \sigma_{\epsilon}^2</script><h2 id="有效参数量"><a href="#有效参数量" class="headerlink" title="有效参数量"></a>有效参数量</h2><script type="math/tex; mode=display">
 \hat{y} = Sy</script><p>有效参数数量(Effective Number of Parameters):</p>
 <script type="math/tex; mode=display">
-\text{df}(S) = \tr(S)</script><p>对于线性回归，有如下关系：</p>
+\text{df}(S) = \text{tr}(S)</script><p>对于线性回归，有如下关系：</p>
 <script type="math/tex; mode=display">
 \sum_{i=1} ^N \text{Cov}(y_i, \hat{y}_i) = \text{df}(\hat{y}) \cdot  \sigma_{\epsilon}^2</script><h2 id="贝叶斯信息量（BIC）"><a href="#贝叶斯信息量（BIC）" class="headerlink" title="贝叶斯信息量（BIC）"></a>贝叶斯信息量（BIC）</h2><p>题外话：前面的部分主要讲述的模型评价(Model Assesment)部分，贝叶斯信息量主要讲述的是模型选择的部分</p>
 <p>BIC for 极大似然回归</p>
