@@ -258,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.1k 字
         
       </span>
     
@@ -269,7 +269,7 @@
         
         
         
-          16 分钟
+          18 分钟
         
       </span>
     
@@ -315,77 +315,97 @@
             
             <div class="markdown-body">
               
-              <script src="/assets/js/APlayer.min.js"> </script><h1 id="PNF-CVPR-2022"><a href="#PNF-CVPR-2022" class="headerlink" title="PNF(CVPR 2022)"></a>PNF(CVPR 2022)</h1><blockquote>
-<p>论文标题：Panoptic Neural Fields: A Semantic Object-Aware Neural Scene Representation(CVPR 2022)<br>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.04334">https://arxiv.org/abs/2205.04334</a><br>作者单位：Google Research, Georgia Tech, Simon Fraser University, Stanford University<br>代码地址：暂无<br>一句话读论文：”We present Panoptic Neural Fields(PMF), and object-aware neural scene representation that decomposes a scene into a set of objects(things) and background(stuff).”</p>
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="pnfcvpr-2022">PNF(CVPR 2022)</h1>
+<blockquote>
+<p>论文标题：Panoptic Neural Fields: A Semantic Object-Aware Neural Scene Representation(CVPR 2022) 论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.04334">https://arxiv.org/abs/2205.04334</a> 作者单位：Google Research, Georgia Tech, Simon Fraser University, Stanford University 代码地址：暂无 一句话读论文："We present Panoptic Neural Fields(PMF), and object-aware neural scene representation that decomposes a scene into a set of objects(things) and background(stuff)."</p>
 </blockquote>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=520 height=86 src="///music.163.com/outchain/player?type=2&id=22707001&auto=0&height=66"></iframe>
-
-<h2 id="网络框架："><a href="#网络框架：" class="headerlink" title="网络框架："></a><strong>网络框架：</strong></h2><p><img src="https://s2.loli.net/2022/05/23/AiBE8Xg3cu5ql1w.png" srcset="/img/loading.gif" lazyload alt="image-20220523191212464"></p>
-<center style="color:#C0C0C0;text-decoration:underline">图1 Overview of Panoptic Neural Field  </center>
-
-<p><img src="https://s2.loli.net/2022/05/23/3rnZVSYfXNpMeib.png" srcset="/img/loading.gif" lazyload alt="image-20220523191253241"></p>
-<center style="color:#C0C0C0;text-decoration:underline">图2 Dynamic Challenging 3D Scenes Description</center>
-
-
-
-<h2 id="核心内容："><a href="#核心内容：" class="headerlink" title="核心内容："></a><strong>核心内容：</strong></h2><p>大佬们请收下我的膝盖！！！</p>
-<p>Motivation: </p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="520" height="86" src="///music.163.com/outchain/player?type=2&amp;id=22707001&amp;auto=0&amp;height=66">
+</iframe>
+<h2 id="网络框架"><strong>网络框架：</strong></h2>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/AiBE8Xg3cu5ql1w.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523191212464</figcaption>
+</figure>
+<center style="color:#C0C0C0;text-decoration:underline">
+图1 Overview of Panoptic Neural Field
+</center>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/3rnZVSYfXNpMeib.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523191253241</figcaption>
+</figure>
+<center style="color:#C0C0C0;text-decoration:underline">
+图2 Dynamic Challenging 3D Scenes Description
+</center>
+<h2 id="核心内容"><strong>核心内容：</strong></h2>
+<p>大佬们请收下我的膝盖！！！</p>
+<p>Motivation:</p>
 <ul>
-<li>把多用于室内场景的Nerf首次应用到室外自动驾驶场景中</li>
-<li>Nerf原先多用于View Synthesis ，图形学渲染，重建。本篇工作窥得大佬们的野心：想在室外自动驾驶场景中，把分类、语义分割、目标检测、目标追踪、全景分割、三维重建、深度估计、场景编辑与生成等一系列任务全部做到SOTA指标，从而让Nerf一统2D-3D视觉任务的天下。虽然本篇工作是初步的尝试，但是开辟了一个新的研究领域。</li>
-<li>相比于之前在Nerf基础上各种incremental类型的工作，本篇工作提出一种室外场景通用类型的Nerf框架。主要分为stuff类别和thing类别，除了分别学习传统Nerf模型所需要的color, pose，density 等信息，还加入语义信息，最后将stuff类别与thing类别共同合成panoptic radiance field，用于各类下游任务。</li>
+<li><p>把多用于室内场景的Nerf首次应用到室外自动驾驶场景中</p></li>
+<li><p>Nerf原先多用于View Synthesis ，图形学渲染，重建。本篇工作窥得大佬们的野心：想在室外自动驾驶场景中，把分类、语义分割、目标检测、目标追踪、全景分割、三维重建、深度估计、场景编辑与生成等一系列任务全部做到SOTA指标，从而让Nerf一统2D-3D视觉任务的天下。虽然本篇工作是初步的尝试，但是开辟了一个新的研究领域。</p></li>
+<li><p>相比于之前在Nerf基础上各种incremental类型的工作，本篇工作提出一种室外场景通用类型的Nerf框架。主要分为stuff类别和thing类别，除了分别学习传统Nerf模型所需要的color, pose，density 等信息，还加入语义信息，最后将stuff类别与thing类别共同合成panoptic radiance field，用于各类下游任务。</p></li>
 <li><p>在已有的语义分支+Nerf, Dynamics+Nerf等各种变体基础上，取消了共享的MLP网络，而是为每一种类别的物体instance设计小的MLP网络；此外在初始化上引入类别的先验信息，设计了category-specific meta-learned initialization</p>
-<p>  本文的方法：在原版Nerf基础上，做如下变化</p>
-</li>
+<p>本文的方法：在原版Nerf基础上，做如下变化</p></li>
 <li><p>Things类别：</p>
 <ul>
-<li>首先用RGB-only 3D Object Detector&amp; Tracker 得到Bounding box track $T_k$(由一系列仿射变换矩阵组成)和语义类别$k$.</li>
+<li>首先用RGB-only 3D Object Detector&amp; Tracker 得到Bounding box track <span class="math inline">\(T_k\)</span>(由一系列仿射变换矩阵组成)和语义类别<span class="math inline">\(k\)</span>.</li>
 <li>对每个物体实例，用标准的Nerf网络提取特征，该网络是由time-invariant MLP组成(不是随时间变化而变化的RNN时序网络),得到包括color, pose, density等参数信息</li>
-<li>损失函数共同优化Nerf网络和$T_k$</li>
-</ul>
-</li>
+<li>损失函数共同优化Nerf网络和<span class="math inline">\(T_k\)</span></li>
+</ul></li>
 <li><p>Stuff 类别：</p>
 <ul>
 <li>用单一的Nerf网络提取Stuff类别，此外还有网络分支学习每个Stuff pixel的语义类别</li>
-</ul>
-</li>
+</ul></li>
 <li><p>Panoptic-Radiance Field</p>
 <ul>
-<li><p>对color,densiy等通道采取如下融合方式</p>
-</li>
-<li><script type="math/tex; mode=display">
-  c(x| \theta) = \mathbb{1}s(x)c_x(x|\theta) + \sum_kc_k(T^{-1}x|\theta)</script></li>
-</ul>
-</li>
+<li><p>对color,densiy等通道采取如下融合方式</p></li>
+<li><p><span class="math display">\[
+  c(x| \theta) = \mathbb{1}s(x)c_x(x|\theta) + \sum_kc_k(T^{-1}x|\theta)
+  \]</span></p></li>
+</ul></li>
 <li><p>Render Panoptic-Radiance Fields</p>
 <ul>
-<li><script type="math/tex; mode=display">
-  C(r|\theta) \sim \sum_{i=1}^Nw(t_i)f(\mathbf{r}(t_i)|\theta)</script></li>
-</ul>
-</li>
+<li><span class="math display">\[
+  C(r|\theta) \sim \sum_{i=1}^Nw(t_i)f(\mathbf{r}(t_i)|\theta)
+  \]</span></li>
+</ul></li>
 <li><p>Nerf中权重先验的获取</p>
 <ul>
 <li>Bias initalization(设置stuff MLP的bias为-5，thing MLP的bias为0.1，因为真实室外场景中stuff volume大多数是空的，而thing volume大多数非空) 和 Meta-learn的方式(<code>FedAvg</code> 算法)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="贡献点-创新性："><a href="#贡献点-创新性：" class="headerlink" title="贡献点/创新性："></a><strong>贡献点/创新性：</strong></h2><ul>
+<h2 id="贡献点创新性"><strong>贡献点/创新性：</strong></h2>
+<ul>
 <li>见Motivation的第1-3条</li>
 </ul>
-<h2 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a><strong>实验结果：</strong></h2><p><img src="https://s2.loli.net/2022/05/23/xYOCDHST3kIguh9.png" srcset="/img/loading.gif" lazyload alt="image-20220523194617216"><center style="color:#C0C0C0;text-decoration:underline">图5 实验结果1 </center></p>
-<p><img src="https://s2.loli.net/2022/05/23/sowYT8tfqBILU1b.png" srcset="/img/loading.gif" lazyload alt="image-20220523194641296"></p>
-<center style="color:#C0C0C0;text-decoration:underline">图6 实验结果2 </center>
-
-<p><img src="https://s2.loli.net/2022/05/23/gkLWepDuo41ZQmO.png" srcset="/img/loading.gif" lazyload alt="image-20220523194752533"></p>
-<center style="color:#C0C0C0;text-decoration:underline">图7 实验结果3 </center>
-
-<p><img src="https://s2.loli.net/2022/05/23/xG91WXNegAr2Pj7.png" srcset="/img/loading.gif" lazyload alt="image-20220523194819545"></p>
-<center style="color:#C0C0C0;text-decoration:underline">图8 实验结果4 </center>
-
-<p><img src="https://s2.loli.net/2022/05/23/ZLzw3K8InV62dcv.png" srcset="/img/loading.gif" lazyload alt="image-20220523194847881"></p>
-<center style="color:#C0C0C0;text-decoration:underline">图9 实验结果5 </center>
-
-<h2 id="Related-Work-可选-后续再补充"><a href="#Related-Work-可选-后续再补充" class="headerlink" title="Related Work(可选, 后续再补充):"></a><strong>Related Work(可选, 后续再补充):</strong></h2><ul>
+<h2 id="实验结果"><strong>实验结果：</strong></h2>
+<img src="https://s2.loli.net/2022/05/23/xYOCDHST3kIguh9.png" srcset="/img/loading.gif" lazyload title="fig:" alt="image-20220523194617216" />
+<center style="color:#C0C0C0;text-decoration:underline">
+图5 实验结果1
+</center>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/sowYT8tfqBILU1b.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523194641296</figcaption>
+</figure>
+<center style="color:#C0C0C0;text-decoration:underline">
+图6 实验结果2
+</center>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/gkLWepDuo41ZQmO.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523194752533</figcaption>
+</figure>
+<center style="color:#C0C0C0;text-decoration:underline">
+图7 实验结果3
+</center>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/xG91WXNegAr2Pj7.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523194819545</figcaption>
+</figure>
+<center style="color:#C0C0C0;text-decoration:underline">
+图8 实验结果4
+</center>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/ZLzw3K8InV62dcv.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523194847881</figcaption>
+</figure>
+<center style="color:#C0C0C0;text-decoration:underline">
+图9 实验结果5
+</center>
+<h2 id="related-work可选-后续再补充"><strong>Related Work(可选, 后续再补充):</strong></h2>
+<ul>
 <li>Nerfs</li>
 <li>Nerfs with Semantics</li>
 <li>Nerfs with dynamics</li>
@@ -394,7 +414,8 @@
 <li>MVS</li>
 <li>SLAM</li>
 </ul>
-<h2 id="你认为优点-不足-可以拓展改进的地方-可选"><a href="#你认为优点-不足-可以拓展改进的地方-可选" class="headerlink" title="你认为优点/不足/可以拓展改进的地方(可选):"></a><strong>你认为优点/不足/可以拓展改进的地方(可选):</strong></h2><p>优点：</p>
+<h2 id="你认为优点不足可以拓展改进的地方可选"><strong>你认为优点/不足/可以拓展改进的地方(可选):</strong></h2>
+<p>优点：</p>
 <ul>
 <li>太多了吐槽不完</li>
 </ul>
@@ -402,8 +423,9 @@
 <ul>
 <li>虽然很大一统，但是整个框架挺复杂，目前只能在离线的训练和推理，不太容易直接应用在实时场景下。</li>
 </ul>
-<h2 id="其他笔记"><a href="#其他笔记" class="headerlink" title="其他笔记:"></a><strong>其他笔记:</strong></h2><ul>
-<li>CVer 计算机视觉：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/513499887">https://zhuanlan.zhihu.com/p/513499887</a></li>
+<h2 id="其他笔记"><strong>其他笔记:</strong></h2>
+<ul>
+<li>CVer 计算机视觉：https://zhuanlan.zhihu.com/p/513499887</li>
 </ul>
 
               

@@ -256,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.5k 字
         
       </span>
     
@@ -313,40 +313,74 @@
             
             <div class="markdown-body">
               
-              <script src="/assets/js/APlayer.min.js"> </script><h1 id="Neural-IPS在投-2021-Luna—Linear-Unified-Nested-Attention-阅读笔记"><a href="#Neural-IPS在投-2021-Luna—Linear-Unified-Nested-Attention-阅读笔记" class="headerlink" title="(Neural IPS在投,2021) Luna—Linear Unified Nested Attention[阅读笔记]"></a>(Neural IPS在投,2021) Luna—Linear Unified Nested Attention[阅读笔记]</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>传统Transformer中的注意力机制计算量是平方级别的。本文提出了Luna，Linear Unified Nested Attention 的方法，通过增加一个额外的固定长度的序列作为输入和输出，把平方级别的注意力计算拆分成两个线性时间的计算步骤来做近似，并且该固定长度的序列可以存储足够的上下文相关信息(Contexual Infomation)。</p>
-<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><ol>
-<li>想提出一个简单有效减低计算复杂度的方法<ul>
-<li>传统的注意力机制的计算和存储都是$O(n^2)$的($n$表示序列的长度)，但是对于长序列输入，序列间相关性往往是稀疏的(不是完全图)</li>
-<li>已有的改进方法：<br>  1)利用稀疏性约束(Sparse Attention)，如local attention<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Niki Parmar, Ashish Vaswani, Jakob Uszkoreit, Lukasz Kaiser, Noam Shazeer, Alexander Ku, andDustin Tran. Image transformer. In International Conference on Machine Learning, pages 4055–4064. PMLR, 2018.
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="neural-ips在投2021-luna--linear-unified-nested-attention阅读笔记">(Neural IPS在投,2021) Luna--Linear Unified Nested Attention[阅读笔记]</h1>
+<h2 id="abstract">Abstract</h2>
+<p>传统Transformer中的注意力机制计算量是平方级别的。本文提出了Luna，Linear Unified Nested Attention 的方法，通过增加一个额外的固定长度的序列作为输入和输出，把平方级别的注意力计算拆分成两个线性时间的计算步骤来做近似，并且该固定长度的序列可以存储足够的上下文相关信息(Contexual Infomation)。</p>
+<h2 id="motivation">Motivation</h2>
+<ol type="1">
+<li>想提出一个简单有效减低计算复杂度的方法
+<ul>
+<li>传统的注意力机制的计算和存储都是<span class="math inline">\(O(n^2)\)</span>的(<span class="math inline">\(n\)</span>表示序列的长度)，但是对于长序列输入，序列间相关性往往是稀疏的(不是完全图)</li>
+<li>已有的改进方法： 1)利用稀疏性约束(Sparse Attention)，如local attention<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Niki Parmar, Ashish Vaswani, Jakob Uszkoreit, Lukasz Kaiser, Noam Shazeer, Alexander Ku, andDustin Tran. Image transformer. In International Conference on Machine Learning, pages 4055–4064. PMLR, 2018.
 ">[1]</span></a></sup>, strided<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="Rewon Child, Scott Gray, Alec Radford, and Ilya Sutskever. Generating long sequences with sparse transformers. arXiv preprint arXiv:1904.10509, 2019.
 ">[2]</span></a></sup><sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="Iz Beltagy, Matthew E Peters, and Arman Cohan. Longformer: The long-document transformer. arXiv preprint arXiv:2004.05150, 2020.
 ">[3]</span></a></sup>, Hierarchical Global Attention<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="Guo, Q., Qiu, X., Liu, P., Shao, Y., Xue, X., &amp; Zhang, Z. (2019). Star-transformer. arXiv preprint arXiv:1902.09113.
 ">[4]</span></a></sup>,attention with learnable patterns<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="Aurko Roy, Mohammad Saffar, Ashish Vaswani, and David Grangier. Effificient content-based sparse attention with routing transformers. Transactions of the Association for Computational Linguistics,9:53–68, 2021.
-">[5]</span></a></sup><br>  2)利用注意力矩阵的低秩性，如Linformer<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="Wang, S., Li, B., Khabsa, M., Fang, H., &amp; Ma, H. L. (2020). Self-attention with linear complexity. arXiv preprint arXiv:2006.04768.
-">[6]</span></a></sup><br>  3)kernel 方法，如Linear Transformer<sup id="fnref:7" class="footnote-ref"><a href="#fn:7" rel="footnote"><span class="hint--top hint--rounded" aria-label="Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and François Fleuret. Transformers are rnns: Fast autoregressive transformers with linear attention. In International Conference on Machine Learning, pages 5156–5165. PMLR, 2020.
+">[5]</span></a></sup> 2)利用注意力矩阵的低秩性，如Linformer<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="Wang, S., Li, B., Khabsa, M., Fang, H., &amp; Ma, H. L. (2020). Self-attention with linear complexity. arXiv preprint arXiv:2006.04768.
+">[6]</span></a></sup> 3)kernel 方法，如Linear Transformer<sup id="fnref:7" class="footnote-ref"><a href="#fn:7" rel="footnote"><span class="hint--top hint--rounded" aria-label="Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and François Fleuret. Transformers are rnns: Fast autoregressive transformers with linear attention. In International Conference on Machine Learning, pages 5156–5165. PMLR, 2020.
 ">[7]</span></a></sup>, Performer<sup id="fnref:8" class="footnote-ref"><a href="#fn:8" rel="footnote"><span class="hint--top hint--rounded" aria-label="Krzysztof Choromanski, Valerii Likhosherstov, David Dohan, Xingyou Song, Andreea Gane, Tamas Sarlos, Peter Hawkins, Jared Davis, Afroz Mohiuddin, Lukasz Kaiser, et al. Rethinking attention with performers. arXiv preprint arXiv:2009.14794, 2020.
 ">[8]</span></a></sup> , Random Feature Attention<sup id="fnref:9" class="footnote-ref"><a href="#fn:9" rel="footnote"><span class="hint--top hint--rounded" aria-label="Hao Peng, Nikolaos Pappas, Dani Yogatama, Roy Schwartz, Noah Smith, and Lingpeng Kong. Random feature attention. In International Conference on Learning Representations, 2021. URL https://openreview.net/forum?id=QtTKTdVrFBB.
 ">[9]</span></a></sup></li>
 <li>本文所提出的引入额外固定长度序列的方法简洁优美，且能有效将计算复杂度降低到线性级别。</li>
-</ul>
+</ul></li>
+</ol>
+<h2 id="theoremmodel">Theorem&amp;Model</h2>
+<p><img src="https://i.loli.net/2021/08/20/LA4bgRN5s2cFiqG.png" srcset="/img/loading.gif" lazyload /> <img src="https://i.loli.net/2021/08/20/FfWyYXRlCiumvqZ.png" srcset="/img/loading.gif" lazyload /> <img src="https://i.loli.net/2021/08/20/jJdZAOwCgLXbWH8.png" srcset="/img/loading.gif" lazyload /> <img src="https://i.loli.net/2021/08/20/h8w5AaLgQjYMNDo.png" srcset="/img/loading.gif" lazyload /> <img src="https://i.loli.net/2021/08/20/pgj62btJTOqGYlZ.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="contributioninnovation">Contribution(Innovation)</h2>
+<p>Under review，暂不分析innovation如何。</p>
+<h2 id="evaluation">Evaluation</h2>
+<p>暂略，待后续自己实验后分析。</p>
+<h2 id="其他">其他</h2>
+<p>不过，本篇的idea和几乎同一时间(2021.06)放到Archiv上的External Attention using Two Linear Layers for Visual Tasks<sup id="fnref:10" class="footnote-ref"><a href="#fn:10" rel="footnote"><span class="hint--top hint--rounded" aria-label="M. H., Liu, Z. N., Mu, T. J., &amp; Hu, S. M. (2021). Beyond self-attention: External attention using two linear layers for visual tasks. arXiv preprint arXiv:2105.02358.URL https://arxiv.org/abs/2105.02358
+">[10]</span></a></sup> 有同工异曲之处，详细可参考知乎<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/382961255">介绍</a>。</p>
+<h2 id="参考文献">参考文献</h2>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>Niki Parmar, Ashish Vaswani, Jakob Uszkoreit, Lukasz Kaiser, Noam Shazeer, Alexander Ku, andDustin Tran. Image transformer. In <em>International Conference on Machine Learning</em>, pages 4055–4064. PMLR, 2018. <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>Rewon Child, Scott Gray, Alec Radford, and Ilya Sutskever. Generating long sequences with sparse transformers. <em>arXiv preprint arXiv:1904.10509</em>, 2019. <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:3" class="footnote-text"><span>Iz Beltagy, Matthew E Peters, and Arman Cohan. Longformer: The long-document transformer. <em>arXiv preprint arXiv:2004.05150</em>, 2020. <a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:4" class="footnote-text"><span>Guo, Q., Qiu, X., Liu, P., Shao, Y., Xue, X., &amp; Zhang, Z. (2019). Star-transformer. <em>arXiv preprint arXiv:1902.09113</em>. <a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:5" class="footnote-text"><span>Aurko Roy, Mohammad Saffar, Ashish Vaswani, and David Grangier. Effificient content-based sparse attention with routing transformers. <em>Transactions of the Association for Computational Linguistics</em>,9:53–68, 2021. <a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:6" class="footnote-text"><span>Wang, S., Li, B., Khabsa, M., Fang, H., &amp; Ma, H. L. (2020). Self-attention with linear complexity. <em>arXiv preprint arXiv:2006.04768</em>. <a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:7" class="footnote-text"><span>Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and François Fleuret. Transformers are rnns: Fast autoregressive transformers with linear attention. In <em>International Conference on Machine Learning</em>, pages 5156–5165. PMLR, 2020. <a href="#fnref:7" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:8" class="footnote-text"><span>Krzysztof Choromanski, Valerii Likhosherstov, David Dohan, Xingyou Song, Andreea Gane, Tamas Sarlos, Peter Hawkins, Jared Davis, Afroz Mohiuddin, Lukasz Kaiser, et al. Rethinking attention with performers. <em>arXiv preprint arXiv:2009.14794</em>, 2020. <a href="#fnref:8" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:9" class="footnote-text"><span>Hao Peng, Nikolaos Pappas, Dani Yogatama, Roy Schwartz, Noah Smith, and Lingpeng Kong. Random feature attention. In <em>International Conference on Learning Representations</em>, 2021. URL https://openreview.net/forum?id=QtTKTdVrFBB. <a href="#fnref:9" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:10" class="footnote-text"><span>M. H., Liu, Z. N., Mu, T. J., &amp; Hu, S. M. (2021). Beyond self-attention: External attention using two linear layers for visual tasks. <em>arXiv preprint arXiv:2105.02358</em>.URL https://arxiv.org/abs/2105.02358 <a href="#fnref:10" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
 </li>
 </ol>
-<h2 id="Theorem-amp-Model"><a href="#Theorem-amp-Model" class="headerlink" title="Theorem&amp;Model"></a>Theorem&amp;Model</h2><p><img src="https://i.loli.net/2021/08/20/LA4bgRN5s2cFiqG.png" srcset="/img/loading.gif" lazyload alt=""><br><img src="https://i.loli.net/2021/08/20/FfWyYXRlCiumvqZ.png" srcset="/img/loading.gif" lazyload alt=""><br><img src="https://i.loli.net/2021/08/20/jJdZAOwCgLXbWH8.png" srcset="/img/loading.gif" lazyload alt=""><br><img src="https://i.loli.net/2021/08/20/h8w5AaLgQjYMNDo.png" srcset="/img/loading.gif" lazyload alt=""><br><img src="https://i.loli.net/2021/08/20/pgj62btJTOqGYlZ.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="Contribution-Innovation"><a href="#Contribution-Innovation" class="headerlink" title="Contribution(Innovation)"></a>Contribution(Innovation)</h2><p>Under review，暂不分析innovation如何。</p>
-<h2 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h2><p>暂略，待后续自己实验后分析。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>不过，本篇的idea和几乎同一时间(2021.06)放到Archiv上的External Attention using Two Linear Layers for Visual Tasks<sup id="fnref:10" class="footnote-ref"><a href="#fn:10" rel="footnote"><span class="hint--top hint--rounded" aria-label=" M. H., Liu, Z. N., Mu, T. J., &amp; Hu, S. M. (2021). Beyond self-attention: External attention using two linear layers for visual tasks. arXiv preprint arXiv:2105.02358.URL https://arxiv.org/abs/2105.02358
-">[10]</span></a></sup> 有同工异曲之处，详细可参考知乎<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/382961255">介绍</a>。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>Niki Parmar, Ashish Vaswani, Jakob Uszkoreit, Lukasz Kaiser, Noam Shazeer, Alexander Ku, andDustin Tran. Image transformer. In <em>International Conference on Machine Learning</em>, pages 4055–4064. PMLR, 2018.
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>Rewon Child, Scott Gray, Alec Radford, and Ilya Sutskever. Generating long sequences with sparse transformers. <em>arXiv preprint arXiv:1904.10509</em>, 2019.
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>Iz Beltagy, Matthew E Peters, and Arman Cohan. Longformer: The long-document transformer. <em>arXiv preprint arXiv:2004.05150</em>, 2020.
-<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>Guo, Q., Qiu, X., Liu, P., Shao, Y., Xue, X., &amp; Zhang, Z. (2019). Star-transformer. <em>arXiv preprint arXiv:1902.09113</em>.
-<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span>Aurko Roy, Mohammad Saffar, Ashish Vaswani, and David Grangier. Effificient content-based sparse attention with routing transformers. <em>Transactions of the Association for Computational Linguistics</em>,9:53–68, 2021.
-<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span>Wang, S., Li, B., Khabsa, M., Fang, H., &amp; Ma, H. L. (2020). Self-attention with linear complexity. <em>arXiv preprint arXiv:2006.04768</em>.
-<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:7" class="footnote-text"><span>Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and François Fleuret. Transformers are rnns: Fast autoregressive transformers with linear attention. In <em>International Conference on Machine Learning</em>, pages 5156–5165. PMLR, 2020.
-<a href="#fnref:7" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:8" class="footnote-text"><span>Krzysztof Choromanski, Valerii Likhosherstov, David Dohan, Xingyou Song, Andreea Gane, Tamas Sarlos, Peter Hawkins, Jared Davis, Afroz Mohiuddin, Lukasz Kaiser, et al. Rethinking attention with performers. <em>arXiv preprint arXiv:2009.14794</em>, 2020.
-<a href="#fnref:8" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:9" class="footnote-text"><span>Hao Peng, Nikolaos Pappas, Dani Yogatama, Roy Schwartz, Noah Smith, and Lingpeng Kong. Random feature attention. In <em>International Conference on Learning Representations</em>, 2021. URL <a target="_blank" rel="noopener" href="https://openreview.net/forum?id=QtTKTdVrFBB">https://openreview.net/forum?id=QtTKTdVrFBB</a>.
-<a href="#fnref:9" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:10" class="footnote-text"><span>M. H., Liu, Z. N., Mu, T. J., &amp; Hu, S. M. (2021). Beyond self-attention: External attention using two linear layers for visual tasks. <em>arXiv preprint arXiv:2105.02358</em>.URL <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2105.02358">https://arxiv.org/abs/2105.02358</a>
-<a href="#fnref:10" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+</div>
+</section>
+
               
             </div>
             <hr/>

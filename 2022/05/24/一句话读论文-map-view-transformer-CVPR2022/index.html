@@ -18,16 +18,16 @@
   <meta name="author" content="Yuki.N">
   <meta name="keywords" content="">
   
-    <meta name="description" content="巧妙利用地图信息做自动驾驶场景下RV和BeV的融合。">
+    <meta name="description" content="巧妙利用地图信息做自动驾驶场景下RV和BeV的融合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一句话读论文:Map-view Transformer(CVPR2022)">
 <meta property="og:url" content="http://example.com/2022/05/24/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AF%BB%E8%AE%BA%E6%96%87-map-view-transformer-CVPR2022/index.html">
 <meta property="og:site_name" content="Oier99">
-<meta property="og:description" content="巧妙利用地图信息做自动驾驶场景下RV和BeV的融合。">
+<meta property="og:description" content="巧妙利用地图信息做自动驾驶场景下RV和BeV的融合">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/05/24/RPvkg6bLVEoyd2h.jpg">
 <meta property="article:published_time" content="2022-05-23T18:55:31.000Z">
-<meta property="article:modified_time" content="2022-05-23T19:23:20.424Z">
+<meta property="article:modified_time" content="2022-05-23T19:57:30.391Z">
 <meta property="article:author" content="zhangzw12319">
 <meta property="article:tag" content="一句话读论文系列">
 <meta property="article:tag" content="CVPR2022">
@@ -258,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          3.2k 字
         
       </span>
     
@@ -269,7 +269,7 @@
         
         
         
-          26 分钟
+          27 分钟
         
       </span>
     
@@ -316,37 +316,55 @@
             <div class="markdown-body">
               
               <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>论文标题：Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)<br>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.02833">https://arxiv.org/abs/2205.02833</a><br>作者单位：The Chinese University of Hong Kong<br>代码地址：<a target="_blank" rel="noopener" href="https://github.com/bradyz/ cross_view_transformers">https://github.com/bradyz/ cross_view_transformers</a><br>一句话读论文：Our architecture implicitly learns a mapping from individual camera views into a canonical map-view representation using a camera-aware cross-view attention mechanism.</p>
+<p>论文标题：Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)<br> 论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.02833">https://arxiv.org/abs/2205.02833</a><br> 作者单位：The Chinese University of Hong Kong<br> 代码地址：<a target="_blank" rel="noopener" href="https://github.com/bradyz/%20cross_view_transformers">https://github.com/bradyz/ cross_view_transformers<br></a> 一句话读论文：Our architecture implicitly learns a mapping from individual camera views into a canonical map-view representation using a camera-aware cross-view attention mechanism.</p>
 </blockquote>
-<h1 id="Cross-view-Transformers-for-real-time-Map-view-Semantic-Segmentation-CVPR-2022-1"><a href="#Cross-view-Transformers-for-real-time-Map-view-Semantic-Segmentation-CVPR-2022-1" class="headerlink" title="Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[1]"></a>Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[1]</h1><h2 id="网络框架："><a href="#网络框架：" class="headerlink" title="网络框架："></a>网络框架：</h2><p><img src="https://s2.loli.net/2022/05/24/okSpGdcwzAjVeiu.png" srcset="/img/loading.gif" lazyload alt="image-20220523111833587"></p>
-<h2 id="核心内容："><a href="#核心内容：" class="headerlink" title="核心内容："></a><strong>核心内容：</strong></h2><p>​    Motivation: 想做图像特征与地图特征的融合(“model geometry and relationships between different view and a canonical map representation”)</p>
-<p>​    已有方法的问题：</p>
+<h1 id="cross-view-transformers-for-real-time-map-view-semantic-segmentationcvpr-20221">Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[1]</h1>
+<h2 id="网络框架">网络框架：</h2>
+<figure>
+<img src="https://s2.loli.net/2022/05/24/okSpGdcwzAjVeiu.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523111833587</figcaption>
+</figure>
+<h2 id="核心内容"><strong>核心内容：</strong></h2>
+<p>​ Motivation: 想做图像特征与地图特征的融合("model geometry and relationships between different view and a canonical map representation")</p>
+<p>​ 已有方法的问题：</p>
 <ul>
 <li>Image-based depth estimation are error-prone.</li>
 <li>Depth-based projections are a fairly inflexible and rigid bottleneck to map between views.</li>
 </ul>
-<p>​    本文的思路：</p>
-<p>​    是通过cross-view transoformer来做Map View 到Camera View的融合。相比于已有方法基于显式地几何关系地映射，这种融合的方式是一种隐式函数的映射(“learn any geometric transformation implicitly and directly from data”)。此外，transformer需要positional embedding来区分不同空间位置的特征。</p>
-<p>​    注意力系数的计算方式比较巧妙：</p>
-<script type="math/tex; mode=display">
-x^{(I)} \simeq K_k R_k(x^{(W)} - t_k)</script><p>​    上述公式展示了世界坐标系$x^{(W)}$与相机坐标系$x^{(I)}$的映射关系，其中$t_k$是车辆在行驶时的平移，$K_k$与$R_k$分别是相机内参矩阵和外参旋转矩阵(相机位姿相对于LiDAR传感器位姿)。</p>
-<script type="math/tex; mode=display">
-sim_k(x^{(I)}, x^{(W)}) = \frac{(R_K^{-1}K_K^{-1}x^{(I)})\cdot (x^{(W)} - t_k)}{\Vert (R_K^{-1}K_K^{-1}x^{(I)})\Vert \Vert (x^{(W)} - t_k)\Vert}</script><p>​    这样将3D坐标点和2D图像对应的坐标联系起来，计算其相似度系数。由于本文中没有3D LiDAR点云数据参与，所以从地图中只能获得xy坐标的信息，无法获得高度(深度)信息。所以这里用的是经过MLP后提取点特征代替了直接使用坐标。</p>
+<p>​ 本文的思路：</p>
+<p>​ 是通过cross-view transoformer来做Map View 到Camera View的融合。相比于已有方法基于显式地几何关系地映射，这种融合的方式是一种隐式函数的映射("learn any geometric transformation implicitly and directly from data")。此外，transformer需要positional embedding来区分不同空间位置的特征。</p>
+<p>​ 注意力系数的计算方式比较巧妙： <span class="math display">\[
+x^{(I)} \simeq K_k R_k(x^{(W)} - t_k)
+\]</span> ​ 上述公式展示了世界坐标系<span class="math inline">\(x^{(W)}\)</span>与相机坐标系<span class="math inline">\(x^{(I)}\)</span>的映射关系，其中<span class="math inline">\(t_k\)</span>是车辆在行驶时的平移，<span class="math inline">\(K_k\)</span>与<span class="math inline">\(R_k\)</span>分别是相机内参矩阵和外参旋转矩阵(相机位姿相对于LiDAR传感器位姿)。 <span class="math display">\[
+sim_k(x^{(I)}, x^{(W)}) = \frac{(R_K^{-1}K_K^{-1}x^{(I)})\cdot (x^{(W)} - t_k)}{\Vert (R_K^{-1}K_K^{-1}x^{(I)})\Vert \Vert (x^{(W)} - t_k)\Vert}
+\]</span> ​ 这样将3D坐标点和2D图像对应的坐标联系起来，计算其相似度系数。由于本文中没有3D LiDAR点云数据参与，所以从地图中只能获得xy坐标的信息，无法获得高度(深度)信息。所以这里用的是经过MLP后提取点特征代替了直接使用坐标。</p>
 <blockquote>
-<p>几何意义：The uprojected image coordinate $d_{k,i}=R_k^{-1}K_k^{-1}x_i^{(I)}$ for each image coordinate $x_i^{(I)}$ described a direction vector from the origin $t_k$ of camera $k$ to the image plane at depth 1.</p>
-<p>代码实现：1)We encode this direction vector $d<em>{k,i}$ using an MLP(shared across k views) into a D-dimensional positional embedding $\delta</em>{k,i} \in \mathbb{R}^D$… We combine this positional embedding with image features $\phi_{k,i}$ in the keys of our cross-view attention mechanism.</p>
-<p>2)$x^{W}$ 从地图获得，没有高度信息怎么办：We start with a learned positional encoding $c^{(0)}\in \mathbb{R}^{w \times h \times D}$. We build the map-view representation up over multiple iterations in our transformer… Each positional embedding is better able to project the map-view coordinates into a proxy of the 3D environment.</p>
+<p>几何意义：The uprojected image coordinate $d_{k,i} = R_k^{-1} K_k^{-1 }x_i^{(I)} $ for each image coordinate <span class="math inline">\(x_i^{(I)}\)</span> described a direction vector from the origin <span class="math inline">\(t_k\)</span> of camera <span class="math inline">\(k\)</span> to the image plane at depth 1.</p>
+<p>代码实现：1)We encode this direction vector <span class="math inline">\(d_{k,i}\)</span> using an MLP(shared across k views) into a D-dimensional positional embedding <span class="math inline">\(\delta_{k,i} \in \mathbb{R}^D\)</span>... We combine this positional embedding with image features <span class="math inline">\(\phi_{k,i}\)</span> in the keys of our cross-view attention mechanism.</p>
+<p>2)<span class="math inline">\(x^{W}\)</span> 从地图获得，没有高度信息怎么办：We start with a learned positional encoding <span class="math inline">\(c^{(0)}\in \mathbb{R}^{w \times h \times D}\)</span>. We build the map-view representation up over multiple iterations in our transformer... Each positional embedding is better able to project the map-view coordinates into a proxy of the 3D environment.</p>
 </blockquote>
 <p>基于上述几何映射的注意力系数计算方式，论文做如下改动作为实际的计算方法：</p>
-<script type="math/tex; mode=display">
-sim(\delta_{k,i}, \phi_{k,i}, c_j^{n}, \tau_k) = \frac{(\delta_{k,i}+ \phi_{k,i})\cdot(c_j^{(n)} - \tau_k)}{\Vert \delta_{k,i}+ \phi_{k,i} \Vert \Vert c_j^{(n)} - \tau_k \Vert }</script><p>​     $\delta<em>{k,j}$表示图像的Camera-view positional embedding; $\phi</em>{k,i} = MLP[d_{k,i}]=MLP[(R_K^{-1}K_K^{-1}x^{(I)})]$表示经过MLP映射后的$D$维向量。相比于原始的计算方式，这里把positional embedding和图像feature加在一起参与运算。$c_j^{(n)}$和$\tau_k$意义和原始公式相同，不同之处是他们也是经过Transforemr和MLP映射到$D$维向量。</p>
-<h2 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a><strong>实验结果：</strong></h2><p><img src="https://s2.loli.net/2022/05/23/sk2fGHMORJ8UjWX.png" srcset="/img/loading.gif" lazyload alt="image-20220523135309538"></p>
-<p><img src="https://s2.loli.net/2022/05/23/wdDPYJWxlhzFv8s.png" srcset="/img/loading.gif" lazyload alt="image-20220523135440759"></p>
-<p><img src="https://s2.loli.net/2022/05/23/Y84bdTZ75nNxlJ2.png" srcset="/img/loading.gif" lazyload alt="image-20220523135515717"></p>
-<p><img src="https://s2.loli.net/2022/05/23/z4uAlfWCjPGHJ7v.png" srcset="/img/loading.gif" lazyload alt="image-20220523140115644"></p>
-<h2 id="Related-Work-可选"><a href="#Related-Work-可选" class="headerlink" title="Related Work(可选):"></a><strong>Related Work(可选):</strong></h2><ul>
-<li><h2 id="你认为优点-不足-可以拓展改进的地方-可选"><a href="#你认为优点-不足-可以拓展改进的地方-可选" class="headerlink" title="你认为优点/不足/可以拓展改进的地方(可选):"></a><strong>你认为优点/不足/可以拓展改进的地方(可选):</strong></h2></li>
+<p><span class="math display">\[
+sim(\delta_{k,i}, \phi_{k,i}, c_j^{n}, \tau_k) = \frac{(\delta_{k,i}+ \phi_{k,i})\cdot(c_j^{(n)} - \tau_k)}{\Vert \delta_{k,i}+ \phi_{k,i} \Vert \Vert c_j^{(n)} - \tau_k \Vert }
+\]</span></p>
+<p>​ <span class="math inline">\(\delta_{k,j}\)</span>表示图像的Camera-view positional embedding; <span class="math inline">\(\phi_{k,i} = MLP[d_{k,i}]=MLP[(R_K^{-1}K_K^{-1}x^{(I)})]\)</span>表示经过MLP映射后的<span class="math inline">\(D\)</span>维向量。相比于原始的计算方式，这里把positional embedding和图像feature加在一起参与运算。<span class="math inline">\(c_j^{(n)}\)</span>和<span class="math inline">\(\tau_k\)</span>意义和原始公式相同，不同之处是他们也是经过Transforemr和MLP映射到<span class="math inline">\(D\)</span>维向量。</p>
+<h2 id="实验结果"><strong>实验结果：</strong></h2>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/sk2fGHMORJ8UjWX.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523135309538</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/wdDPYJWxlhzFv8s.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523135440759</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/Y84bdTZ75nNxlJ2.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523135515717</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2022/05/23/z4uAlfWCjPGHJ7v.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220523140115644</figcaption>
+</figure>
+<h2 id="related-work可选"><strong>Related Work(可选):</strong></h2>
+<ul>
+<li></li>
 </ul>
+<h2 id="你认为优点不足可以拓展改进的地方可选"><strong>你认为优点/不足/可以拓展改进的地方(可选):</strong></h2>
 <p>优点：</p>
 <ul>
 <li>利用了地图信息，这是一个比较有新意的setting.</li>
