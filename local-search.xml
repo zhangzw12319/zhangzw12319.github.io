@@ -4,6 +4,188 @@
   
   
   <entry>
+    <title>论文十问:Map-view Transformer(CVPR2022)</title>
+    <link href="/2022/05/24/%E8%AE%BA%E6%96%87%E5%8D%81%E9%97%AE-map-view-transformer-CVPR2022/"/>
+    <url>/2022/05/24/%E8%AE%BA%E6%96%87%E5%8D%81%E9%97%AE-map-view-transformer-CVPR2022/</url>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><blockquote><p>论文标题：Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)<br>论文地址：<a href="https://arxiv.org/abs/2205.02833">https://arxiv.org/abs/2205.02833</a><br>作者单位：The Chinese University of Hong Kong<br>代码地址：<a href="https://github.com/bradyz/ cross_view_transformers">https://github.com/bradyz/ cross_view_transformers</a><br>一句话读论文：Our architecture implicitly learns a mapping from individual camera views into a canonical map-view representation using a camera-aware cross-view attention mechanism.</p></blockquote><h1 id="Cross-view-Transformers-for-real-time-Map-view-Semantic-Segmentation-CVPR-2022-2"><a href="#Cross-view-Transformers-for-real-time-Map-view-Semantic-Segmentation-CVPR-2022-2" class="headerlink" title="Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[2]"></a>Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[2]</h1><h2 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h2><p>论文试图解决什么问题？</p><p>做图像特征与地图特征的融合(“model geometry and relationships between different view and a canonical map representation”)</p><h2 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h2><p>这是否是一个新的问题？</p><p>利用地图信息作为query，参与语义分割网络的跨视图融合，是一个有新意的做法</p><h2 id="Q3"><a href="#Q3" class="headerlink" title="Q3"></a>Q3</h2><p>这篇文章要验证一个什么科学假设？</p><h2 id="Q4"><a href="#Q4" class="headerlink" title="Q4"></a>Q4</h2><p>有哪些相关研究？如何归类？谁是这一课题在领域内值得关注的研究员？</p><p>做俯视图语义分割，已有方法大致可归为如下两类(包含其存在的问题)<br>Image-based depth estimation are error-prone.<br>Depth-based projections are a fairly inflexible and rigid bottleneck to map between views.</p><p>附一份知乎笔记连接：<a href="https://zhuanlan.zhihu.com/p/511477453">https://zhuanlan.zhihu.com/p/511477453</a></p><h2 id="Q5"><a href="#Q5" class="headerlink" title="Q5"></a>Q5</h2><p>论文中提到的解决方案之关键是什么？</p><p>通过cross-view transoformer来做Camera View到Map View的融合。相比于已有方法基于显式地几何关系地映射，这种融合的方式是一种隐式函数的映射(“learn any geometric transformation implicitly and directly from data”)。此外，transformer需要positional embedding来区分不同空间位置的特征。本文因此设计了camera-aware和map-view两类positional embedding。</p><h2 id="Q6"><a href="#Q6" class="headerlink" title="Q6"></a>Q6</h2><p>论文中的实验是如何设计的？</p><h2 id="Q7"><a href="#Q7" class="headerlink" title="Q7"></a>Q7</h2><p>用于定量评估的数据集是什么？代码有没有开源？</p><p>nuScenes, 已经开源</p><h2 id="Q8"><a href="#Q8" class="headerlink" title="Q8"></a>Q8</h2><p>论文中的实验及结果有没有很好地支持需要验证的科学假设？</p><p>在俯视图的语义分割中是SOTA(37.5% mIoU), 和基于深度估计与投影等已有方法相比comaprable。但是整个赛道与图像语义分割与3D语义分割结果相比(70-80mIoU)，整体后面还有挖掘空间</p><h2 id="Q9"><a href="#Q9" class="headerlink" title="Q9"></a>Q9</h2><p>这篇论文到底有什么贡献？</p><p>1）利用了地图信息，这是一个比较有新意的setting.<br>2）注意力系数计算方式比较有新意，可以参考拓展</p><h2 id="Q10"><a href="#Q10" class="headerlink" title="Q10"></a>Q10</h2><p>下一步呢？有什么工作可以继续深入？</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+      <category>点云</category>
+      
+      <category>多模态融合</category>
+      
+      <category>2022</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>一句话读论文系列</tag>
+      
+      <tag>CVPR2022</tag>
+      
+      <tag>点云全景分割</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一句话读论文:Map-view Transformer(CVPR2022)</title>
+    <link href="/2022/05/24/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AF%BB%E8%AE%BA%E6%96%87-map-view-transformer-CVPR2022/"/>
+    <url>/2022/05/24/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AF%BB%E8%AE%BA%E6%96%87-map-view-transformer-CVPR2022/</url>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><blockquote><p>论文标题：Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)<br>论文地址：<a href="https://arxiv.org/abs/2205.02833">https://arxiv.org/abs/2205.02833</a><br>作者单位：The Chinese University of Hong Kong<br>代码地址：<a href="https://github.com/bradyz/ cross_view_transformers">https://github.com/bradyz/ cross_view_transformers</a><br>一句话读论文：Our architecture implicitly learns a mapping from individual camera views into a canonical map-view representation using a camera-aware cross-view attention mechanism.</p></blockquote><h1 id="Cross-view-Transformers-for-real-time-Map-view-Semantic-Segmentation-CVPR-2022-1"><a href="#Cross-view-Transformers-for-real-time-Map-view-Semantic-Segmentation-CVPR-2022-1" class="headerlink" title="Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[1]"></a>Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[1]</h1><h2 id="网络框架："><a href="#网络框架：" class="headerlink" title="网络框架："></a>网络框架：</h2><p><img src="https://s2.loli.net/2022/05/24/okSpGdcwzAjVeiu.png" alt="image-20220523111833587"></p><h2 id="核心内容："><a href="#核心内容：" class="headerlink" title="核心内容："></a><strong>核心内容：</strong></h2><p>​    Motivation: 想做图像特征与地图特征的融合(“model geometry and relationships between different view and a canonical map representation”)</p><p>​    已有方法的问题：</p><ul><li>Image-based depth estimation are error-prone.</li><li>Depth-based projections are a fairly inflexible and rigid bottleneck to map between views.</li></ul><p>​    本文的思路：</p><p>​    是通过cross-view transoformer来做Map View 到Camera View的融合。相比于已有方法基于显式地几何关系地映射，这种融合的方式是一种隐式函数的映射(“learn any geometric transformation implicitly and directly from data”)。此外，transformer需要positional embedding来区分不同空间位置的特征。</p><p>​    注意力系数的计算方式比较巧妙：</p><script type="math/tex; mode=display">x^{(I)} \simeq K_k R_k(x^{(W)} - t_k)</script><p>​    上述公式展示了世界坐标系$x^{(W)}$与相机坐标系$x^{(I)}$的映射关系，其中$t_k$是车辆在行驶时的平移，$K_k$与$R_k$分别是相机内参矩阵和外参旋转矩阵(相机位姿相对于LiDAR传感器位姿)。</p><script type="math/tex; mode=display">sim_k(x^{(I)}, x^{(W)}) = \frac{(R_K^{-1}K_K^{-1}x^{(I)})\cdot (x^{(W)} - t_k)}{\Vert (R_K^{-1}K_K^{-1}x^{(I)})\Vert \Vert (x^{(W)} - t_k)\Vert}</script><p>​    这样将3D坐标点和2D图像对应的坐标联系起来，计算其相似度系数。由于本文中没有3D LiDAR点云数据参与，所以从地图中只能获得xy坐标的信息，无法获得高度(深度)信息。所以这里用的是经过MLP后提取点特征代替了直接使用坐标。</p><blockquote><p>几何意义：The uprojected image coordinate $d_{k,i}=R_k^{-1}K_k^{-1}x_i^{(I)}$ for each image coordinate $x_i^{(I)}$ described a direction vector from the origin $t_k$ of camera $k$ to the image plane at depth 1.</p><p>代码实现：1)We encode this direction vector $d<em>{k,i}$ using an MLP(shared across k views) into a D-dimensional positional embedding $\delta</em>{k,i} \in \mathbb{R}^D$… We combine this positional embedding with image features $\phi_{k,i}$ in the keys of our cross-view attention mechanism.</p><p>2)$x^{W}$ 从地图获得，没有高度信息怎么办：We start with a learned positional encoding $c^{(0)}\in \mathbb{R}^{w \times h \times D}$. We build the map-view representation up over multiple iterations in our transformer… Each positional embedding is better able to project the map-view coordinates into a proxy of the 3D environment.</p></blockquote><p>基于上述几何映射的注意力系数计算方式，论文做如下改动作为实际的计算方法：</p><script type="math/tex; mode=display">sim(\delta_{k,i}, \phi_{k,i}, c_j^{n}, \tau_k) = \frac{(\delta_{k,i}+ \phi_{k,i})\cdot(c_j^{(n)} - \tau_k)}{\Vert \delta_{k,i}+ \phi_{k,i} \Vert \Vert c_j^{(n)} - \tau_k \Vert }</script><p>​     $\delta<em>{k,j}$表示图像的Camera-view positional embedding; $\phi</em>{k,i} = MLP[d_{k,i}]=MLP[(R_K^{-1}K_K^{-1}x^{(I)})]$表示经过MLP映射后的$D$维向量。相比于原始的计算方式，这里把positional embedding和图像feature加在一起参与运算。$c_j^{(n)}$和$\tau_k$意义和原始公式相同，不同之处是他们也是经过Transforemr和MLP映射到$D$维向量。</p><h2 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a><strong>实验结果：</strong></h2><p><img src="https://s2.loli.net/2022/05/23/sk2fGHMORJ8UjWX.png" alt="image-20220523135309538"></p><p><img src="https://s2.loli.net/2022/05/23/wdDPYJWxlhzFv8s.png" alt="image-20220523135440759"></p><p><img src="https://s2.loli.net/2022/05/23/Y84bdTZ75nNxlJ2.png" alt="image-20220523135515717"></p><p><img src="https://s2.loli.net/2022/05/23/z4uAlfWCjPGHJ7v.png" alt="image-20220523140115644"></p><h2 id="Related-Work-可选"><a href="#Related-Work-可选" class="headerlink" title="Related Work(可选):"></a><strong>Related Work(可选):</strong></h2><ul><li><h2 id="你认为优点-不足-可以拓展改进的地方-可选"><a href="#你认为优点-不足-可以拓展改进的地方-可选" class="headerlink" title="你认为优点/不足/可以拓展改进的地方(可选):"></a><strong>你认为优点/不足/可以拓展改进的地方(可选):</strong></h2></li></ul><p>优点：</p><ul><li>利用了地图信息，这是一个比较有新意的setting.</li><li>提出的transformer不是简单的高维特征计算cos复杂度。从理论上来说，本文是巧妙利用三维点与二维相机视角存在的仿射变换的关系构建的计算方法。原始公式中只需要坐标信息 ，然后在此基础上拓展了图像和地图的positional embedding以及各自的特征信息(如transformer得到的特征向量，图像颜色，点云的极坐标信息等)，可拓展性强。</li></ul><p>不足：</p><ul><li>本文中没有用到LiDAR点云数据。讲道理从LiDAR数据中可以直接获得准确的高度信息，为什么不用呢(是为了提高模型推理速度，避免使用点云数据?)。这样的话从地图中经过多层transformer来估计特征向量的方式总觉得有瑕疵。</li><li>实验评测在语义分割上做的，但是做的是俯视图语义分割而不是3D语义分割。实际应用中3D语义分割和2D图像语义分割比俯视图语义分割实用很多。俯视图语义分割的重要性有待商榷。此外实验结果虽然和传统方法comparable证明这种利用transformer的新技术路线是有用的，但是30多的mIoU和现在3D语义分割中78的mIoU相比仍然逊色很多。</li></ul><p>可以拓展改进的地方：</p><ul><li>后面利用这套同样的idea，去做一做3D语义分割或2D图像分割。这样能挖掘一个更有意思的课题，我从地图中学习到的信息对CameraView和3D点云分割能起到什么帮助？</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+      <category>点云</category>
+      
+      <category>多模态融合</category>
+      
+      <category>2022</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>一句话读论文系列</tag>
+      
+      <tag>CVPR2022</tag>
+      
+      <tag>点云全景分割</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>论文十问:DeepFusion(CVPR2022)</title>
+    <link href="/2022/05/24/%E8%AE%BA%E6%96%87%E5%8D%81%E9%97%AE-DeepFusion-CVPR2022/"/>
+    <url>/2022/05/24/%E8%AE%BA%E6%96%87%E5%8D%81%E9%97%AE-DeepFusion-CVPR2022/</url>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><blockquote><p>论文标题：DeepFusion: Lidar-Camera Deep Fusion for Multi-Modal 3D Object Detection<br>论文地址：<a href="https://arxiv.org/abs/2203.08195">https://arxiv.org/abs/2203.08195</a><br>作者单位：Johns Hopkins University, Google<br>代码地址：<a href="https://github.com/tensorflow/lingvo">https://github.com/tensorflow/lingvo</a><br>一句话读论文：This study points out the key role of transformed feature alignment process that plays in multi-modal fusion module, and thus proposes InverseAug and LearnableAlign module to overcome incosistency between data augmentation and multi-modal fusion.</p></blockquote><h1 id="DeepFusion-CVPR-2022"><a href="#DeepFusion-CVPR-2022" class="headerlink" title="DeepFusion(CVPR 2022)"></a>DeepFusion(CVPR 2022)</h1><h2 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h2><p>论文试图解决什么问题？</p><p>本工作试图解决RGB图像-LiDAR点云网络，由于图像和点云分别进行数据增强操作(如随机旋转)，而导致模态特征之间的对应关系被破坏，使得多模态学习带来的增益被削弱的问题。</p><h2 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h2><p>这是否是一个新的问题？</p><p>这是一个比较有意思的，也很实用的新问题<br>1.因为大规模LiDAR点云数据需要大量的数据增强操作利于刷榜，如果多模态与之有冲突，那么提点效果会被大幅降低。<br>2.2020年前的多模态融合多是RGB图像-点云伪图像(环形投影，BeV, 透视投影等)的融合，本质是2D-2D网络间的融合。而2021年开始有更多3D-2D网络的多模态模型，因此在这个背景下考虑数据增强和特征对齐的冲突问题，还是比较有意思的</p><h2 id="Q3"><a href="#Q3" class="headerlink" title="Q3"></a>Q3</h2><p>这篇文章要验证一个什么科学假设？</p><p>1.特征对齐对多模态发挥效果很重要(参考Table1,9) -&gt; 提出InverseAug<br>\2. 深层网络的特征向量在不同模态间对齐，对模型学习语义信息有利 -&gt; 提出基于注意力机制的融合方式</p><h2 id="Q4"><a href="#Q4" class="headerlink" title="Q4"></a>Q4</h2><p>有哪些相关研究？如何归类？谁是这一课题在领域内值得关注的研究员？</p><p>\1. Input-Level Decoration:<br>在原始数据层面,利用图形学中地仿射变换与投影，将LiDAR点与Pixel对应。相关工作有：<br>PointPainting(CVPR 2021),<br>PointAugmentation(CVPR 2021),<br>PMF(ICCV 2021)</p><p>\2. Mid-Level Fusion:<br>在网络结构层面，对每一层的特征向量隐式融合。相关工作有：<br>Deep Continuous Fusion(ECCV 2018)<br>EP-Net(CVPR 2018),<br>4D-Net(ICCV 2021),<br>Cross view Transformer for real-time Map-view Semantic Segmentation(CVPR 2022)<br>TransFusion(CVPR 2022)等</p><h2 id="Q5"><a href="#Q5" class="headerlink" title="Q5"></a>Q5</h2><p>论文中提到的解决方案之关键是什么？</p><p>\1. InverseAug: 把图像和点云分支的数据增强操作取逆，再用仿射变换投影。</p><p>\2. LearnableAlign: 比较常见的Attention的融合方式</p><h2 id="Q6"><a href="#Q6" class="headerlink" title="Q6"></a>Q6</h2><p>论文中的实验是如何设计的？</p><p>略………………</p><h2 id="Q7"><a href="#Q7" class="headerlink" title="Q7"></a>Q7</h2><p>用于定量评估的数据集是什么？代码有没有开源？</p><p>Waymo 。开源。</p><h2 id="Q8"><a href="#Q8" class="headerlink" title="Q8"></a>Q8</h2><p>论文中的实验及结果有没有很好地支持需要验证的科学假设？</p><p>有，比较好。<br>1.实验效果比较solid: 在各大主流目标检测方法上，提升了6-8%左右(LEVEL 2)。<br>2.可视化结果也很好地验证科学猜想。</p><h2 id="Q9"><a href="#Q9" class="headerlink" title="Q9"></a>Q9</h2><p>这篇论文到底有什么贡献？</p><p>同时考虑多模态融合与数据增强之间的协同作用，并且从原始数据和网络结构两个层面，提出简单有效的方法，较好地解决冲突并验证猜想。<br>Motivation有新意，实验效果比较solid, 通用价值大。</p><h2 id="Q10"><a href="#Q10" class="headerlink" title="Q10"></a>Q10</h2><p>下一步呢？有什么工作可以继续深入？</p><p>\1. 对于不可逆的数据增强操作，比如用于图像的RandomCrop, RandomErasing, 必然造成图像与点云在几何层面无法对应。原文中只能忽略这些增强操作，或者等对齐模块后单独加入不可逆的数据增强操作。</p><p>\2. 如实例分割、全景分割任务中，有一些对于实例的数据增强操作，如从其他场景中随机复制一些实例点到另外的场景，那么图像中是否需要对应生成一些假的物体pixel呢？若存在遮挡关系又如何处理？</p><p>\3. 方法相对简单一些，后续工作或许能继续深入挖掘。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+      <category>点云</category>
+      
+      <category>多模态融合</category>
+      
+      <category>2022</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CVPR2022</tag>
+      
+      <tag>论文十问系列</tag>
+      
+      <tag>多模态，目标检测</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一句话读论文:Panoptic-PHNet(CVPR2022)</title>
+    <link href="/2022/05/24/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AF%BB%E8%AE%BA%E6%96%87-Panoptic-PHNet-CVPR2022/"/>
+    <url>/2022/05/24/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AF%BB%E8%AE%BA%E6%96%87-Panoptic-PHNet-CVPR2022/</url>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="PNF-CVPR-2022"><a href="#PNF-CVPR-2022" class="headerlink" title="PNF(CVPR 2022)"></a>PNF(CVPR 2022)</h1><blockquote><p>论文标题：Panoptic Neural Fields: A Semantic Object-Aware Neural Scene Representation(CVPR 2022)<br>论文地址：<a href="https://arxiv.org/abs/2205.04334">https://arxiv.org/abs/2205.04334</a><br>作者单位：Google Research, Georgia Tech, Simon Fraser University, Stanford University<br>代码地址：暂无<br>一句话读论文：”We present Panoptic Neural Fields(PMF), and object-aware neural scene representation that decomposes a scene into a set of objects(things) and background(stuff).”</p></blockquote><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=520 height=86 src="///music.163.com/outchain/player?type=2&id=22707001&auto=0&height=66"></iframe><h2 id="网络框架："><a href="#网络框架：" class="headerlink" title="网络框架："></a><strong>网络框架：</strong></h2><p><img src="https://s2.loli.net/2022/05/23/AiBE8Xg3cu5ql1w.png" alt="image-20220523191212464"></p><center style="color:#C0C0C0;text-decoration:underline">图1 Overview of Panoptic Neural Field  </center><p><img src="https://s2.loli.net/2022/05/23/3rnZVSYfXNpMeib.png" alt="image-20220523191253241"></p><center style="color:#C0C0C0;text-decoration:underline">图2 Dynamic Challenging 3D Scenes Description</center><h2 id="核心内容："><a href="#核心内容：" class="headerlink" title="核心内容："></a><strong>核心内容：</strong></h2><p>大佬们请收下我的膝盖！！！</p><p>Motivation: </p><ul><li>把多用于室内场景的Nerf首次应用到室外自动驾驶场景中</li><li>Nerf原先多用于View Synthesis ，图形学渲染，重建。本篇工作窥得大佬们的野心：想在室外自动驾驶场景中，把分类、语义分割、目标检测、目标追踪、全景分割、三维重建、深度估计、场景编辑与生成等一系列任务全部做到SOTA指标，从而让Nerf一统2D-3D视觉任务的天下。虽然本篇工作是初步的尝试，但是开辟了一个新的研究领域。</li><li>相比于之前在Nerf基础上各种incremental类型的工作，本篇工作提出一种室外场景通用类型的Nerf框架。主要分为stuff类别和thing类别，除了分别学习传统Nerf模型所需要的color, pose，density 等信息，还加入语义信息，最后将stuff类别与thing类别共同合成panoptic radiance field，用于各类下游任务。</li><li><p>在已有的语义分支+Nerf, Dynamics+Nerf等各种变体基础上，取消了共享的MLP网络，而是为每一种类别的物体instance设计小的MLP网络；此外在初始化上引入类别的先验信息，设计了category-specific meta-learned initialization</p><p>  本文的方法：在原版Nerf基础上，做如下变化</p></li><li><p>Things类别：</p><ul><li>首先用RGB-only 3D Object Detector&amp; Tracker 得到Bounding box track $T_k$(由一系列仿射变换矩阵组成)和语义类别$k$.</li><li>对每个物体实例，用标准的Nerf网络提取特征，该网络是由time-invariant MLP组成(不是随时间变化而变化的RNN时序网络),得到包括color, pose, density等参数信息</li><li>损失函数共同优化Nerf网络和$T_k$</li></ul></li><li><p>Stuff 类别：</p><ul><li>用单一的Nerf网络提取Stuff类别，此外还有网络分支学习每个Stuff pixel的语义类别</li></ul></li><li><p>Panoptic-Radiance Field</p><ul><li><p>对color,densiy等通道采取如下融合方式</p></li><li><script type="math/tex; mode=display">  c(x| \theta) = \mathbb{1}s(x)c_x(x|\theta) + \sum_kc_k(T^{-1}x|\theta)</script></li></ul></li><li><p>Render Panoptic-Radiance Fields</p><ul><li><script type="math/tex; mode=display">  C(r|\theta) \sim \sum_{i=1}^Nw(t_i)f(\mathbf{r}(t_i)|\theta)</script></li></ul></li><li><p>Nerf中权重先验的获取</p><ul><li>Bias initalization(设置stuff MLP的bias为-5，thing MLP的bias为0.1，因为真实室外场景中stuff volume大多数是空的，而thing volume大多数非空) 和 Meta-learn的方式(<code>FedAvg</code> 算法)</li></ul></li></ul><h2 id="贡献点-创新性："><a href="#贡献点-创新性：" class="headerlink" title="贡献点/创新性："></a><strong>贡献点/创新性：</strong></h2><ul><li>见Motivation的第1-3条</li></ul><h2 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a><strong>实验结果：</strong></h2><p><img src="https://s2.loli.net/2022/05/23/xYOCDHST3kIguh9.png" alt="image-20220523194617216"><center style="color:#C0C0C0;text-decoration:underline">图5 实验结果1 </center></p><p><img src="https://s2.loli.net/2022/05/23/sowYT8tfqBILU1b.png" alt="image-20220523194641296"></p><center style="color:#C0C0C0;text-decoration:underline">图6 实验结果2 </center><p><img src="https://s2.loli.net/2022/05/23/gkLWepDuo41ZQmO.png" alt="image-20220523194752533"></p><center style="color:#C0C0C0;text-decoration:underline">图7 实验结果3 </center><p><img src="https://s2.loli.net/2022/05/23/xG91WXNegAr2Pj7.png" alt="image-20220523194819545"></p><center style="color:#C0C0C0;text-decoration:underline">图8 实验结果4 </center><p><img src="https://s2.loli.net/2022/05/23/ZLzw3K8InV62dcv.png" alt="image-20220523194847881"></p><center style="color:#C0C0C0;text-decoration:underline">图9 实验结果5 </center><h2 id="Related-Work-可选-后续再补充"><a href="#Related-Work-可选-后续再补充" class="headerlink" title="Related Work(可选, 后续再补充):"></a><strong>Related Work(可选, 后续再补充):</strong></h2><ul><li>Nerfs</li><li>Nerfs with Semantics</li><li>Nerfs with dynamics</li><li>Nerfs with object decompositions</li><li>Conditional NeRFs</li><li>MVS</li><li>SLAM</li></ul><h2 id="你认为优点-不足-可以拓展改进的地方-可选"><a href="#你认为优点-不足-可以拓展改进的地方-可选" class="headerlink" title="你认为优点/不足/可以拓展改进的地方(可选):"></a><strong>你认为优点/不足/可以拓展改进的地方(可选):</strong></h2><p>优点：</p><ul><li>太多了吐槽不完</li></ul><p>缺点：</p><ul><li>虽然很大一统，但是整个框架挺复杂，目前只能在离线的训练和推理，不太容易直接应用在实时场景下。</li></ul><h2 id="其他笔记"><a href="#其他笔记" class="headerlink" title="其他笔记:"></a><strong>其他笔记:</strong></h2><ul><li>CVer 计算机视觉：<a href="https://zhuanlan.zhihu.com/p/513499887">https://zhuanlan.zhihu.com/p/513499887</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文阅读</category>
+      
+      <category>点云</category>
+      
+      <category>全景分割</category>
+      
+      <category>2022</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>一句话读论文系列</tag>
+      
+      <tag>CVPR2022</tag>
+      
+      <tag>点云全景分割</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>课程笔记-矩阵理论4-4</title>
+    <link href="/2021/11/24/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA4-4/"/>
+    <url>/2021/11/24/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA4-4/</url>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>课程笔记：矩阵理论3-4——盖尔圆定理与特征值估计</title>
+    <link href="/2021/11/24/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA3-4/"/>
+    <url>/2021/11/24/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA3-4/</url>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="课程笔记：矩阵理论3-4——盖尔圆定理与特征值估计"><a href="#课程笔记：矩阵理论3-4——盖尔圆定理与特征值估计" class="headerlink" title="课程笔记：矩阵理论3-4——盖尔圆定理与特征值估计"></a>课程笔记：矩阵理论3-4——盖尔圆定理与特征值估计</h1><h2 id="矩阵的盖尔圆盘"><a href="#矩阵的盖尔圆盘" class="headerlink" title="矩阵的盖尔圆盘"></a>矩阵的盖尔圆盘</h2><p>$N \times M$阶矩阵，每一行可以定义一个盖尔圆盘，每一列也可以定义一个盖尔圆盘。这里先讨论行的情况(关于行的盖尔圆盘)。</p><script type="math/tex; mode=display">D_i(A) = \{ \mathbf{x \in \mathbb{C}: |x - a_{ii}| \le \sum_{i \ne j}|a_{ij}|} \}</script><p>圆的半径是除对角元素外所有元素的<strong>模</strong>的和。圆心是对角线元素(由于是复数，在复平面上有实轴和虚轴坐标)。</p><p>这些圆盘区域的并能够得到盖尔区域。</p><h2 id="盖尔圆盘定理"><a href="#盖尔圆盘定理" class="headerlink" title="盖尔圆盘定理"></a>盖尔圆盘定理</h2><p>盖尔圆盘定理: 设<script type="math/tex">A</script>是n阶矩阵，矩阵的所有特征值一定会落在某个圆盘里。</p><script type="math/tex; mode=display">|\lambda_i - a_{ii}| \le \sum_{i \ne j}^n |a_{ij}|, \exist i \in \{1,2,\dots, n \}</script><p>Proof:</p><script type="math/tex; mode=display">\begin{align*}&\mathbf{A}x = \lambda x \\\Leftrightarrow &(\mathbf{A} - \lambda I)x = 0 \\\Leftrightarrow &\sum_{i \ne j} a_{ij}x_j + (a_{ii} - \lambda)x_i = 0 \, , i=1,2,\dots,n\\\Leftrightarrow& |\lambda - a_{ii}||x_i| = |\sum_{i \ne j}a_{ij}x_j| \le \sum_{i \ne j}|a_{ij}||x_j| \\\Leftrightarrow & |\lambda - a_{ii}| \le \sum_{i \ne j}|a_{ij}| \frac{|x_j|}{|x_{max}|} \le \sum_{i \ne j}|a_{ij}| \\\end{align*}</script><p> 从第四行，挑选特征向量最大的分量$x_{max}$，并把该分量index 作为选取的矩阵的行。也就是说特征值满足的不等式，是在特征向量中分量最大的位置对应的行。</p><p><Details><br>  <summary>例3.4.4</summary><br>  <img src="https://i.loli.net/2021/11/19/7Ms9ftkrDhiBCzU.png" alt="image-20211119213910167" style="zoom:80%;" /><br>&lt;/details&gt;</p><div class="note note-warning">            <p>注意：有的圆盘可能有多个特征值，有的圆盘可能没有特征值。如果需要精细的描述，使用精细圆盘定理，一个联通区域有几块圆盘，那么该区域必须<strong>恰好</strong>有相同个数的特征值</p>          </div><details>  <summary>例3.4.5</summary>  <img src="https://i.loli.net/2021/11/19/3CJzTgvXesfNMFQ.png" alt="image-20211119221047116" style="zoom:50%;" /></details><p>Note : 圆盘定理不能保证每个圆盘一定有特征值。但是下面精细圆盘定理更详细的说明了特征值分布特点：K个圆盘的并集联通区域一定恰好有K个特征值。</p><h2 id="精细圆盘定理"><a href="#精细圆盘定理" class="headerlink" title="精细圆盘定理"></a>精细圆盘定理</h2><p>精细圆盘定理：设<script type="math/tex">C</script>是盖尔区域的一个由$k$个圆盘组成的连通分量，则$C$恰好有$k$个特征值。</p><p>证明思路: 设矩阵<script type="math/tex">\mathbf{A} = \mathbf{D} + \epsilon \mathbf{B}</script>, 其中<script type="math/tex">\mathbf{D}</script>是对角阵，<script type="math/tex">\mathbf{B}</script>是对角线为0的剩余部分。<script type="math/tex">\epsilon \in [0,1]</script>,这样矩阵<script type="math/tex">\mathbf{A}</script>从对角阵连续变化到原矩阵。对角阵的圆盘半径为0，圆心就是特征值，因此每个圆盘恰好有1个特征值，圆盘外面有n-1个特征值。在<script type="math/tex">\epsilon</script>连续变化增长到1的过程中，圆盘半径逐渐变大，并且部分圆开始相交，k个圆盘相交，k个圆盘区域外有n-k个特征值。由于矩阵的特征多项式的根是其系数的连续函数，随意特征值也是从圆心出发连续游走的，不会出现跳跃的情况，且增长过程中一直被圆盘包着，所以保证了联通的k个盖尔圆一定恰好有k个特征值。</p><h2 id="调节圆盘大小的技巧"><a href="#调节圆盘大小的技巧" class="headerlink" title="调节圆盘大小的技巧"></a>调节圆盘大小的技巧</h2><p>如何调整矩阵盖尔圆的半径，从而将特征值分离出来(比喻：就好像化学试剂提纯，分离似的)</p><p>原理如下：</p><script type="math/tex; mode=display">\begin{align*}\mathbf{D}^{-1}\mathbf{A}\mathbf{D} &= \text{Diag}(\frac{1}{d_1}, \frac{1}{d_2}, \dots, \frac{1}{d_n}) \mathbf{A} \text{Diag}(d_1, d_2, \dots, d_n) \\&= (\frac{d_j}{d_i}a_{ij})\end{align*}</script><p>首先看出对角线元素是不受影响的，非对角先元素会被放缩，放缩系数由该元素的行与列(对应的是其他行)的系数决定</p><p>某一行的放缩系数<script type="math/tex">d_i</script>和其余行系数<script type="math/tex">d_k</script>的关系如下：</p><p>若<script type="math/tex">d_i > d_k</script>，为了简便起见，我们设除了第i行的其他行均为1。第i行的非对角元素放缩系数分母比分子大，故圆盘被缩小；其他行的第i列元素分子比分母大，会被放大，除第i列外的其他非对角元素不变，总体圆盘会被放大。</p><p>若<script type="math/tex">d_i < d_k</script>，类似的，设置除了第i行的其他行均为1。只有第i行的圆盘会被放大，其余圆盘均缩小。</p><h2 id="利用圆盘定理估计谱半径"><a href="#利用圆盘定理估计谱半径" class="headerlink" title="利用圆盘定理估计谱半径"></a>利用圆盘定理估计谱半径</h2><p>矩阵的谱半径 <script type="math/tex">\le \underset{i}{\max} \sum_{j} a_{ij}</script> , 并记录<script type="math/tex">v =  \underset{i}{\max} \sum_{j} a_{ij}</script></p><p>证明思路: 因为根据圆盘定理，矩阵的每个特征值都一定落在某个圆盘(比如<script type="math/tex">a_{ii}</script>)里。</p><script type="math/tex; mode=display">|\lambda| = |\lambda - a_{ii} + a_{ii}| \le \sum_{j} a_{ij}</script><p>同理，矩阵的谱半径小于某个“最大”的列<script type="math/tex">v’ = \underset{j}{\max} \sum_{i} a_{ij}</script></p><h2 id="其他估计"><a href="#其他估计" class="headerlink" title="其他估计"></a>其他估计</h2><ol><li><p>Ostrwoski 圆盘定理</p></li><li><p>Brauer定理(Cassini卵形)</p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>课程笔记</category>
+      
+      <category>矩阵理论</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>课程笔记</tag>
+      
+      <tag>特征值</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>课程笔记-统计学习理论与方法-ELS-Chap7</title>
     <link href="/2021/11/11/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E4%B8%8E%E6%96%B9%E6%B3%95-ELS-Chap7/"/>
     <url>/2021/11/11/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E4%B8%8E%E6%96%B9%E6%B3%95-ELS-Chap7/</url>
@@ -88,9 +270,9 @@
     
     <tags>
       
-      <tag>矩阵理论</tag>
-      
       <tag>特征值</tag>
+      
+      <tag>矩阵理论</tag>
       
     </tags>
     
@@ -221,7 +403,7 @@
     <link href="/2021/10/09/%E9%9A%8F%E7%AC%94-%E5%85%B3%E4%BA%8E%E9%AB%98%E7%BB%B4%E7%A9%BA%E9%97%B4%E6%A0%B7%E6%9C%AC%E5%88%86%E5%B8%83%E7%A8%80%E7%96%8F%E6%80%A7%E7%9A%84%E8%81%94%E6%83%B3/"/>
     <url>/2021/10/09/%E9%9A%8F%E7%AC%94-%E5%85%B3%E4%BA%8E%E9%AB%98%E7%BB%B4%E7%A9%BA%E9%97%B4%E6%A0%B7%E6%9C%AC%E5%88%86%E5%B8%83%E7%A8%80%E7%96%8F%E6%80%A7%E7%9A%84%E8%81%94%E6%83%B3/</url>
     
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="随笔：关于高维空间样本分布稀疏性的联想"><a href="#随笔：关于高维空间样本分布稀疏性的联想" class="headerlink" title="随笔：关于高维空间样本分布稀疏性的联想"></a>随笔：关于高维空间样本分布稀疏性的联想</h1><h2 id="背景提要"><a href="#背景提要" class="headerlink" title="背景提要"></a>背景提要</h2><div class="hljs code-wrapper"><pre><code>     在高维的向量空间中，假设有限个数的样本从一个均匀分布随机采样得到的，那么可以证明这些样本大多会倾向于分布在高维球体或立方体的面都附近(Surface)，而且即便是最近的两个样本之间的距离也会非常远，因为高维空间实在太稀疏了。比如在卷积神经网络使用的向量维度通常是1024维或2048维。     我一直在思考有没有一个形象化的比喻来直观地解释，或者类比一下这个现象。先想到了两个例子，但可能原理不同，也不一定贴切。</code></pre></div><h2 id="宇宙膨胀"><a href="#宇宙膨胀" class="headerlink" title="宇宙膨胀"></a>宇宙膨胀</h2><div class="hljs code-wrapper"><pre><code>     现代的宇宙学最大的一个发现就是，我们所处的宇宙是在不断膨胀的，就像一个正在不断被吹胀的气球一样，我们周围的星系在不断离我们远去。但是据说我们的宇宙的维度可能有11维(包括宏观维度和微观物质的维度)，即便我们的宇宙是高维空间，也不像是1024或2048维这么高的维度；而且宇宙空间会纯粹的数学上的向量空间是两个完全不同的系统，即便在某些性质上可能会有相似的交集。</code></pre></div><p>​        突然想起一句台词，”我们像星星一样近，我们像星星一样远。我们近得摩擦生电，我们远如天际云端。“</p><h2 id="社交距离-amp-人际关系的疏远"><a href="#社交距离-amp-人际关系的疏远" class="headerlink" title="社交距离&amp;人际关系的疏远"></a>社交距离&amp;人际关系的疏远</h2><div class="hljs code-wrapper"><pre><code>     我想到的一个完全不相干，但是又很奇妙的比喻：人际关系的亲疏远近。有个比较普遍的现象：小时候很容易交到朋友和玩伴，建立一段Friendship的障碍没有那么大，小孩子之间的社交距离很近；但是随着我们逐渐长大，经历的事情越来越多，我们的心灵越来越社会化，会越发现建立一段Relationship会变得愈发困难。进入社会工作后，自己身边都是”同事“和陌生人，大家都很忙，彼此不想过度打扰，即便是你感觉再好的朋友距离也会比小时候变远，就好像在一段数轴上均匀分布的5个点可能离得很近，但是如果把这5个点随机撒入几十维的高维球中，那么即便是最近的两个点，其欧氏距离也比一维坐标轴上的距离要更遥远。</code></pre></div><p>​        那么比喻的相似点在哪里呢？年龄小的时候，我们所生活在一个低维的世界中，在这个世界中只有”吃饭“，”睡觉“，”写作业“，”玩“等较少的维度中。维度越低的时候，也是我们的心智越稚嫩简单的时候，对陌生人和这个世界容易充满信任。当我们慢慢长大，上大学，读研，工作，建立家庭，我们的生活维度在不断扩张，直到变成一个高维空间。在这个高维空间里，生活和工作中的遇到的人际关系会更加复杂，再也不是在象牙塔里如此的单纯，仿佛整个世界只由几个简单的维度构成。生活在一个高维空间里是很容易疲惫，就好像训练一个高维的神经网络模型一样困难。自然而然，在这个高维空间里，如果把每个人作为这个社会随机采样下的样本，样本之间的距离也会随之自然变远。</p><div class="hljs code-wrapper"><pre><code>     PS: 居然查到了有《社会统计学》这门课，不过真正的社会统计学肯定不是像我这般的胡思乱想。     &quot;无尽的远方,无数的人们,都与我有关。&quot; 希望这句话能带给我一些安慰。</code></pre></div>]]></content>
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="随笔：关于高维空间样本分布稀疏性的联想"><a href="#随笔：关于高维空间样本分布稀疏性的联想" class="headerlink" title="随笔：关于高维空间样本分布稀疏性的联想"></a>随笔：关于高维空间样本分布稀疏性的联想</h1><h2 id="背景提要"><a href="#背景提要" class="headerlink" title="背景提要"></a>背景提要</h2><pre><code class="hljs">     在高维的向量空间中，假设有限个数的样本从一个均匀分布随机采样得到的，那么可以证明这些样本大多会倾向于分布在高维球体或立方体的面都附近(Surface)，而且即便是最近的两个样本之间的距离也会非常远，因为高维空间实在太稀疏了。比如在卷积神经网络使用的向量维度通常是1024维或2048维。     我一直在思考有没有一个形象化的比喻来直观地解释，或者类比一下这个现象。先想到了两个例子，但可能原理不同，也不一定贴切。</code></pre><h2 id="宇宙膨胀"><a href="#宇宙膨胀" class="headerlink" title="宇宙膨胀"></a>宇宙膨胀</h2><pre><code class="hljs">     现代的宇宙学最大的一个发现就是，我们所处的宇宙是在不断膨胀的，就像一个正在不断被吹胀的气球一样，我们周围的星系在不断离我们远去。但是据说我们的宇宙的维度可能有11维(包括宏观维度和微观物质的维度)，即便我们的宇宙是高维空间，也不像是1024或2048维这么高的维度；而且宇宙空间会纯粹的数学上的向量空间是两个完全不同的系统，即便在某些性质上可能会有相似的交集。</code></pre><p>​        突然想起一句台词，”我们像星星一样近，我们像星星一样远。我们近得摩擦生电，我们远如天际云端。“</p><h2 id="社交距离-amp-人际关系的疏远"><a href="#社交距离-amp-人际关系的疏远" class="headerlink" title="社交距离&amp;人际关系的疏远"></a>社交距离&amp;人际关系的疏远</h2><pre><code class="hljs">     我想到的一个完全不相干，但是又很奇妙的比喻：人际关系的亲疏远近。有个比较普遍的现象：小时候很容易交到朋友和玩伴，建立一段Friendship的障碍没有那么大，小孩子之间的社交距离很近；但是随着我们逐渐长大，经历的事情越来越多，我们的心灵越来越社会化，会越发现建立一段Relationship会变得愈发困难。进入社会工作后，自己身边都是”同事“和陌生人，大家都很忙，彼此不想过度打扰，即便是你感觉再好的朋友距离也会比小时候变远，就好像在一段数轴上均匀分布的5个点可能离得很近，但是如果把这5个点随机撒入几十维的高维球中，那么即便是最近的两个点，其欧氏距离也比一维坐标轴上的距离要更遥远。</code></pre><p>​        那么比喻的相似点在哪里呢？年龄小的时候，我们所生活在一个低维的世界中，在这个世界中只有”吃饭“，”睡觉“，”写作业“，”玩“等较少的维度中。维度越低的时候，也是我们的心智越稚嫩简单的时候，对陌生人和这个世界容易充满信任。当我们慢慢长大，上大学，读研，工作，建立家庭，我们的生活维度在不断扩张，直到变成一个高维空间。在这个高维空间里，生活和工作中的遇到的人际关系会更加复杂，再也不是在象牙塔里如此的单纯，仿佛整个世界只由几个简单的维度构成。生活在一个高维空间里是很容易疲惫，就好像训练一个高维的神经网络模型一样困难。自然而然，在这个高维空间里，如果把每个人作为这个社会随机采样下的样本，样本之间的距离也会随之自然变远。</p><pre><code class="hljs">     PS: 居然查到了有《社会统计学》这门课，不过真正的社会统计学肯定不是像我这般的胡思乱想。     &quot;无尽的远方,无数的人们,都与我有关。&quot; 希望这句话能带给我一些安慰。</code></pre>]]></content>
     
     
     <categories>
@@ -422,7 +604,7 @@
     <link href="/2021/07/25/hello-world/"/>
     <url>/2021/07/25/hello-world/</url>
     
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></div></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ hexo server<br></code></pre></div></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ hexo generate<br></code></pre></div></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></div></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     
     
     

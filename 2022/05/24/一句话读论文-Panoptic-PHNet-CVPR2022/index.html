@@ -1,0 +1,890 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/github_usericon.png">
+  <link rel="icon" href="/img/github_usericon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yuki.N">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="NeRF首次闯入自动驾驶领域，而且要来就要来个大的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一句话读论文:Panoptic-PHNet(CVPR2022)">
+<meta property="og:url" content="http://example.com/2022/05/24/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AF%BB%E8%AE%BA%E6%96%87-Panoptic-PHNet-CVPR2022/index.html">
+<meta property="og:site_name" content="Oier99">
+<meta property="og:description" content="NeRF首次闯入自动驾驶领域，而且要来就要来个大的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/05/24/v7oqPuU2LfKQWFG.jpg">
+<meta property="article:published_time" content="2022-05-23T17:51:09.000Z">
+<meta property="article:modified_time" content="2022-05-23T19:03:47.101Z">
+<meta property="article:author" content="zhangzw12319">
+<meta property="article:tag" content="一句话读论文系列">
+<meta property="article:tag" content="CVPR2022">
+<meta property="article:tag" content="点云全景分割">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/05/24/v7oqPuU2LfKQWFG.jpg">
+  
+  
+  
+  <title>一句话读论文:Panoptic-PHNet(CVPR2022) - Oier99</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                时间轴
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tag-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于我
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/music/">
+                <i class="iconfont icon-music"></i>
+                每日音乐
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s2.loli.net/2022/05/24/bYjlZzLXrH1PNAx.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一句话读论文:Panoptic-PHNet(CVPR2022)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Yuki.N
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-24 01:51" pubdate>
+          2022年5月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">一句话读论文:Panoptic-PHNet(CVPR2022)</h1>
+            
+            <div class="markdown-body">
+              
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="PNF-CVPR-2022"><a href="#PNF-CVPR-2022" class="headerlink" title="PNF(CVPR 2022)"></a>PNF(CVPR 2022)</h1><blockquote>
+<p>论文标题：Panoptic Neural Fields: A Semantic Object-Aware Neural Scene Representation(CVPR 2022)<br>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.04334">https://arxiv.org/abs/2205.04334</a><br>作者单位：Google Research, Georgia Tech, Simon Fraser University, Stanford University<br>代码地址：暂无<br>一句话读论文：”We present Panoptic Neural Fields(PMF), and object-aware neural scene representation that decomposes a scene into a set of objects(things) and background(stuff).”</p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=520 height=86 src="///music.163.com/outchain/player?type=2&id=22707001&auto=0&height=66"></iframe>
+
+<h2 id="网络框架："><a href="#网络框架：" class="headerlink" title="网络框架："></a><strong>网络框架：</strong></h2><p><img src="https://s2.loli.net/2022/05/23/AiBE8Xg3cu5ql1w.png" srcset="/img/loading.gif" lazyload alt="image-20220523191212464"></p>
+<center style="color:#C0C0C0;text-decoration:underline">图1 Overview of Panoptic Neural Field  </center>
+
+<p><img src="https://s2.loli.net/2022/05/23/3rnZVSYfXNpMeib.png" srcset="/img/loading.gif" lazyload alt="image-20220523191253241"></p>
+<center style="color:#C0C0C0;text-decoration:underline">图2 Dynamic Challenging 3D Scenes Description</center>
+
+
+
+<h2 id="核心内容："><a href="#核心内容：" class="headerlink" title="核心内容："></a><strong>核心内容：</strong></h2><p>大佬们请收下我的膝盖！！！</p>
+<p>Motivation: </p>
+<ul>
+<li>把多用于室内场景的Nerf首次应用到室外自动驾驶场景中</li>
+<li>Nerf原先多用于View Synthesis ，图形学渲染，重建。本篇工作窥得大佬们的野心：想在室外自动驾驶场景中，把分类、语义分割、目标检测、目标追踪、全景分割、三维重建、深度估计、场景编辑与生成等一系列任务全部做到SOTA指标，从而让Nerf一统2D-3D视觉任务的天下。虽然本篇工作是初步的尝试，但是开辟了一个新的研究领域。</li>
+<li>相比于之前在Nerf基础上各种incremental类型的工作，本篇工作提出一种室外场景通用类型的Nerf框架。主要分为stuff类别和thing类别，除了分别学习传统Nerf模型所需要的color, pose，density 等信息，还加入语义信息，最后将stuff类别与thing类别共同合成panoptic radiance field，用于各类下游任务。</li>
+<li><p>在已有的语义分支+Nerf, Dynamics+Nerf等各种变体基础上，取消了共享的MLP网络，而是为每一种类别的物体instance设计小的MLP网络；此外在初始化上引入类别的先验信息，设计了category-specific meta-learned initialization</p>
+<p>  本文的方法：在原版Nerf基础上，做如下变化</p>
+</li>
+<li><p>Things类别：</p>
+<ul>
+<li>首先用RGB-only 3D Object Detector&amp; Tracker 得到Bounding box track $T_k$(由一系列仿射变换矩阵组成)和语义类别$k$.</li>
+<li>对每个物体实例，用标准的Nerf网络提取特征，该网络是由time-invariant MLP组成(不是随时间变化而变化的RNN时序网络),得到包括color, pose, density等参数信息</li>
+<li>损失函数共同优化Nerf网络和$T_k$</li>
+</ul>
+</li>
+<li><p>Stuff 类别：</p>
+<ul>
+<li>用单一的Nerf网络提取Stuff类别，此外还有网络分支学习每个Stuff pixel的语义类别</li>
+</ul>
+</li>
+<li><p>Panoptic-Radiance Field</p>
+<ul>
+<li><p>对color,densiy等通道采取如下融合方式</p>
+</li>
+<li><script type="math/tex; mode=display">
+  c(x| \theta) = \mathbb{1}s(x)c_x(x|\theta) + \sum_kc_k(T^{-1}x|\theta)</script></li>
+</ul>
+</li>
+<li><p>Render Panoptic-Radiance Fields</p>
+<ul>
+<li><script type="math/tex; mode=display">
+  C(r|\theta) \sim \sum_{i=1}^Nw(t_i)f(\mathbf{r}(t_i)|\theta)</script></li>
+</ul>
+</li>
+<li><p>Nerf中权重先验的获取</p>
+<ul>
+<li>Bias initalization(设置stuff MLP的bias为-5，thing MLP的bias为0.1，因为真实室外场景中stuff volume大多数是空的，而thing volume大多数非空) 和 Meta-learn的方式(<code>FedAvg</code> 算法)</li>
+</ul>
+</li>
+</ul>
+<h2 id="贡献点-创新性："><a href="#贡献点-创新性：" class="headerlink" title="贡献点/创新性："></a><strong>贡献点/创新性：</strong></h2><ul>
+<li>见Motivation的第1-3条</li>
+</ul>
+<h2 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a><strong>实验结果：</strong></h2><p><img src="https://s2.loli.net/2022/05/23/xYOCDHST3kIguh9.png" srcset="/img/loading.gif" lazyload alt="image-20220523194617216"><center style="color:#C0C0C0;text-decoration:underline">图5 实验结果1 </center></p>
+<p><img src="https://s2.loli.net/2022/05/23/sowYT8tfqBILU1b.png" srcset="/img/loading.gif" lazyload alt="image-20220523194641296"></p>
+<center style="color:#C0C0C0;text-decoration:underline">图6 实验结果2 </center>
+
+<p><img src="https://s2.loli.net/2022/05/23/gkLWepDuo41ZQmO.png" srcset="/img/loading.gif" lazyload alt="image-20220523194752533"></p>
+<center style="color:#C0C0C0;text-decoration:underline">图7 实验结果3 </center>
+
+<p><img src="https://s2.loli.net/2022/05/23/xG91WXNegAr2Pj7.png" srcset="/img/loading.gif" lazyload alt="image-20220523194819545"></p>
+<center style="color:#C0C0C0;text-decoration:underline">图8 实验结果4 </center>
+
+<p><img src="https://s2.loli.net/2022/05/23/ZLzw3K8InV62dcv.png" srcset="/img/loading.gif" lazyload alt="image-20220523194847881"></p>
+<center style="color:#C0C0C0;text-decoration:underline">图9 实验结果5 </center>
+
+<h2 id="Related-Work-可选-后续再补充"><a href="#Related-Work-可选-后续再补充" class="headerlink" title="Related Work(可选, 后续再补充):"></a><strong>Related Work(可选, 后续再补充):</strong></h2><ul>
+<li>Nerfs</li>
+<li>Nerfs with Semantics</li>
+<li>Nerfs with dynamics</li>
+<li>Nerfs with object decompositions</li>
+<li>Conditional NeRFs</li>
+<li>MVS</li>
+<li>SLAM</li>
+</ul>
+<h2 id="你认为优点-不足-可以拓展改进的地方-可选"><a href="#你认为优点-不足-可以拓展改进的地方-可选" class="headerlink" title="你认为优点/不足/可以拓展改进的地方(可选):"></a><strong>你认为优点/不足/可以拓展改进的地方(可选):</strong></h2><p>优点：</p>
+<ul>
+<li>太多了吐槽不完</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>虽然很大一统，但是整个框架挺复杂，目前只能在离线的训练和推理，不太容易直接应用在实时场景下。</li>
+</ul>
+<h2 id="其他笔记"><a href="#其他笔记" class="headerlink" title="其他笔记:"></a><strong>其他笔记:</strong></h2><ul>
+<li>CVer 计算机视觉：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/513499887">https://zhuanlan.zhihu.com/p/513499887</a></li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="category-chain-item">论文阅读</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E7%82%B9%E4%BA%91/" class="category-chain-item">点云</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E7%82%B9%E4%BA%91/%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2/" class="category-chain-item">全景分割</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E7%82%B9%E4%BA%91/%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2/2022/" class="category-chain-item">2022</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AF%BB%E8%AE%BA%E6%96%87%E7%B3%BB%E5%88%97/">#一句话读论文系列</a>
+      
+        <a href="/tags/CVPR2022/">#CVPR2022</a>
+      
+        <a href="/tags/%E7%82%B9%E4%BA%91%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2/">#点云全景分割</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>一句话读论文:Panoptic-PHNet(CVPR2022)</div>
+      <div>http://example.com/2022/05/24/一句话读论文-Panoptic-PHNet-CVPR2022/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Yuki.N</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/24/%E8%AE%BA%E6%96%87%E5%8D%81%E9%97%AE-DeepFusion-CVPR2022/" title="论文十问:DeepFusion(CVPR2022)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">论文十问:DeepFusion(CVPR2022)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/24/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA4-4/" title="课程笔记-矩阵理论4-4">
+                        <span class="hidden-mobile">课程笔记-矩阵理论4-4</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <div id="aplayer"></div>
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+  <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
+  <script defer src="/js/aplayer.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
