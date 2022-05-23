@@ -21,7 +21,7 @@
     <meta name="description" content="对于分类ID数量特别多的时候能节省计算量，减小显存开销有效的方法，多人推荐。用在Insight-face模型上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Partial FC--Training 10 Million Identities on a Single Machine[阅读笔记]">
-<meta property="og:url" content="http://example.com/2021/08/14/Notes_on_partial_FC/index.html">
+<meta property="og:url" content="https://oier99.cn/2021/08/14/Notes_on_partial_FC/index.html">
 <meta property="og:site_name" content="Oier99">
 <meta property="og:description" content="对于分类ID数量特别多的时候能节省计算量，减小显存开销有效的方法，多人推荐。用在Insight-face模型上">
 <meta property="og:locale" content="zh_CN">
@@ -79,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"oier99.cn","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -256,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.2k 字
         
       </span>
     
@@ -313,75 +313,72 @@
             
             <div class="markdown-body">
               
-              <script src="/assets/js/APlayer.min.js"> </script><h1 id="partial-fc--training-10-million-identities-on-a-single-machine阅读笔记">Partial FC--Training 10 Million Identities on a Single Machine[阅读笔记]</h1>
-<p>[TOC]</p>
-<h2 id="motivation">Motivation</h2>
-<ol type="1">
-<li><p>传统的DataParallel模式，无法解决大数据集(包含几十万至千万ID, 千万至亿个训练样本)训练时，分类器的矩阵参数<span class="math inline">\(W_{NK \times d}\)</span>爆显存的问题(<span class="math inline">\(N\)</span>是Batch数量，<span class="math inline">\(K\)</span>是GPU个数，d是Feature Map的维度)</p></li>
-<li><p>ModelParallel模式能够有效解决1中问题：通过将矩阵<span class="math inline">\(W\)</span>按<span class="math inline">\(N\)</span>的维度拆分成多个子矩阵放在不同GPU上即可。但是该模式无法解决<span class="math inline">\(logits_{N \times C}\)</span>当<span class="math inline">\(C\)</span>很大时爆显存的问题</p></li>
-<li><p>本文提出的解决方式：保留一个Batch中所有的Positive Class， 随机采样Negative Class，并证明采样率较低情况下，仍能保持performance几乎无损。</p></li>
-<li><p>Related Work(只是听作者介绍，没看):</p></li>
-</ol>
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="Partial-FC—Training-10-Million-Identities-on-a-Single-Machine-阅读笔记"><a href="#Partial-FC—Training-10-Million-Identities-on-a-Single-Machine-阅读笔记" class="headerlink" title="Partial FC—Training 10 Million Identities on a Single Machine[阅读笔记]"></a>Partial FC—Training 10 Million Identities on a Single Machine[阅读笔记]</h1><p>[TOC]</p>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><ol>
+<li>传统的DataParallel模式，无法解决大数据集(包含几十万至千万ID, 千万至亿个训练样本)训练时，分类器的矩阵参数$W_{NK \times d}$爆显存的问题($N$是Batch数量，$K$是GPU个数，d是Feature Map的维度)</li>
+<li>ModelParallel模式能够有效解决1中问题：通过将矩阵$W$按$N$的维度拆分成多个子矩阵放在不同GPU上即可。但是该模式无法解决$logits_{N \times C}$当$C$很大时爆显存的问题</li>
+<li><p>本文提出的解决方式：保留一个Batch中所有的Positive Class， 随机采样Negative Class，并证明采样率较低情况下，仍能保持performance几乎无损。</p>
+</li>
+<li><p>Related Work(只是听作者介绍，没看):</p>
 <ul>
 <li><p>HF-softmax(Goodman, 2001)<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Goodman, J. 2001. Classes for fast maximum entropy training. In IEEE International Conference on Acoustics, Speech, and Signal Processing. Proceedings (Cat. No.01CH37221), volume 1, 561–564.
-">[1]</span></a></sup> 通过对FeatureMap构建随机hash森林，每次检索最近的class center来获得active class subset 缺点： ①class center 存储在RAM中 ②计算feature retrieval也要耗时</p></li>
+">[1]</span></a></sup> 通过对FeatureMap构建随机hash森林，每次检索最近的class center来获得active class subset<br>缺点： ①class center 存储在RAM中 ②计算feature retrieval也要耗时</p>
+</li>
 <li><p>Softmax Dissection(He et al.2020)<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="He, L.; Wang, Z.; Li, Y.; and Wang, S. 2020. Softmax Dissection: Towards Understanding Intra- and Inter-class Objective for Embedding Learning. In AAAI Conference on Artifificial Intelligence, 10957–10964.
 ">[2]</span></a></sup> 将softmax分成了intra-class objective和inter-class objective两部分，并且通过减低intra-class objective的计算冗余</p>
-<p>缺点：①难以拓展到其他softmax based方法</p></li>
+<p>缺点：①难以拓展到其他softmax based方法</p>
+</li>
 </ul>
-<h2 id="theoremmodel">Theorem&amp;Model</h2>
-<ol type="1">
-<li><p>softmax公式 <span class="math display">\[
- \sigma (X, i) = \frac{e^{w_i^T X}}{\sum_{j=1}^C e^{w_j^T X}}
- \]</span> 分子可以在GPU-i上算，只要batch大小不会导致爆显存。分母的话每个GPU只需要提供一个scalar，代表一个求和。</p></li>
-<li><p>Model Parallel 在第i块GPU上的算法：</p></li>
+</li>
+</ol>
+<h2 id="Theorem-amp-Model"><a href="#Theorem-amp-Model" class="headerlink" title="Theorem&amp;Model"></a>Theorem&amp;Model</h2><ol>
+<li><p>softmax公式</p>
+<script type="math/tex; mode=display">
+ \sigma (X, i) = \frac{e^{w_i^T X}}{\sum_{j=1}^C e^{w_j^T X}}</script><p> 分子可以在GPU-i上算，只要batch大小不会导致爆显存。分母的话每个GPU只需要提供一个scalar，代表一个求和。</p>
+</li>
+<li><p>Model Parallel 在第i块GPU上的算法：</p>
+</li>
 </ol>
 <p><img src="https://i.loli.net/2021/08/15/dgfnUjzxpqQGVke.png" srcset="/img/loading.gif" lazyload alt="image-20210717092711902" style="zoom:50%;" /></p>
 <p>注解:</p>
 <ul>
 <li>Line 2, <code>allgather</code>是因为同时要使用DataParallel来训练模型</li>
-<li>Line7, <code>allreduce</code>是因为对参数<span class="math inline">\(W\)</span>实行ModelParallel,要从不同GPU上reduce <span class="math inline">\(\sum e^{logtits_i}\)</span></li>
+<li>Line7, <code>allreduce</code>是因为对参数$W$实行ModelParallel,要从不同GPU上reduce $\sum e^{logtits_i}$</li>
 </ul>
-<ol start="3" type="1">
+<ol>
 <li><p>随机选取Negative Class的方法：</p>
-<p><img src="https://i.loli.net/2021/08/15/MYaywVFGzf9IeEW.png" srcset="/img/loading.gif" lazyload alt="image-20210717093753863" style="zoom:50%;" /> <img src="https://i.loli.net/2021/08/15/1tEZPeDjrLW8Gwi.png" srcset="/img/loading.gif" lazyload alt="image-20210717093818660" style="zoom:50%;" /></p></li>
+<p> <img src="https://i.loli.net/2021/08/15/MYaywVFGzf9IeEW.png" srcset="/img/loading.gif" lazyload alt="image-20210717093753863" style="zoom:50%;" /><br> <img src="https://i.loli.net/2021/08/15/1tEZPeDjrLW8Gwi.png" srcset="/img/loading.gif" lazyload alt="image-20210717093818660" style="zoom:50%;" /></p>
+</li>
 <li></li>
 </ol>
-<h2 id="contribution">Contribution</h2>
-<p>暂略(以后想到了再写)</p>
-<h2 id="evaluation">Evaluation</h2>
-<ol type="1">
-<li><p>Training Dataset, Validation Dataset, Testing Dataset分别是啥？Backbone? 损失函数？优化器？参数设置？ Training Dataset CASIA, MS1MV2, Celab-500k Testing Dataset LFW(CPLFW, CFLFW), CFP-FP, AgeDB30, Backbone: Resnet-50, 100 Mini-batch size = 512, 8 x 2080Ti LR: 0.1起步，后面有衰减(不同数据集不一样)</p>
-<p>训练次数：CASIA： 32K ； MS！MV2 180K； Glint360K 600K.</p></li>
+<h2 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h2><p>暂略(以后想到了再写)</p>
+<h2 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h2><ol>
+<li><p>Training Dataset, Validation Dataset, Testing Dataset分别是啥？Backbone? 损失函数？优化器？参数设置？<br> Training Dataset CASIA, MS1MV2, Celab-500k<br> Testing Dataset LFW(CPLFW, CFLFW), CFP-FP, AgeDB30,<br> Backbone: Resnet-50, 100<br> Mini-batch size = 512, 8 x 2080Ti<br> LR: 0.1起步，后面有衰减(不同数据集不一样)</p>
+<p> 训练次数：CASIA： 32K ； MS！MV2 180K； Glint360K 600K.</p>
+</li>
 <li><p>自身Ablation</p>
-<p>比较不同的sample rate, 以及all-sample 和只对negative class sample 评价指标：Average Cos Diatnce，因为使用了CosFace和Arc Face的损失函数，度量<code>$x_i$</code> ,<code>$W_&#123;y_i&#125;$</code>间的余弦距离 <img src="https://i.loli.net/2021/08/15/43dKpjCLtfSJ16v.png" srcset="/img/loading.gif" lazyload alt="image-20210717094807189" style="zoom:50%;" /></p>
-<p><img src="https://i.loli.net/2021/08/15/r8xdvhPjUKLzR7O.png" srcset="/img/loading.gif" lazyload alt="image-20210717094939172" style="zoom:50%;" /> 评估在不同的分类数量情况下的内存使用情况 <img src="https://i.loli.net/2021/08/15/ywXRMfK24xJtrHc.png" srcset="/img/loading.gif" lazyload alt="image-20210717095831255" /></p></li>
-<li><p>和其他同类方法比较</p></li>
+<p> 比较不同的sample rate, 以及all-sample 和只对negative class sample<br> 评价指标：Average Cos Diatnce，因为使用了CosFace和Arc Face的损失函数，度量<script type="math/tex">x_i</script> ,<script type="math/tex">W_{y_i}</script>间的余弦距离<br> <img src="https://i.loli.net/2021/08/15/43dKpjCLtfSJ16v.png" srcset="/img/loading.gif" lazyload alt="image-20210717094807189" style="zoom:50%;" /></p>
+<p> <img src="https://i.loli.net/2021/08/15/r8xdvhPjUKLzR7O.png" srcset="/img/loading.gif" lazyload alt="image-20210717094939172" style="zoom:50%;" /><br> 评估在不同的分类数量情况下的内存使用情况<br> <img src="https://i.loli.net/2021/08/15/ywXRMfK24xJtrHc.png" srcset="/img/loading.gif" lazyload alt="image-20210717095831255"></p>
+</li>
+<li><p>和其他同类方法比较</p>
+</li>
 </ol>
 <p><img src="https://i.loli.net/2021/08/15/1GxVTFIYbv9m5s3.png" srcset="/img/loading.gif" lazyload alt="image-20210717095513744" style="zoom:50%;" /></p>
 <p><img src="https://i.loli.net/2021/08/15/nfsvX9QTZkBRDqa.png" srcset="/img/loading.gif" lazyload alt="image-20210717095601380" style="zoom:50%;" /></p>
-<ol start="4" type="1">
-<li><p>和其他不同类方法比较(看总榜) <img src="https://i.loli.net/2021/08/15/vXkL96DZQta4wbH.png" srcset="/img/loading.gif" lazyload alt="image-20210717095254291" style="zoom:50%;" /></p></li>
-<li><p>该文章的长处和不足 长处： ① 在<strong>ID量</strong>特别大的时候，到达十几万甚至百万时，开一个较大的batch-size也不用担心爆GPU显存 ② 扔掉大部分negative class确实很节约训练时间，而且loss损失不大</p>
-<p>不足: ① 在ID较少的数据集上用处不大(比赛9万ID用不到，sample rate=1) ②只是随机的扔掉负样本比较粗糙，能不能有一些Mining Hard Negative？(但是要保证时间成本，保证存储Hard Negative Center 不需要耗费太多内存等)</p></li>
-<li><p>自己感觉可以改进的地方 ①其实结合分布式原语操作(primitive)中的ReduceAll，想要得到<span class="math inline">\(logits\)</span>只需要统计部分信息，比如Max, Sum等，所以不扔掉负样本也能做。但是可能有些特殊情况还是要用到完整的<span class="math inline">\(logits\)</span></p></li>
-</ol>
-<h2 id="其他">其他</h2>
-<p>搜一搜知乎评论，CSDN博客，查一查OpenReview；这些讨论，质疑对我的思维启发非常大的</p>
-<h2 id="参考文献">参考文献</h2>
-<section class="footnotes">
-<div class="footnote-list">
 <ol>
-<li>
-<span id="fn:1" class="footnote-text"><span>Goodman, J. 2001. Classes for fast maximum entropy training. In <em>IEEE International Conference on Acoustics, Speech,</em> <em>and Signal Processing. Proceedings (Cat. No.01CH37221)</em>, volume 1, 561–564. <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+<li><p>和其他不同类方法比较(看总榜)<br> <img src="https://i.loli.net/2021/08/15/vXkL96DZQta4wbH.png" srcset="/img/loading.gif" lazyload alt="image-20210717095254291" style="zoom:50%;" /></p>
 </li>
-<li>
-<span id="fn:2" class="footnote-text"><span>He, L.; Wang, Z.; Li, Y.; and Wang, S. 2020. Softmax Dissection: Towards Understanding Intra- and Inter-class Objective for Embedding Learning. In <em>AAAI Conference on</em> <em>Artifificial Intelligence</em>, 10957–10964. <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+<li><p>该文章的长处和不足<br> 长处：<br> ① 在<strong>ID量</strong>特别大的时候，到达十几万甚至百万时，开一个较大的batch-size也不用担心爆GPU显存<br> ② 扔掉大部分negative class确实很节约训练时间，而且loss损失不大</p>
+<p> 不足:<br> ① 在ID较少的数据集上用处不大(比赛9万ID用不到，sample rate=1)<br> ②只是随机的扔掉负样本比较粗糙，能不能有一些Mining Hard Negative？(但是要保证时间成本，保证存储Hard Negative Center 不需要耗费太多内存等)</p>
 </li>
 </ol>
-</div>
-</section>
-
+<ol>
+<li>自己感觉可以改进的地方<br> ①其实结合分布式原语操作(primitive)中的ReduceAll，想要得到$logits$只需要统计部分信息，比如Max, Sum等，所以不扔掉负样本也能做。但是可能有些特殊情况还是要用到完整的$logits$</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>搜一搜知乎评论，CSDN博客，查一查OpenReview；这些讨论，质疑对我的思维启发非常大的</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>Goodman, J. 2001. Classes for fast maximum entropy training. In <em>IEEE International Conference on Acoustics, Speech,</em> <em>and Signal Processing. Proceedings (Cat. No.01CH37221)</em>, volume 1, 561–564.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>He, L.; Wang, Z.; Li, Y.; and Wang, S. 2020. Softmax Dissection: Towards Understanding Intra- and Inter-class Objective for Embedding Learning. In <em>AAAI Conference on</em> <em>Artifificial Intelligence</em>, 10957–10964.
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
               
             </div>
             <hr/>
@@ -433,7 +430,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Partial FC--Training 10 Million Identities on a Single Machine[阅读笔记]</div>
-      <div>http://example.com/2021/08/14/Notes_on_partial_FC/</div>
+      <div>https://oier99.cn/2021/08/14/Notes_on_partial_FC/</div>
     </div>
     <div class="license-meta">
       
@@ -455,9 +452,21 @@
           
             
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
               <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                <i class="iconfont icon-sa"></i>
               </span>
               </a>
             

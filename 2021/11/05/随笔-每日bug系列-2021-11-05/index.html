@@ -18,12 +18,12 @@
   <meta name="author" content="oier99">
   <meta name="keywords" content="">
   
-    <meta name="description" content="随笔-每日bug系列_2021-11-05 Bug 1 计算矩阵特征值，求行列式\(|\lambda I_n - A|\)时，一定要写成 $$ $$ 的形式，否则展开求解时极容易出错(今天计算行列式看着原矩阵脑补写特征多项式一连写错五次的痛，对自己的算术能力表示深刻怀疑) Bug 2 记住 \[A + 2&#x3D; A + 2I_n\]，是加在对角线元素上的，不是每个位置都加2。这个惯性错误犯了好多次了">
+    <meta name="description" content="随笔-每日bug系列_2021-11-05Bug 1计算矩阵特征值，求行列式$|\lambda I_n - A|$时，一定要写成  \left [ \begin{array}{cccc} \lambda - a_{11} &amp; -a_{12} &amp; \cdots&amp; -a_{1n}\\ -a_{21} &amp; \lambda -a_{22} &amp; \cdots &amp; -a_{2n}\\ \vdots &amp; \v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="随笔-每日bug系列（2021-11-05）">
-<meta property="og:url" content="http://example.com/2021/11/05/%E9%9A%8F%E7%AC%94-%E6%AF%8F%E6%97%A5bug%E7%B3%BB%E5%88%97-2021-11-05/index.html">
+<meta property="og:url" content="https://oier99.cn/2021/11/05/%E9%9A%8F%E7%AC%94-%E6%AF%8F%E6%97%A5bug%E7%B3%BB%E5%88%97-2021-11-05/index.html">
 <meta property="og:site_name" content="Oier99">
-<meta property="og:description" content="随笔-每日bug系列_2021-11-05 Bug 1 计算矩阵特征值，求行列式\(|\lambda I_n - A|\)时，一定要写成 $$ $$ 的形式，否则展开求解时极容易出错(今天计算行列式看着原矩阵脑补写特征多项式一连写错五次的痛，对自己的算术能力表示深刻怀疑) Bug 2 记住 \[A + 2&#x3D; A + 2I_n\]，是加在对角线元素上的，不是每个位置都加2。这个惯性错误犯了好多次了">
+<meta property="og:description" content="随笔-每日bug系列_2021-11-05Bug 1计算矩阵特征值，求行列式$|\lambda I_n - A|$时，一定要写成  \left [ \begin{array}{cccc} \lambda - a_{11} &amp; -a_{12} &amp; \cdots&amp; -a_{1n}\\ -a_{21} &amp; \lambda -a_{22} &amp; \cdots &amp; -a_{2n}\\ \vdots &amp; \v">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/09/30/tfhTo6NrOJKRikm.jpg">
 <meta property="article:published_time" content="2021-11-05T15:05:03.000Z">
@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"oier99.cn","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          348 字
+          486 字
         
       </span>
     
@@ -268,7 +268,7 @@
         
         
         
-          3 分钟
+          5 分钟
         
       </span>
     
@@ -314,13 +314,18 @@
             
             <div class="markdown-body">
               
-              <script src="/assets/js/APlayer.min.js"> </script><h1 id="随笔-每日bug系列_2021-11-05">随笔-每日bug系列_2021-11-05</h1>
-<h2 id="bug-1">Bug 1</h2>
-<p>计算矩阵特征值，求行列式<span class="math inline">\(|\lambda I_n - A|\)</span>时，一定要写成 $$ $$ 的形式，否则展开求解时极容易出错(今天计算行列式看着原矩阵脑补写特征多项式一连写错五次的痛，对自己的算术能力表示深刻怀疑)</p>
-<h2 id="bug-2">Bug 2</h2>
-<p>记住 <span class="math display">\[A + 2= A + 2I_n\]</span>，是加在对角线元素上的，不是每个位置都加2。这个惯性错误犯了好多次了！！</p>
-<h2 id="bug-3">Bug 3</h2>
-<p>相似矩阵有相同特征值，但逆命题不成立(即有相同特征值，包括每个特征值的代数重数也相同的两个矩阵不一定相似)。因为可能有不同的Jordan标准型形式。比如一个矩阵可以对角化，相似于某个对角阵；而另一个矩阵无法对角化，只能相似于某个Jordan标准型，相同特征值个数的Jordan标准型又有很多种，所以导致这两个矩阵无法相似。</p>
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="随笔-每日bug系列-2021-11-05"><a href="#随笔-每日bug系列-2021-11-05" class="headerlink" title="随笔-每日bug系列_2021-11-05"></a>随笔-每日bug系列_2021-11-05</h1><h2 id="Bug-1"><a href="#Bug-1" class="headerlink" title="Bug 1"></a>Bug 1</h2><p>计算矩阵特征值，求行列式$|\lambda I_n - A|$时，一定要写成</p>
+<script type="math/tex; mode=display">
+\left [
+\begin{array}{cccc}
+\lambda - a_{11} & -a_{12} & \cdots& -a_{1n}\\
+-a_{21} & \lambda -a_{22} & \cdots & -a_{2n}\\
+\vdots & \vdots & \vdots & \vdots 
+\end{array}
+
+\right ]</script><p>的形式，否则展开求解时极容易出错(今天计算行列式看着原矩阵脑补写特征多项式一连写错五次的痛，对自己的算术能力表示深刻怀疑)</p>
+<h2 id="Bug-2"><a href="#Bug-2" class="headerlink" title="Bug 2"></a>Bug 2</h2><p>记住 <script type="math/tex">A + 2= A + 2I_n</script>，是加在对角线元素上的，不是每个位置都加2。这个惯性错误犯了好多次了！！</p>
+<h2 id="Bug-3"><a href="#Bug-3" class="headerlink" title="Bug 3"></a>Bug 3</h2><p>相似矩阵有相同特征值，但逆命题不成立(即有相同特征值，包括每个特征值的代数重数也相同的两个矩阵不一定相似)。因为可能有不同的Jordan标准型形式。比如一个矩阵可以对角化，相似于某个对角阵；而另一个矩阵无法对角化，只能相似于某个Jordan标准型，相同特征值个数的Jordan标准型又有很多种，所以导致这两个矩阵无法相似。</p>
 
               
             </div>
@@ -375,7 +380,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>随笔-每日bug系列（2021-11-05）</div>
-      <div>http://example.com/2021/11/05/随笔-每日bug系列-2021-11-05/</div>
+      <div>https://oier99.cn/2021/11/05/随笔-每日bug系列-2021-11-05/</div>
     </div>
     <div class="license-meta">
       
@@ -397,9 +402,21 @@
           
             
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
               <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                <i class="iconfont icon-sa"></i>
               </span>
               </a>
             
