@@ -25,13 +25,15 @@
 <meta property="og:site_name" content="Oier99">
 <meta property="og:description" content="巧妙利用地图信息做自动驾驶场景下RV和BeV的融合。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/05/24/LDeCqp1Rl86HTuz.jpg">
 <meta property="article:published_time" content="2022-05-23T19:05:27.000Z">
-<meta property="article:modified_time" content="2022-05-23T20:42:52.882Z">
+<meta property="article:modified_time" content="2022-05-24T05:30:47.868Z">
 <meta property="article:author" content="zhangzw12319">
 <meta property="article:tag" content="一句话读论文系列">
 <meta property="article:tag" content="CVPR2022">
-<meta property="article:tag" content="点云全景分割">
+<meta property="article:tag" content="点云语义分割">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/05/24/LDeCqp1Rl86HTuz.jpg">
   
   
   
@@ -72,7 +74,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
 
 
 
@@ -222,7 +223,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://i.loli.net/2021/08/14/j5BKhpRcUVb4wzk.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://s2.loli.net/2022/05/24/LDeCqp1Rl86HTuz.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -313,27 +314,38 @@
             
             <div class="markdown-body">
               
-              <script src="/assets/js/APlayer.min.js"> </script><h1 id="Cross-view-Transformers-for-real-time-Map-view-Semantic-Segmentation-CVPR-2022-2"><a href="#Cross-view-Transformers-for-real-time-Map-view-Semantic-Segmentation-CVPR-2022-2" class="headerlink" title="Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[2]"></a>Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[2]</h1><blockquote>
-<p>论文标题：Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)<br><br>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.02833">https://arxiv.org/abs/2205.02833</a><br><br>作者单位：The Chinese University of Hong Kong<br><br>代码地址：<a target="_blank" rel="noopener" href="https://github.com/bradyz/cross_view_transformers">https://github.com/bradyz/cross_view_transformers</a><br><br>一句话读论文：Our architecture implicitly learns a mapping from individual camera views into a canonical map-view representation using a camera-aware cross-view attention mechanism.</p>
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="cross-view-transformers-for-real-time-map-view-semantic-segmentationcvpr-20222">Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)[2]</h1>
+<blockquote>
+<p>论文标题：Cross-view Transformers for real-time Map-view Semantic Segmentation(CVPR 2022)<br> 论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.02833">https://arxiv.org/abs/2205.02833</a><br> 作者单位：The Chinese University of Hong Kong<br> 代码地址：<a target="_blank" rel="noopener" href="https://github.com/bradyz/cross_view_transformers">https://github.com/bradyz/cross_view_transformers</a><br> 一句话读论文：Our architecture implicitly learns a mapping from individual camera views into a canonical map-view representation using a camera-aware cross-view attention mechanism.</p>
 </blockquote>
-<h2 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h2><p>论文试图解决什么问题？</p>
-<p>做图像特征与地图特征的融合(“model geometry and relationships between different view and a canonical map representation”)</p>
-<h2 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h2><p>这是否是一个新的问题？</p>
+<h2 id="q1">Q1</h2>
+<p>论文试图解决什么问题？</p>
+<p>做图像特征与地图特征的融合("model geometry and relationships between different view and a canonical map representation")</p>
+<h2 id="q2">Q2</h2>
+<p>这是否是一个新的问题？</p>
 <p>利用地图信息作为query，参与语义分割网络的跨视图融合，是一个有新意的做法</p>
-<h2 id="Q3"><a href="#Q3" class="headerlink" title="Q3"></a>Q3</h2><p>这篇文章要验证一个什么科学假设？</p>
-<h2 id="Q4"><a href="#Q4" class="headerlink" title="Q4"></a>Q4</h2><p>有哪些相关研究？如何归类？谁是这一课题在领域内值得关注的研究员？</p>
-<p>做俯视图语义分割，已有方法大致可归为如下两类(包含其存在的问题)<br>Image-based depth estimation are error-prone.<br>Depth-based projections are a fairly inflexible and rigid bottleneck to map between views.</p>
-<p>附一份知乎笔记连接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/511477453">https://zhuanlan.zhihu.com/p/511477453</a></p>
-<h2 id="Q5"><a href="#Q5" class="headerlink" title="Q5"></a>Q5</h2><p>论文中提到的解决方案之关键是什么？</p>
-<p>通过cross-view transoformer来做Camera View到Map View的融合。相比于已有方法基于显式地几何关系地映射，这种融合的方式是一种隐式函数的映射(“learn any geometric transformation implicitly and directly from data”)。此外，transformer需要positional embedding来区分不同空间位置的特征。本文因此设计了camera-aware和map-view两类positional embedding。</p>
-<h2 id="Q6"><a href="#Q6" class="headerlink" title="Q6"></a>Q6</h2><p>论文中的实验是如何设计的？</p>
-<h2 id="Q7"><a href="#Q7" class="headerlink" title="Q7"></a>Q7</h2><p>用于定量评估的数据集是什么？代码有没有开源？</p>
+<h2 id="q3">Q3</h2>
+<p>这篇文章要验证一个什么科学假设？</p>
+<h2 id="q4">Q4</h2>
+<p>有哪些相关研究？如何归类？谁是这一课题在领域内值得关注的研究员？</p>
+<p>做俯视图语义分割，已有方法大致可归为如下两类(包含其存在的问题) Image-based depth estimation are error-prone. Depth-based projections are a fairly inflexible and rigid bottleneck to map between views.</p>
+<p>附一份知乎笔记连接：https://zhuanlan.zhihu.com/p/511477453</p>
+<h2 id="q5">Q5</h2>
+<p>论文中提到的解决方案之关键是什么？</p>
+<p>通过cross-view transoformer来做Camera View到Map View的融合。相比于已有方法基于显式地几何关系地映射，这种融合的方式是一种隐式函数的映射("learn any geometric transformation implicitly and directly from data")。此外，transformer需要positional embedding来区分不同空间位置的特征。本文因此设计了camera-aware和map-view两类positional embedding。</p>
+<h2 id="q6">Q6</h2>
+<p>论文中的实验是如何设计的？</p>
+<h2 id="q7">Q7</h2>
+<p>用于定量评估的数据集是什么？代码有没有开源？</p>
 <p>nuScenes, 已经开源</p>
-<h2 id="Q8"><a href="#Q8" class="headerlink" title="Q8"></a>Q8</h2><p>论文中的实验及结果有没有很好地支持需要验证的科学假设？</p>
+<h2 id="q8">Q8</h2>
+<p>论文中的实验及结果有没有很好地支持需要验证的科学假设？</p>
 <p>在俯视图的语义分割中是SOTA(37.5% mIoU), 和基于深度估计与投影等已有方法相比comaprable。但是整个赛道与图像语义分割与3D语义分割结果相比(70-80mIoU)，整体后面还有挖掘空间</p>
-<h2 id="Q9"><a href="#Q9" class="headerlink" title="Q9"></a>Q9</h2><p>这篇论文到底有什么贡献？</p>
-<p>1）利用了地图信息，这是一个比较有新意的setting.<br>2）注意力系数计算方式比较有新意，可以参考拓展</p>
-<h2 id="Q10"><a href="#Q10" class="headerlink" title="Q10"></a>Q10</h2><p>下一步呢？有什么工作可以继续深入？</p>
+<h2 id="q9">Q9</h2>
+<p>这篇论文到底有什么贡献？</p>
+<p>1）利用了地图信息，这是一个比较有新意的setting. 2）注意力系数计算方式比较有新意，可以参考拓展</p>
+<h2 id="q10">Q10</h2>
+<p>下一步呢？有什么工作可以继续深入？</p>
 
               
             </div>
@@ -391,7 +403,7 @@
       
         <a href="/tags/CVPR2022/">#CVPR2022</a>
       
-        <a href="/tags/%E7%82%B9%E4%BA%91%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2/">#点云全景分割</a>
+        <a href="/tags/%E7%82%B9%E4%BA%91%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">#点云语义分割</a>
       
     </div>
   
@@ -457,6 +469,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/05/24/LaTEX-math-symbols/" title="LaTeX讲解系列：常用数学符号大全">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LaTeX讲解系列：常用数学符号大全</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
@@ -568,7 +586,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();  function createtime() {  var grt= new Date("07/25/2021 17:12:09"); now.setTime(now.getTime()+250);  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}  document.getElementById("timeDate").innerHTML = "本网站已在各种夹缝中安全生存 "+dnum+" 天 ";  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";  }  setInterval("createtime()",250); </script> </div> 
     </div>
   
   
@@ -800,9 +818,9 @@
 
 
   
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js"></script>
 
 
 

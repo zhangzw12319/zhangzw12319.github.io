@@ -27,11 +27,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/05/24/ISACMOZynhfdwYv.jpg">
 <meta property="article:published_time" content="2022-05-23T18:25:12.000Z">
-<meta property="article:modified_time" content="2022-05-23T20:40:33.022Z">
+<meta property="article:modified_time" content="2022-05-24T05:31:04.563Z">
 <meta property="article:author" content="zhangzw12319">
 <meta property="article:tag" content="CVPR2022">
 <meta property="article:tag" content="论文十问系列">
-<meta property="article:tag" content="多模态，目标检测">
+<meta property="article:tag" content="多模态，点云目标检测">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2022/05/24/ISACMOZynhfdwYv.jpg">
   
@@ -74,7 +74,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
 
 
 
@@ -315,30 +314,41 @@
             
             <div class="markdown-body">
               
-              <script src="/assets/js/APlayer.min.js"> </script><h1 id="DeepFusion-CVPR-2022"><a href="#DeepFusion-CVPR-2022" class="headerlink" title="DeepFusion(CVPR 2022)"></a>DeepFusion(CVPR 2022)</h1><blockquote>
-<p>论文标题：DeepFusion: Lidar-Camera Deep Fusion for Multi-Modal 3D Object Detection<br><br>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.08195">https://arxiv.org/abs/2203.08195</a><br><br>作者单位：Johns Hopkins University, Google<br><br>代码地址：<a target="_blank" rel="noopener" href="https://github.com/tensorflow/lingvo">https://github.com/tensorflow/lingvo</a><br><br>一句话读论文：This study points out the key role of transformed feature alignment process that plays in multi-modal fusion module, and thus proposes InverseAug and LearnableAlign module to overcome incosistency between data augmentation and multi-modal fusion.</p>
+              <script src="/assets/js/APlayer.min.js"> </script><h1 id="deepfusioncvpr-2022">DeepFusion(CVPR 2022)</h1>
+<blockquote>
+<p>论文标题：DeepFusion: Lidar-Camera Deep Fusion for Multi-Modal 3D Object Detection<br> 论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.08195">https://arxiv.org/abs/2203.08195</a><br> 作者单位：Johns Hopkins University, Google<br> 代码地址：<a target="_blank" rel="noopener" href="https://github.com/tensorflow/lingvo">https://github.com/tensorflow/lingvo</a><br> 一句话读论文：This study points out the key role of transformed feature alignment process that plays in multi-modal fusion module, and thus proposes InverseAug and LearnableAlign module to overcome incosistency between data augmentation and multi-modal fusion.</p>
 </blockquote>
-<h2 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h2><p>论文试图解决什么问题？</p>
+<h2 id="q1">Q1</h2>
+<p>论文试图解决什么问题？</p>
 <p>本工作试图解决RGB图像-LiDAR点云网络，由于图像和点云分别进行数据增强操作(如随机旋转)，而导致模态特征之间的对应关系被破坏，使得多模态学习带来的增益被削弱的问题。</p>
-<h2 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h2><p>这是否是一个新的问题？</p>
-<p>这是一个比较有意思的，也很实用的新问题<br>1.因为大规模LiDAR点云数据需要大量的数据增强操作利于刷榜，如果多模态与之有冲突，那么提点效果会被大幅降低。<br>2.2020年前的多模态融合多是RGB图像-点云伪图像(环形投影，BeV, 透视投影等)的融合，本质是2D-2D网络间的融合。而2021年开始有更多3D-2D网络的多模态模型，因此在这个背景下考虑数据增强和特征对齐的冲突问题，还是比较有意思的</p>
-<h2 id="Q3"><a href="#Q3" class="headerlink" title="Q3"></a>Q3</h2><p>这篇文章要验证一个什么科学假设？</p>
-<p>1.特征对齐对多模态发挥效果很重要(参考Table1,9) -&gt; 提出InverseAug<br>\2. 深层网络的特征向量在不同模态间对齐，对模型学习语义信息有利 -&gt; 提出基于注意力机制的融合方式</p>
-<h2 id="Q4"><a href="#Q4" class="headerlink" title="Q4"></a>Q4</h2><p>有哪些相关研究？如何归类？谁是这一课题在领域内值得关注的研究员？</p>
-<p>\1. Input-Level Decoration:<br>在原始数据层面,利用图形学中地仿射变换与投影，将LiDAR点与Pixel对应。相关工作有：<br>PointPainting(CVPR 2021),<br>PointAugmentation(CVPR 2021),<br>PMF(ICCV 2021)</p>
-<p>\2. Mid-Level Fusion:<br>在网络结构层面，对每一层的特征向量隐式融合。相关工作有：<br>Deep Continuous Fusion(ECCV 2018)<br>EP-Net(CVPR 2018),<br>4D-Net(ICCV 2021),<br>Cross view Transformer for real-time Map-view Semantic Segmentation(CVPR 2022)<br>TransFusion(CVPR 2022)等</p>
-<h2 id="Q5"><a href="#Q5" class="headerlink" title="Q5"></a>Q5</h2><p>论文中提到的解决方案之关键是什么？</p>
+<h2 id="q2">Q2</h2>
+<p>这是否是一个新的问题？</p>
+<p>这是一个比较有意思的，也很实用的新问题 1.因为大规模LiDAR点云数据需要大量的数据增强操作利于刷榜，如果多模态与之有冲突，那么提点效果会被大幅降低。 2.2020年前的多模态融合多是RGB图像-点云伪图像(环形投影，BeV, 透视投影等)的融合，本质是2D-2D网络间的融合。而2021年开始有更多3D-2D网络的多模态模型，因此在这个背景下考虑数据增强和特征对齐的冲突问题，还是比较有意思的</p>
+<h2 id="q3">Q3</h2>
+<p>这篇文章要验证一个什么科学假设？</p>
+<p>1.特征对齐对多模态发挥效果很重要(参考Table1,9) -&gt; 提出InverseAug \2. 深层网络的特征向量在不同模态间对齐，对模型学习语义信息有利 -&gt; 提出基于注意力机制的融合方式</p>
+<h2 id="q4">Q4</h2>
+<p>有哪些相关研究？如何归类？谁是这一课题在领域内值得关注的研究员？</p>
+<p>\1. Input-Level Decoration: 在原始数据层面,利用图形学中地仿射变换与投影，将LiDAR点与Pixel对应。相关工作有： PointPainting(CVPR 2021), PointAugmentation(CVPR 2021), PMF(ICCV 2021)</p>
+<p>\2. Mid-Level Fusion: 在网络结构层面，对每一层的特征向量隐式融合。相关工作有： Deep Continuous Fusion(ECCV 2018) EP-Net(CVPR 2018), 4D-Net(ICCV 2021), Cross view Transformer for real-time Map-view Semantic Segmentation(CVPR 2022) TransFusion(CVPR 2022)等</p>
+<h2 id="q5">Q5</h2>
+<p>论文中提到的解决方案之关键是什么？</p>
 <p>\1. InverseAug: 把图像和点云分支的数据增强操作取逆，再用仿射变换投影。</p>
 <p>\2. LearnableAlign: 比较常见的Attention的融合方式</p>
-<h2 id="Q6"><a href="#Q6" class="headerlink" title="Q6"></a>Q6</h2><p>论文中的实验是如何设计的？</p>
+<h2 id="q6">Q6</h2>
+<p>论文中的实验是如何设计的？</p>
 <p>略………………</p>
-<h2 id="Q7"><a href="#Q7" class="headerlink" title="Q7"></a>Q7</h2><p>用于定量评估的数据集是什么？代码有没有开源？</p>
+<h2 id="q7">Q7</h2>
+<p>用于定量评估的数据集是什么？代码有没有开源？</p>
 <p>Waymo 。开源。</p>
-<h2 id="Q8"><a href="#Q8" class="headerlink" title="Q8"></a>Q8</h2><p>论文中的实验及结果有没有很好地支持需要验证的科学假设？</p>
-<p>有，比较好。<br>1.实验效果比较solid: 在各大主流目标检测方法上，提升了6-8%左右(LEVEL 2)。<br>2.可视化结果也很好地验证科学猜想。</p>
-<h2 id="Q9"><a href="#Q9" class="headerlink" title="Q9"></a>Q9</h2><p>这篇论文到底有什么贡献？</p>
-<p>同时考虑多模态融合与数据增强之间的协同作用，并且从原始数据和网络结构两个层面，提出简单有效的方法，较好地解决冲突并验证猜想。<br>Motivation有新意，实验效果比较solid, 通用价值大。</p>
-<h2 id="Q10"><a href="#Q10" class="headerlink" title="Q10"></a>Q10</h2><p>下一步呢？有什么工作可以继续深入？</p>
+<h2 id="q8">Q8</h2>
+<p>论文中的实验及结果有没有很好地支持需要验证的科学假设？</p>
+<p>有，比较好。 1.实验效果比较solid: 在各大主流目标检测方法上，提升了6-8%左右(LEVEL 2)。 2.可视化结果也很好地验证科学猜想。</p>
+<h2 id="q9">Q9</h2>
+<p>这篇论文到底有什么贡献？</p>
+<p>同时考虑多模态融合与数据增强之间的协同作用，并且从原始数据和网络结构两个层面，提出简单有效的方法，较好地解决冲突并验证猜想。 Motivation有新意，实验效果比较solid, 通用价值大。</p>
+<h2 id="q10">Q10</h2>
+<p>下一步呢？有什么工作可以继续深入？</p>
 <p>\1. 对于不可逆的数据增强操作，比如用于图像的RandomCrop, RandomErasing, 必然造成图像与点云在几何层面无法对应。原文中只能忽略这些增强操作，或者等对齐模块后单独加入不可逆的数据增强操作。</p>
 <p>\2. 如实例分割、全景分割任务中，有一些对于实例的数据增强操作，如从其他场景中随机复制一些实例点到另外的场景，那么图像中是否需要对应生成一些假的物体pixel呢？若存在遮挡关系又如何处理？</p>
 <p>\3. 方法相对简单一些，后续工作或许能继续深入挖掘。</p>
@@ -399,7 +409,7 @@
       
         <a href="/tags/%E8%AE%BA%E6%96%87%E5%8D%81%E9%97%AE%E7%B3%BB%E5%88%97/">#论文十问系列</a>
       
-        <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%EF%BC%8C%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">#多模态，目标检测</a>
+        <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%EF%BC%8C%E7%82%B9%E4%BA%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">#多模态，点云目标检测</a>
       
     </div>
   
@@ -582,7 +592,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();  function createtime() {  var grt= new Date("07/25/2021 17:12:09"); now.setTime(now.getTime()+250);  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}  document.getElementById("timeDate").innerHTML = "本网站已在各种夹缝中安全生存 "+dnum+" 天 ";  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";  }  setInterval("createtime()",250); </script> </div> 
     </div>
   
   
@@ -814,9 +824,9 @@
 
 
   
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
-<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js"></script>
 
 
 
