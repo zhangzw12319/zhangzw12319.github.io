@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/02/12/1GCEIVwPzmD7Mr4.png">
 <meta property="article:published_time" content="2025-03-14T21:54:28.000Z">
-<meta property="article:modified_time" content="2025-03-14T23:05:26.970Z">
+<meta property="article:modified_time" content="2025-03-14T23:10:22.746Z">
 <meta property="article:author" content="zhangzw12319">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2023/02/12/1GCEIVwPzmD7Mr4.png">
@@ -389,7 +389,7 @@ load数据上：可以适当增加num_workers的数量，比如batch-size开到8
 backward一遍只需要1.3s，那么就可以把num_workers的数量从1开到4，8等倍数增加；另外也可以把网络训练的部分注释掉，看看只读取数据耗时是多少。如果瓶颈卡在网络上：通过不断增加被注释的部分定位出耗时间的瓶颈在哪一部分代码，是否可以用C语言代替一些底层运算在粘起来，或者用numba加速，或者使用CuPy等平行库代替Numpy；同时尽量减少在forward过程中间tensor和numpy的互相转化，减少.to(device)或.cuda()的出现，争取都在GPU上完成计算；减少forward中的非必要串行代码的次数(比如嵌套很多层for循环)等。</label></p></li>
 <li><p><label><input type="checkbox" />4.
 检查完第三步，如果时间问题能解决，但是内存一直泄露怎么办？(<a
-target="_blank" rel="noopener" href="http://localhost:4000/posts/6492fdf5/#%E5%9B%9B.-pytoch-%E4%B8%AD%E8%8A%82%E7%BA%A6%E6%98%BE%E5%AD%98%E5%BC%80%E9%94%80%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E6%8C%81%E7%BB%AD%E6%B1%87%E6%80%BB">参考上一期</a>)。可以借助一些内存开销分析软件去判断是否出现内存泄漏。分析方法和时间分析一样，分别对dataloader和网络forward部分去做消融实验看看哪个导致内存持续增长。绝大多数内存泄露的本质原因是变量没能及时释放。dataloader部分常见泄漏原因：比如你的dataloader设计了一套很复杂的字典格式作为输出,然后这个字典由于各种原因(OpenCV或Pillow的API使用，导致变量一直不被释放；Transform的一些操作占用变量使用权的潜在bug等)每次循环都不能释放，那么增长曲线就会如下图所示(AutoDL资源看板)：
+href="https://oier99.cn/posts/6492fdf5/#%E5%9B%9B.-pytoch-%E4%B8%AD%E8%8A%82%E7%BA%A6%E6%98%BE%E5%AD%98%E5%BC%80%E9%94%80%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E6%8C%81%E7%BB%AD%E6%B1%87%E6%80%BB">参考上一期</a>)。可以借助一些内存开销分析软件去判断是否出现内存泄漏。分析方法和时间分析一样，分别对dataloader和网络forward部分去做消融实验看看哪个导致内存持续增长。绝大多数内存泄露的本质原因是变量没能及时释放。dataloader部分常见泄漏原因：比如你的dataloader设计了一套很复杂的字典格式作为输出,然后这个字典由于各种原因(OpenCV或Pillow的API使用，导致变量一直不被释放；Transform的一些操作占用变量使用权的潜在bug等)每次循环都不能释放，那么增长曲线就会如下图所示(AutoDL资源看板)：
 <img src="https://s2.loli.net/2025/03/15/cgTvxLsoaOREmbu.png" srcset="/img/loading.gif" lazyload
 alt="mem_leak" /></label></p>
 <p>但是只要简单的在每次iteration末尾加上<code>del inputs, outputs, losses</code>把占用内存多的变量及时删除释放，曲线立马就变成如下了：
