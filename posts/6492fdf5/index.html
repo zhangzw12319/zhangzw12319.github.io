@@ -1,0 +1,1061 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  <link rel="icon" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="oier99">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今天你寄了吗? 头发又因为bug掉了几根?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随笔：一些DL编程中的小&quot;寄&quot;巧">
+<meta property="og:url" content="https://oier99.cn/posts/6492fdf5/index.html">
+<meta property="og:site_name" content="Oier99">
+<meta property="og:description" content="今天你寄了吗? 头发又因为bug掉了几根?">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/02/12/1GCEIVwPzmD7Mr4.png">
+<meta property="article:published_time" content="2023-02-11T22:58:48.000Z">
+<meta property="article:modified_time" content="2026-02-12T18:17:00.720Z">
+<meta property="article:author" content="zhangzw12319">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2023/02/12/1GCEIVwPzmD7Mr4.png">
+  
+  
+  
+  <title>随笔：一些DL编程中的小&#34;寄&#34;巧 - Oier99</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"oier99.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"7BL86tkKW6DaLSAPakWTB3Az-MdYXbMMI","app_key":"am9pKcTN7A1b0s0E9Y0h1kGd","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tag-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-music"></i>
+                <span>每日音乐</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/music/" target="_self">
+                    
+                    <span>Music Diary</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/posts/5d4e3cda/" target="_self">
+                    
+                    <span>Music Collections</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s2.loli.net/2023/02/12/5WqdIxXCAm8V7Uz.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="随笔：一些DL编程中的小&#34;寄&#34;巧"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        oier99
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-12 06:58" pubdate>
+          星期日, 二月 12日 2023, 6:58 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">随笔：一些DL编程中的小&#34;寄&#34;巧</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="近期一些dl编程中的小寄巧">近期一些DL编程中的小”寄”巧</h1>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="520" height="86" src="//music.163.com/outchain/player?type=2&amp;id=411314184&amp;auto=0&amp;height=66">
+</iframe>
+<h2 id="一.-python-numpy-tofilefromfilesaveload">一. python numpy –
+tofile，fromfile，save，load</h2>
+<p>参考资料:
+https://blog.csdn.net/weixin_39087379/article/details/118048780</p>
+<iframe src="https://blog.csdn.net/weixin_39087379/article/details/118048780" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame">
+</iframe>
+<p>笔记：</p>
+<ol type="a">
+<li><code>tofile</code>
+和<code>fromfile</code>是一对，二进制读写进文件。由于不保存数组形状和元素数据格式等信息，因此一定要设置正确的<code>dtype</code>参数，并且<code>reshape</code>正确的形状。</li>
+</ol>
+<p>举例，SemanticKitti的语义标签数据读取<code>np.fromfile(path, dtype=np.uint32)</code>。当时犯了2个错：</p>
+<ul>
+<li>首先使用<code>np.load</code>读取的<code>.label</code>格式文件，导致读入的Ground-Truth标签一直有误，且数量和点云数量对不上。</li>
+<li>换成<code>np.fromfile</code>后，<code>dtype</code>忘记设置导致格式不对。除此之外,
+NuScenes的label也需要<code>np.fromfile</code>打开.一般来说,
+<code>tofile</code>
+和<code>fromfile</code>处理的是<code>.bin</code>后缀的文件,
+<code>load</code>和<code>save</code>处理的时<code>.npy</code>后缀的文件。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">f=<span class="hljs-string">&#x27;xxx.fea&#x27;</span><br>arr1.astype(<span class="hljs-string">&#x27;float&#x27;</span>).tofile(f)<br>arr2=np.fromfile(f, dtype=<span class="hljs-string">&#x27;float&#x27;</span>) <span class="hljs-comment">#必须设置dtype且和保存时一致，否则结果错误</span><br></code></pre></td></tr></table></figure>
+<ol start="2" type="a">
+<li><code>save</code>
+和<code>load</code>是一对，是<code>Numpy</code><strong>专用的</strong>二进制格式保存数据，可以自动处理元素类型和形状信息。
+之前犯过的错误有以下几种:</li>
+</ol>
+<ul>
+<li><code>np.load</code>下意识的设置<code>dtype</code>反而报错</li>
+<li>错把普通二进制文件用<code>np.load</code>打开导致数据错误</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">np.save(f，a)<br>np.load(f)<br></code></pre></td></tr></table></figure>
+<p>此外<code>numpy.savez_compressed</code>可以把多个array存到一个文件中并压缩.如下面例子:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>test_array = np.random.rand(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>test_vector = np.random.rand(<span class="hljs-number">4</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>np.savez_compressed(‘/tmp/<span class="hljs-number">123</span>’, a=test_array, b=test_vector) <span class="hljs-comment"># Arrays to save to the file. Please use keyword arguments (see kwds below) to assign names to arrays. Arrays specified as args will be named “arr_0”, “arr_1”, and so on.</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>loaded = np.load(‘/tmp/<span class="hljs-number">123.</span>npz’)<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(np.array_equal(test_array, loaded[‘a’]))<br><span class="hljs-literal">True</span><br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>(np.array_equal(test_vector, loaded[‘b’]))<br><span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+<ol start="3" type="a">
+<li><code>savetxt()</code>和<code>loadtxt()</code>,读写1维和2维数组的文本文件；也可以用它们读写CSV格式的文本文件</li>
+</ol>
+<p>例子:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a = np.arrange(<span class="hljs-number">0</span>, <span class="hljs-number">12</span>, <span class="hljs-number">0.5</span>).reshape(<span class="hljs-number">4</span>, -<span class="hljs-number">1</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span>np.savetxt(<span class="hljs-string">&quot;a.txt&quot;</span>, a) <span class="hljs-comment"># 默认按照`%.18e`格式保存数据,以空格分隔</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>np.loadtxt(<span class="hljs-string">&quot;a.txt&quot;</span>)<br>...<br><span class="hljs-meta">&gt;&gt;&gt; </span>np.savetxt(<span class="hljs-string">&quot;b.txt&quot;</span>, a, fmt=<span class="hljs-string">&quot;%d&quot;</span>, delimiter=<span class="hljs-string">&quot;,&quot;</span>) <span class="hljs-comment"># 改为整数格式保存,逗号分隔</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>np.loadtxt(<span class="hljs-string">&quot;b.txt&quot;</span>, delimiter=<span class="hljs-string">&quot;,&quot;</span>) <span class="hljs-comment"># 读入时也需要指定都好分隔</span><br>...<br></code></pre></td></tr></table></figure>
+<h2 id="二.-关于pytorch分布式训练distributeddataparallel中的一些坑">二.
+关于Pytorch分布式训练DistributedDataParallel中的一些坑</h2>
+<p>说明:
+博主目前还在用着落后的<code>python -m torch.distributed.launch -nproc_per_node=8 XXX.py</code>的方式启动,
+还没学pytorch官方推荐的<code>torchrun</code></p>
+<p>此外不太理解DDP的小伙伴可以先读一下<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/magic_ll/article/details/122359490">博客</a>理解一下</p>
+<ol type="1">
+<li><p>如果你的神经网络中有batchnorm层,
+一定要在模型从cpu移到gpu前(<code>my_model.cuda()</code>)加上这一句,让batchnorm参数在各个节点之间建立同步关系.</p>
+<blockquote>
+<p>Currently SyncBatchNorm only supports DistributedDataParallel
+<strong>with single GPU per process</strong>. Use
+torch.nn.SyncBatchNorm.convert_sync_batchnorm() to convert BatchNorm
+layer to SyncBatchNorm before wrapping Network with DDP.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># DDP的sync_bn，让多卡训练的bn范围正常</span><br>    <span class="hljs-keyword">if</span> args.local_rank != -<span class="hljs-number">1</span>:<br>        my_model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(my_model)<br>    my_model.cuda()<br>    <span class="hljs-keyword">if</span> args.local_rank != -<span class="hljs-number">1</span>:<br>        my_model = torch.nn.parallel.DistributedDataParallel(my_model, device_ids=[args.local_rank],<br>                                                             output_device=args.local_rank,)<br></code></pre></td></tr></table></figure>
+<p>参考资料: pytorch官方文档自己去搜</p></li>
+<li></li>
+</ol>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Sampler</th>
+<th style="text-align: center;">Dataloader</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">单卡</td>
+<td style="text-align: center;">torch.utils.data.sampler.Sampler</td>
+<td style="text-align: center;">torch.utils.data.DataLoader</td>
+</tr>
+<tr>
+<td style="text-align: center;">Distributed Parallel</td>
+<td
+style="text-align: center;">torch.utils.data.distributed.DistributedSampler(train_dataset)<br /></td>
+<td style="text-align: center;">torch.utils.data.DataLoader</td>
+</tr>
+</tbody>
+</table>
+<p>其实Pytorch是通过继承Sampler的不同子类,来实现对DIstributedParallel的支持.
+Dataloader提供的接口时一样的(做个比喻: 仓库还是同样的仓库,
+只不过从原来的一个worker干活变成多个worker分头干活,
+所需要的调度器sampler不同).</p>
+<p>这里就有一个坑: <code>train_sampler.set_epoch(epoch)</code>
+这一项一定要在dataloader的实例生成迭代器(iterator)之前设置好,否则无法在多个节点上通过sampler实现shuffle数据的功能
+(前提是<code>torch.utils.data.DataLoader(my_dataset, sampler=train_sampler)</code>设置好的基础上,因为<code>sampler</code>和<code>shuffle=True</code>不能同时设置).
+例如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">train_dataset_loader = torch.utils.data.DataLoader(dataset=train_dataset,<br>                                                   batch_size=train_batch_size,<br>                                                   collate_fn=collate_fn_BEV,<br>                                                   sampler=train_sampler,<br>                                                   pin_memory=<span class="hljs-literal">True</span>,<br>                                                   num_workers=num_worker)<br>epoch = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> epoch &lt; <span class="hljs-number">20</span>:<br>    epoch += <span class="hljs-number">1</span><br>	train_sampler.set_epoch(epoch) <span class="hljs-comment"># 一定要在enumerate(train_dataset_loader)之前,不要放在while循环的末尾</span><br>	<span class="hljs-keyword">for</span> i_iter, train_dict <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(train_dataset_loader):<br>    	...<br></code></pre></td></tr></table></figure>
+<p>补充一个小福利:https://github.com/huggingface/transformers
+中好像有<code>SequentialDistributedSampler</code>的实现,
+好像很多人都在使用.
+在分布式并行时,这个类用于数据集的Eval和Test顺序读取比较好用.</p>
+<details>
+<summary>
+Demo代码–快来戳我┗|｀O′|┛ 嗷<sub></sub>
+</summary>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> math<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SequentialDistributedSampler</span>(torch.utils.data.sampler.Sampler):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Distributed Sampler that subsamples indicies sequentially,</span><br><span class="hljs-string">    making it easier to collate all results at the end.</span><br><span class="hljs-string">    Even though we only use this sampler for eval and predict (no training),</span><br><span class="hljs-string">    which means that the model params won&#x27;t have to be synced (i.e. will not hang</span><br><span class="hljs-string">    for synchronization even if varied number of forward passes), we still add extra</span><br><span class="hljs-string">    samples to the sampler to make it evenly divisible (like in `DistributedSampler`)</span><br><span class="hljs-string">    to make it easy to `gather` or `reduce` resulting tensors at the end of the loop.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, dataset, batch_size, rank=<span class="hljs-literal">None</span>, num_replicas=<span class="hljs-literal">None</span></span>):<br>        <span class="hljs-keyword">if</span> num_replicas <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> torch.distributed.is_available():<br>                <span class="hljs-keyword">raise</span> RuntimeError(<span class="hljs-string">&quot;Requires distributed package to be available&quot;</span>)<br>            num_replicas = torch.distributed.get_world_size()<br>        <span class="hljs-keyword">if</span> rank <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> torch.distributed.is_available():<br>                <span class="hljs-keyword">raise</span> RuntimeError(<span class="hljs-string">&quot;Requires distributed package to be available&quot;</span>)<br>            rank = torch.distributed.get_rank()<br>        <span class="hljs-variable language_">self</span>.dataset = dataset<br>        <span class="hljs-variable language_">self</span>.num_replicas = num_replicas<br>        <span class="hljs-variable language_">self</span>.rank = rank<br>        <span class="hljs-variable language_">self</span>.batch_size = batch_size<br>        <span class="hljs-variable language_">self</span>.num_samples = <span class="hljs-built_in">int</span>(math.ceil(<span class="hljs-built_in">len</span>(<span class="hljs-variable language_">self</span>.dataset) * <span class="hljs-number">1.0</span> / <span class="hljs-variable language_">self</span>.batch_size / <span class="hljs-variable language_">self</span>.num_replicas)) * <span class="hljs-variable language_">self</span>.batch_size<br>        <span class="hljs-variable language_">self</span>.total_size = <span class="hljs-variable language_">self</span>.num_samples * <span class="hljs-variable language_">self</span>.num_replicas<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__iter__</span>(<span class="hljs-params">self</span>):<br>        indices = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(<span class="hljs-variable language_">self</span>.dataset)))<br>        <span class="hljs-comment"># add extra samples to make it evenly divisible</span><br>        indices += [indices[-<span class="hljs-number">1</span>]] * (<span class="hljs-variable language_">self</span>.total_size - <span class="hljs-built_in">len</span>(indices))<br>        <span class="hljs-comment"># subsample</span><br>        indices = indices[<span class="hljs-variable language_">self</span>.rank * <span class="hljs-variable language_">self</span>.num_samples : (<span class="hljs-variable language_">self</span>.rank + <span class="hljs-number">1</span>) * <span class="hljs-variable language_">self</span>.num_samples]<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">iter</span>(indices)<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.num_samples<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">distributed_concat</span>(<span class="hljs-params">tensor, num_total_examples</span>):<br>    output_tensors = [tensor.clone() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(torch.distributed.get_world_size())]<br>    torch.distributed.all_gather(output_tensors, tensor)<br>    concat = torch.cat(output_tensors, dim=<span class="hljs-number">0</span>)<br>    <span class="hljs-comment"># truncate the dummy elements added by SequentialDistributedSampler</span><br>    <span class="hljs-keyword">return</span> concat[:num_total_examples]<br></code></pre></td></tr></table></figure>
+用法 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">eval_sampler = SequentialDistributedSampler(val_dataset, val_batch_size)<br></code></pre></td></tr></table></figure>
+</details>
+<ol start="3" type="1">
+<li><p>分布式中节点间传递消息: 除了通信的API之外(<code>reduce</code>,
+<code>gather</code>, <code>all-gather</code>等), 有一种最简单最傻的方式,
+按照某个格式保存到本地文件,然后只让0号卡负责读取,其他的进程<code>torch.distributed.barrier()</code>.
+这种对于大量数据的传递比较好用. 应用实例:
+比如有一个自己手工作坊制造的类,
+在单卡上很好用,但是在多卡上你发现改写成分布式的太麻烦了(比如涉及到读写冲突,进程通信同步等问题)烦死了,
+你不想浪费宝贵的科研时间单纯改造这个类, 不妨试试上面的傻瓜方法.</p></li>
+<li><p>分布式训练出来的权重再次load时候</p></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> args.resume:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;load&#x27;</span>)<br>        pretrained_model = torch.load(model_load_path)<br>        <span class="hljs-comment"># 消除分布式训练时在保存参数的时候多出来的module.</span><br>        weights_dict = &#123;&#125;<br>        <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> pretrained_model.items():<br>            new_k = k.replace(<span class="hljs-string">&#x27;module.&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>) <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;module&#x27;</span> <span class="hljs-keyword">in</span> k <span class="hljs-keyword">else</span> k<br>            weights_dict[new_k] = v<br>        <span class="hljs-comment"># # debug的时候查看参数量</span><br>        <span class="hljs-comment"># model_dict = my_model.state_dict()</span><br>        my_model.load_state_dict(weights_dict)<br></code></pre></td></tr></table></figure>
+<p>— (2024.07更新) —</p>
+<ol start="5" type="1">
+<li>在使用多卡推理的时候，建议每个DDP进程把自己负责的每个图片文件的推理结果都同步过来，类似</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">dist.all_gather_object(ddp_metric_list, single_node_metric_dict)<br></code></pre></td></tr></table></figure>
+<p>来做多进程结果手机。这样多卡推理时metric计算误差最小，基本和单卡推理结果一模一样。不太建议比如每张卡先算个平均的分指标/求和算个总指标，然后只同步一个总的数字，然后再8个节点上算平均，这样误差大(甚至波动1个点)。</p>
+<ol start="6" type="1">
+<li>注意tensorboardX使用summary
+writer记录日志时,最好只用一个进程(比如rank0)来创建，或者每个进程日志创建地址名字结尾用进程名字作为隔离<code>(f"XXX_tb_process_{rank}")</code>，不然一直报错”File
+Exists”错误。</li>
+<li>通过如下方式，只对rank0进程上使用tqdm避免显示混乱。<code>_data_loader = tqdm(_data_loader, ascii=True) if self.rank==0 else _data_loader</code></li>
+<li>DDP多卡从obs远程下载/读取文件到云节点的Docker时，一定注意避免多个进程读/写同一个文件导致一致性冲突。比如如果在<code>__init__</code>阶段需要copy同一个文件到本地(8个进程都需要)，不如提前下载好到本地，然后执行代码；或者8个进程下载8次，每次文件名后缀用<code>f"_process_{rank}"</code>区分，，如果在<code>__get_item_</code>阶段读取文件，因为数据集会被8个进程完整分成8份互不相交的文件，不应该有读写冲突。所以关注不同文件名下的文件有没有重名现象，避免重名造成一些隐性的error。</li>
+<li>注意算推理时间的时候，还是尽可能把可视化和文件读写关闭一下。因为关闭可视化和文件读写，有可能会省去网络模型的某些操作，算FPS和Latency时能更快。</li>
+</ol>
+<h2 id="三.-pytorch-中节约时间开销的一些方法持续汇总">三. Pytorch
+中节约时间开销的一些方法(持续汇总)</h2>
+<ol type="1">
+<li><p>(最新，亲测非常好用)<code>torch.set_float32_matmul_precision("highest|high|medium")</code></p>
+<ul>
+<li><p>pytorch参考doc:
+直接搜<code>set_float32_matmul_precision</code></p></li>
+<li><p>相关博客解释：https://blog.csdn.net/sikh_0529/article/details/131243173
+【使用混合精度技术加速大型语言模型】总体来说，就是Float32充分利用NVIDIA显卡中的TensorCore模块，原先做Tensor乘法完全用Float32的数据格式做，速度自然慢</p></li>
+<li><p>性能对比：转自上述博客，开启high模式混合精度矩阵乘法，速度快几倍且精度能略微上涨。博客解释原因是1.
+深度网络对精度的适当下降，如从FL32变为BF32格式，不会有收敛性上的太大损失；2.精度适当的截取下降，配合上混合精度，可以给网络带来更多噪声，有利于防止过拟合，增强泛化能力。目前在自己代码上亲测效果，4090能加速5-6倍的训练速度，精度目前还在调bug中。</p></li>
+<li><p>支持条件: <code>torch.cuda.is_bf16_supported()</code></p>
+<p><img
+src="https://s2.loli.net/2023/09/08/SinMrh4NFPKsELf.png" srcset="/img/loading.gif" lazyload /></p></li>
+</ul></li>
+<li><p>总原则：CPU
+把算子和任务下发到CUDA上。尽可能不要让CUDA等CPU，CPU一次性把没有数据依赖的算子下发完毕，然后让cuda去算。(下发的斜线越倾斜越好，cuda
+stream越满越好)</p></li>
+<li><p>在前向传播中，尽量少出现.to(device),
+.cpu()等搬运数据的操作；可以用torch.arrange(<strong>,
+device=“cuda”)直接把数据放在cuda上，或torch.oneslike(</strong>,
+device=“cuda”)</p>
+<blockquote>
+<h3 id="avoid-unnecessary-cpu-gpu-synchronization">Avoid unnecessary
+CPU-GPU synchronization</h3>
+<p>Avoid unnecessary synchronizations, to let the CPU run ahead of the
+accelerator as much as possible to make sure that the accelerator work
+queue contains many operations.</p>
+<p>When possible, avoid operations which require synchronizations, for
+example:</p>
+<ul>
+<li><code>print(cuda_tensor)</code></li>
+<li><code>cuda_tensor.item()</code></li>
+<li>memory copies: <code>tensor.cuda()</code>,
+<code>cuda_tensor.cpu()</code> and equivalent
+<code>tensor.to(device)</code> calls</li>
+<li><code>cuda_tensor.nonzero()</code></li>
+<li>python control flow which depends on results of operations performed
+on cuda tensors e.g. <code>if (cuda_tensor != 0).all()</code></li>
+<li>更多参见:
+https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html</li>
+</ul>
+</blockquote></li>
+<li><p>有人建议把GPU显存利用的满一些(batchsize 开大一点).
+但是通过实验好像发现,对于20系和30系的N卡,
+有效显存大概6G~8G左右,也就是CUDA数量一次能够处理的最大显存容量.
+如果超过这个容量的数据还是会放在显存里.
+通过自己的代码多次实验发现,基本显存占用&gt;8G后,
+batch-size开的再大总时间也不会减少了.</p></li>
+<li><p>图像用lmdb（不过不一定必须，当CPU利用率还有充足空间，硬盘不是太慢如本来就是SSD时，这个不一定是瓶颈）</p></li>
+<li><p>自己profile, 找到代码的加速瓶颈</p></li>
+<li><p>使用pytorch.amp混合精度加速(开O1)</p></li>
+<li><p>AutoDL
+显卡租用平台的官方文档中：https://www.autodl.com/docs/perf/
+总结的非常好！此外，AutoDl还推荐了Pytorch官方的小技巧总结:
+https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html.</p></li>
+</ol>
+<h2 id="四.-pytoch-中节约显存开销的一些方法持续汇总">四. Pytoch
+中节约显存开销的一些方法(持续汇总)</h2>
+<ol type="1">
+<li><p><code>torch.cuda.empty_cache()</code>,每跑完一个Epoch用一下,防止显存占用一直增长
+(好像在OpenMMLab家族系列的框架中包含了这一点)</p></li>
+<li><p>稀疏化的tensor表达会省很多显存,尤其是在计算<code>CE_loss</code>的时候,稀疏化的<code>CE_loss</code>会给反向传播节省很多显存.</p></li>
+<li><p>太大的变量不要一直等着自动回收,可以手工定期delete一下</p></li>
+<li><p><code>torch.load(XXX.pt, map_location="cpu")</code>,
+可以避免在开多卡时,
+某张卡的显存占用明显比其他卡多2~3个G导致整个程序OOM.</p></li>
+</ol>
+<figure>
+<img src="https://s2.loli.net/2023/02/12/chQd6PVY8qM5LjD.png" srcset="/img/loading.gif" lazyload
+alt="Pytorch Doc 提示" />
+<figcaption aria-hidden="true">Pytorch Doc 提示</figcaption>
+</figure>
+<ol start="5" type="1">
+<li><p>发现的一个现象：pytorch中的dataset的num_workers，如果开少了可能CPU难以微保GPU，导致GPU空等CPU利用率不高；但是如果num_worker开的过高，比如一口气开到10以上(我有一次开到过32)，会出现:</p>
+<ol type="1">
+<li>CPU
+核被占的非常多，如果这台机器就你自己用还好，如果多人用，别人的程序也会被你连累了，变得特别慢；</li>
+<li>内存开销会陡然增加很多，会导致容易内存OOM，程序训练了几十个Epoch后不知道啥时候突然寄了，还没有报错原因，或者报错原因是signal
+9
+killed，因为超过内存被系统kill调了。如果是在物理机上，由于有硬盘可以作为虚拟内存的机制，或许能缓冲一下不会直接挂掉;
+但如果是在容器里环境基本立马被干掉。</li>
+<li>pytorch中num_workers开多了会放大内存泄露的风险。某一次实验观察发现：某多卡DDP的训练程序，开了num_workers=4，看内存占用曲线图有少量的内存泄漏，但是训练300多个Epoch一共泄漏不到几十G；但是一旦开到num_workers=32，瞬间十几个Epoch后就泄露了100多G。而且这种num_workers的现象在mindspore框架最初1.1~1.5版本中也出现过内存泄漏现象。估计这都是深度学习框架的通病吧，不能开太大了。。。</li>
+</ol>
+<p>（2025.03.15 更新：<a
+href="https://oier99.cn/posts/c6450e7b/">优雅的方法</a>使得batchsize更大，num_workers敢开更多，并行训练速度更快，且显存不泄露）</p>
+<p>(4)补充：在Docker中，如果单卡训练且num_workers开的过大，可能会在遍历dataloader取数据的过程中，超过Docker默认的最大打开文件数量，会报错“[OSError
+26]: Open too many files.” 的错误而强制退出。</p></li>
+</ol>
+<h2 id="五.-pytorch-关于tensor下标操作的一些技巧">五. Pytorch
+关于Tensor下标操作的一些技巧</h2>
+<p>常用的一些函数如:
+<code>torch.all(), torch.nonzero(), torch.where(), torch.masked_fill(), torch.masked_select(), torch.scatter_select()</code>等等，PyTorch提供了非常丰富的下标操作函数，尽可能让我们避免在<code>__forward__()</code>函数中使用for循环，因为for循环需要CPU串行参与计算，无法完全实现在GPU上并行化的计算。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># Part 1 使用torch.all()和torch.nonzero()选取值所在的下标索引</span><br><span class="hljs-comment">#torch.all(input, dim, keepdim=False, *, out=None)，判断一个张量的某一维度的某一行是否全部为true.最常见的用法是torch.all(a==c, dim=XXX), 判断某个某一个向量是否存在于该张量的某一行中。</span><br><span class="hljs-comment">#:param value: Tensor(M,) a one-dimension vector of M elements</span><br>value = torch.tensor([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment"># (1,M)</span><br><span class="hljs-comment">#:param t: Tensor(N,M) a two-dimension tensor of N vectors, each vector has M elements</span><br>t = torch.tensor([[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]])<br>condition = torch.<span class="hljs-built_in">all</span>(t == value, dim=<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(condition)<br><span class="hljs-comment"># tensor([False, False, True, False, True])</span><br><span class="hljs-comment"># 此后在用torch.nonzero(input, *, out=None, as_tuple=False), 比如输入一个n维tensor，会返回一个2-D tensor (z x n)的结果，z表示tensor中一共有z个非0元素，每一行是一个n维向量，代表该非0值所在的下标索引时(注意是as_tuple=False的时候)。</span><br>index = torch.nonzero(condition)<br><span class="hljs-built_in">print</span>(index)<br><span class="hljs-comment"># tensor([</span><br><span class="hljs-comment"># [2],</span><br><span class="hljs-comment"># [4]</span><br><span class="hljs-comment"># ])</span><br><span class="hljs-comment"># 当condition是一维张量时，输出结果会自动省略第一列的0.原本结果应该是tesor([[0,2], [0,4]]), 前面的0会自动省略。</span><br><br><span class="hljs-comment"># Part 2 torch.where(condition, input, other, *, out=None)</span><br><span class="hljs-comment"># condition(BoolTensor)，如果input和other是tensor,那么都要和condition的尺寸相同。如果某个元素位置condition是True,那么久填充input所在索引的值，否则填充other所在索引的值。如果input，other某一个是标量，那么直接填充这个标量值。</span><br><span class="hljs-built_in">print</span>(~condition.unsqueeze(<span class="hljs-number">1</span>).expand_as(t))<br><span class="hljs-comment"># tensor([[True,  True,  True],</span><br><span class="hljs-comment">#        [ True,  True,  True],</span><br><span class="hljs-comment">#        [ False, False, False],</span><br><span class="hljs-comment">#        [ True,  True,  True],</span><br><span class="hljs-comment">#        [ False, False, False]])</span><br><br>value_v1 = torch.where(~condition.unsqueeze(<span class="hljs-number">1</span>).expand_as(t), t, -<span class="hljs-number">1</span>) <span class="hljs-comment"># 功能：通过value查询t中和value相同的向量，并把这些向量都改成[-1, -1, ..., -1]</span><br><span class="hljs-built_in">print</span>(value_v1)<br><span class="hljs-comment">#tensor([[ 0,  1,  2],</span><br><span class="hljs-comment">#        [ 4,  5,  6],</span><br><span class="hljs-comment">#        [-1, -1, -1],</span><br><span class="hljs-comment">#        [ 0,  1,  3],</span><br><span class="hljs-comment">#        [-1, -1, -1]])</span><br><br><span class="hljs-comment"># Part 3 torch.masked_select(input, mask, *, out=None) 注意mask和input的尺寸相同或者mask is broadcastable，最后把mask中为True的元素提取出来，返回的是1-D Tensor。</span><br><br><span class="hljs-comment"># broadcastbale version</span><br><span class="hljs-built_in">print</span>(~condition.unsqueeze(<span class="hljs-number">1</span>))<br><span class="hljs-comment"># tensor([[ True],</span><br><span class="hljs-comment">#         [ True],</span><br><span class="hljs-comment">#         [False],</span><br><span class="hljs-comment">#         [ True],</span><br><span class="hljs-comment">#         [False]])</span><br><span class="hljs-built_in">print</span>(torch.masked_select(t, ~condition.unsqueeze(<span class="hljs-number">1</span>)))<br><span class="hljs-comment"># tensor([0, 1, 2, 4, 5, 6, 0, 1, 3])</span><br><br><span class="hljs-comment"># same shape version</span><br><span class="hljs-built_in">print</span>(torch.masked_select(t, ~condition.unsqueeze(<span class="hljs-number">1</span>).expand_as(t)))<br><span class="hljs-comment"># tensor([0, 1, 2, 4, 5, 6, 0, 1, 3])</span><br>cond_exp_new = condition.unsqueeze(<span class="hljs-number">1</span>).expand_as(t)<br>cond_exp_new[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-literal">True</span><br><span class="hljs-built_in">print</span>(torch.masked_select(t, ~cond_exp_new))<br><span class="hljs-comment"># tensor([4, 5, 6, 0, 1, 3])</span><br><br><br><span class="hljs-comment"># Part 4 torch.tensor.masked_fill_(mask, value)  可以根据mask填充value，比如对特定条件情况补0，补-1等操作，加上特殊判断语句。</span><br><br><span class="hljs-comment"># Part 5 torch.select_scatter(input, src, dim, index) src需要和 torch.select(input, dim, index)的尺寸相同，然后把src的内容拷贝到input中。This function returns a tensor with fresh storage; it does not create a view.</span><br>a = torch.zeros(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)<br>b = torch.tensor([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])<br><span class="hljs-built_in">print</span>(a.select_scatter(b, dim=<span class="hljs-number">0</span>, index=<span class="hljs-number">0</span>))<br><span class="hljs-built_in">print</span>(a.select_scatter(b, dim=<span class="hljs-number">0</span>, index=<span class="hljs-number">1</span>))<br><span class="hljs-built_in">print</span>(a.select_scatter(b, dim=<span class="hljs-number">1</span>, index=<span class="hljs-number">0</span>))<br><span class="hljs-built_in">print</span>(a.select_scatter(b, dim=<span class="hljs-number">1</span>, index=<span class="hljs-number">1</span>))<br><br><span class="hljs-comment"># dim 控制对a横向还是纵向填充(选取的是填充索引，这里dim=0是行，dim=1是列)，index控制要填充数据的索引(比如dim=0在横着填充情况下，index=0表示填充第0行，index=1填充第1行，假如a中还有多行，index可以控制只填充其中几行)</span><br><br><span class="hljs-comment">#tensor([[1., 2.],</span><br><span class="hljs-comment">#        [0., 0.]])</span><br><br><span class="hljs-comment">#tensor([[0., 0.],</span><br><span class="hljs-comment">#        [1., 2.]])</span><br><br><span class="hljs-comment">#tensor([[1., 0.],</span><br><span class="hljs-comment">#        [2., 0.]])</span><br><br><span class="hljs-comment">#tensor([[0., 1.],</span><br><span class="hljs-comment">#        [0., 2.]])</span><br><br></code></pre></td></tr></table></figure>
+<p>此外还要区分一下torch.stack()和torch.concat()的区别：</p>
+<p>torch.stack(): Concatenates a sequence of tensors along a
+<strong><u>new</u></strong> dimension. <u><strong>All tensors need to be
+of the same size.</strong></u>
+所有尺寸必须相同，是要新建一个dim维度然后再新维度上把多个尺寸相同的拼起来。</p>
+<p>torch.cat(): concatenates the given sequence along <strong><u>an
+existing dimension</u></strong>.
+已有维度上变得更宽。除了dim选择的维度大小可以不一样，其他维度尺寸必须相同。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs python">imoprt torch<br><br>a = torch.tensor([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]]) <span class="hljs-comment"># (2,3)</span><br>b = torch.tensor([[<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>],[<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]]) <span class="hljs-comment">#(3,3)</span><br>c = torch.tensor([[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>], [-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>]]) <span class="hljs-comment"># (2,3)</span><br><br>torch.cat((a,b), dim=<span class="hljs-number">0</span>)<br><span class="hljs-comment">#tensor([[ 1,  2,  3],</span><br><span class="hljs-comment">#        [ 4,  5,  6],</span><br><span class="hljs-comment">#        [ 2,  3,  4],</span><br><span class="hljs-comment">#        [ 5,  6,  7],</span><br><span class="hljs-comment">#        [ 8,  9, 10]])</span><br><br>torch.stack((a,b), dim=<span class="hljs-number">0</span>)<br><span class="hljs-comment">#Traceback (most recent call last):</span><br><span class="hljs-comment">#  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="hljs-comment">#RuntimeError: stack expects each tensor to be equal size, but got [2, 3] at entry 0 and [3, 3] at entry 1</span><br><br>torch.cat((a,c), dim=<span class="hljs-number">0</span>)<br>tensor([[ <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>],<br>        [ <span class="hljs-number">1</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">1</span>],<br>        [-<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>]])<br><br>torch.cat((a,c), dim=<span class="hljs-number">1</span>)<br><span class="hljs-comment">#tensor([[ 1,  2,  3,  1,  1,  1],</span><br><span class="hljs-comment">#        [ 4,  5,  6, -1, -1, -1]])</span><br><br>torch.satck((a,c), dim=<span class="hljs-number">0</span>)<br><span class="hljs-comment">#tensor([[[ 1,  2,  3],</span><br><span class="hljs-comment">#         [ 4,  5,  6]],</span><br><span class="hljs-comment">#        [[ 1,  1,  1],</span><br><span class="hljs-comment">#         [-1, -1, -1]]])</span><br><span class="hljs-comment"># shape (2, 2, 3) 在第0维插入新维度，并stack起来</span><br><br>torch.stack((a,c), dim=<span class="hljs-number">1</span>)<br><span class="hljs-comment">#tensor([[[ 1,  2,  3],</span><br><span class="hljs-comment">#         [ 1,  1,  1]],</span><br><span class="hljs-comment">#       [[ 4,  5,  6],</span><br><span class="hljs-comment">#         [-1, -1, -1]]])</span><br><span class="hljs-comment"># shape (2, 2, 3)  在第1维插入新维度，并stack起来</span><br><br><br>torch.stack((a,c), dim=<span class="hljs-number">2</span>)<br><span class="hljs-comment">#tensor([[[ 1,  1],</span><br><span class="hljs-comment">#         [ 2,  1],</span><br><span class="hljs-comment">#         [ 3,  1]],</span><br><span class="hljs-comment">#        [[ 4, -1],</span><br><span class="hljs-comment">#         [ 5, -1],</span><br><span class="hljs-comment">#         [ 6, -1]]])</span><br><span class="hljs-comment"># shape (2, 3, 2)  在第2维插入新维度，并stack起来</span><br><br></code></pre></td></tr></table></figure>
+<p>高维空间不容易想象，建议最好用简单的二维情况处理。如果需要高维，建议用小数据量多做做实验。比如点云Voxel中常见(BatchSize,
+Num_Cameras, Channel, X_axis, Y_axis, Z_axis)
+形状的Tensor，你要凭空用脑袋去想对某个dim进行stack或cat等操作，脑子都要炸了。建议用几个简单样例跑一跑，纸笔画画图，具体情况具体分析。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/" class="category-chain-item">编程学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/numpy%E5%AD%A6%E4%B9%A0/" class="category-chain-item">numpy学习</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E7%AC%94/" class="category-chain-item">随笔</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>随笔：一些DL编程中的小&#34;寄&#34;巧</div>
+      <div>https://oier99.cn/posts/6492fdf5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>oier99</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/eb6bb29/" title="Hexo兼容性问题Fix小记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hexo兼容性问题Fix小记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/18466784/" title="probability_beginner">
+                        <span class="hidden-mobile">probability_beginner</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <!script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> <script> var now = new Date();  function createtime() {  var grt= new Date("07/25/2021 17:12:09"); now.setTime(now.getTime()+250);  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}  document.getElementById("timeDate").innerHTML = "本网站已在各种夹缝中安全生存 "+dnum+" 天 ";  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";  }  setInterval("createtime()",250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

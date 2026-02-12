@@ -1,0 +1,975 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  <link rel="icon" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Oier99">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="学习一下如何优雅地在LaTex里插入图表吧~(●&#39;◡&#39;●)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX讲解系列(1)：如何优雅地插入图表">
+<meta property="og:url" content="https://oier99.cn/posts/b2b25956/index.html">
+<meta property="og:site_name" content="Oier99">
+<meta property="og:description" content="学习一下如何优雅地在LaTex里插入图表吧~(●&#39;◡&#39;●)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/07/11/pFfd38GV1JlmsDg.jpg">
+<meta property="article:published_time" content="2022-12-29T04:23:41.000Z">
+<meta property="article:modified_time" content="2026-02-12T18:17:00.614Z">
+<meta property="article:author" content="zhangzw12319">
+<meta property="article:tag" content="LaTex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2023/07/11/pFfd38GV1JlmsDg.jpg">
+  
+  
+  
+  <title>LaTeX讲解系列(1)：如何优雅地插入图表 - Oier99</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"oier99.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"7BL86tkKW6DaLSAPakWTB3Az-MdYXbMMI","app_key":"am9pKcTN7A1b0s0E9Y0h1kGd","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tag-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-music"></i>
+                <span>每日音乐</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/music/" target="_self">
+                    
+                    <span>Music Diary</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/posts/5d4e3cda/" target="_self">
+                    
+                    <span>Music Collections</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s2.loli.net/2023/07/11/pFfd38GV1JlmsDg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LaTeX讲解系列(1)：如何优雅地插入图表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Oier99
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-29 12:23" pubdate>
+          星期四, 十二月 29日 2022, 12:23 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LaTeX讲解系列(1)：如何优雅地插入图表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="latex讲解系列1-如何优雅地插入图表">LaTeX讲解系列(1)：
+如何优雅地插入图表</h1>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="520" height="86" src="//music.163.com/outchain/player?type=2&amp;id=526656&amp;auto=0&amp;height=66">
+</iframe>
+<p>包括插入子图，多图排列，画模型图等等</p>
+<p>具体代码以会议/期刊所给的模板格式为准</p>
+<h2 id="插入图片">插入图片</h2>
+<p><strong>插入一张图片</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">%\begin&#123;center&#125; % 外部居中</span><br> <span class="hljs-keyword">\begin</span>&#123;figure&#125;[!htbp]<br> <span class="hljs-keyword">\centering</span> <span class="hljs-comment">% 内部居中</span><br> <span class="hljs-keyword">\includegraphics</span>[width=0.4<span class="hljs-keyword">\textwidth</span>]&#123;introduction<span class="hljs-built_in">_</span>3<span class="hljs-built_in">_</span>cases.pdf&#125; <span class="hljs-comment">% Reduce the figure size so that it is slightly narrower than the column.</span><br> <span class="hljs-keyword">\caption</span>&#123;XXXXXX&#125;<br> <span class="hljs-keyword">\label</span>&#123;fig1:three<span class="hljs-built_in">_</span>cases&#125;<br> <span class="hljs-keyword">\end</span>&#123;figure&#125; <span class="hljs-comment">% Note that it should be below includegraphics</span><br> <span class="hljs-comment">%\end&#123;center&#125;</span><br></code></pre></td></tr></table></figure>
+<p><strong>插入多张图片</strong></p>
+<ol type="1">
+<li><p>对于插入多张子图的组图，如果数量$$4的，建议在PPT或者<code>draw.io</code>中手动排版一下，调整间距大小截图角度等组合成一个整体，作为单张图片来插入。</p></li>
+<li><p>如果数量很多，比如<span
+class="math inline">5 × 6</span>的阵列，可以使用
+<code>MulimgViewer</code>软件(https://github.com/nachifur/MulimgViewer)进行多图联排展现可视化，软件会自动合成一张大单图。</p></li>
+<li><p>若使用LaTex的<code>subfigure</code>来组图，实现方法如下:</p>
+<p>但是困难是 1)一旦图片变多调试会变得非常麻烦 2)
+非常容易overfull超过页面大小，除非把每张图片缩小的特别小，但这样就看不清了
+3) 图片内部之间的白色间隔难以消除。非必要不用这种方式。</p></li>
+</ol>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;center&#125;<br><span class="hljs-keyword">\begin</span>&#123;figure&#125;[htbp]	<span class="hljs-comment">% 一个figure环境套多个subfigure环境(保证Figure序号递增)</span><br>    <span class="hljs-keyword">\centering</span><br>    <span class="hljs-keyword">\subfigure</span>&#123;			<span class="hljs-comment">% 每个subfigure负责控制一行图片的排列，下辖多个minipage环境</span><br>        <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[h]&#123;0.4<span class="hljs-keyword">\linewidth</span>&#125;<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\includegraphics</span>[scale=0.45]&#123;Fig/beat.png&#125;	<span class="hljs-comment">% 不同的子图控制不同的缩放比</span><br>            <span class="hljs-keyword">\caption</span>&#123;Beating&#125;<span class="hljs-keyword">\label</span>&#123;Beating&#125;	<span class="hljs-comment">% 不同的子图设置不同的标题</span><br>        <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>        <br>        <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[h]&#123;0.6<span class="hljs-keyword">\linewidth</span>&#125;<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\includegraphics</span>[scale=0.45]&#123;Fig/lean.png&#125;<br>            <span class="hljs-keyword">\caption</span>&#123;leaning&#125;<br>        <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>    &#125;<br>    <span class="hljs-keyword">\centering</span><br>    <span class="hljs-keyword">\subfigure</span>&#123;<br>        <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[h]&#123;0.4<span class="hljs-keyword">\linewidth</span>&#125;<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\includegraphics</span>[scale=0.45]&#123;Fig/catch<span class="hljs-built_in">_</span>up.png&#125;<br>            <span class="hljs-keyword">\caption</span>&#123;Catch up&#125;<br>        <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>        <br>        <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[h]&#123;0.6<span class="hljs-keyword">\linewidth</span>&#125;<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\includegraphics</span>[scale=0.45]&#123;Fig/sneak.png&#125;<br>            <span class="hljs-keyword">\caption</span>&#123;Sneaking&#125;<br>        <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">\subfigure</span>&#123;<br>        <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[h]&#123;0.4<span class="hljs-keyword">\linewidth</span>&#125;<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\includegraphics</span>[scale=0.3]&#123;Fig/stand.png&#125;<br>            <span class="hljs-keyword">\caption</span>&#123;Stand still&#125;<br>        <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>        <br>        <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[h]&#123;0.6<span class="hljs-keyword">\linewidth</span>&#125;<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\includegraphics</span>[scale=0.35]&#123;Fig/slippery.png&#125;<br>            <span class="hljs-keyword">\caption</span>&#123;Slippery&#125;<br>        <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>    &#125;<br>    <span class="hljs-keyword">\centering</span><br>    <span class="hljs-keyword">\subfigure</span>&#123;<br>        <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[h]&#123;0.4<span class="hljs-keyword">\linewidth</span>&#125;<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\includegraphics</span>[scale=0.3]&#123;Fig/turnaround.png&#125;<br>            <span class="hljs-keyword">\caption</span>&#123;Upside down&#125;<br>        <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>        <br>        <span class="hljs-keyword">\begin</span>&#123;minipage&#125;[h]&#123;0.6<span class="hljs-keyword">\linewidth</span>&#125;<br>            <span class="hljs-keyword">\centering</span><br>            <span class="hljs-keyword">\includegraphics</span>[scale=0.3]&#123;Fig/struggle.png&#125;<br>            <span class="hljs-keyword">\caption</span>&#123;Struggle to turn around&#125;<span class="hljs-keyword">\label</span>&#123;struggle&#125;<br>        <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br>    &#125;<br><span class="hljs-keyword">\end</span>&#123;figure&#125;<br><span class="hljs-keyword">\end</span>&#123;center&#125;<br></code></pre></td></tr></table></figure>
+<p>效果图:</p>
+<p><img src="https://s2.loli.net/2022/12/29/TJ81KenuBiYUSwW.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="插入表格">插入表格</h2>
+<p>检查插入如下必要的宏包</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\usepackage</span>&#123;graphicx&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;booktabs&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="cs科研表格">CS科研表格</h3>
+<p>效果图：</p>
+<p><img src="https://s2.loli.net/2023/01/08/Wmd5CvpjbPEF9UJ.png" srcset="/img/loading.gif" lazyload alt="table1.png" style="zoom:67%;" /></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs LaTex"><span class="hljs-keyword">\begin</span>&#123;table*&#125;[htbp] <span class="hljs-comment">% 注意在双栏模板中，带*表示跨栏排版，不带星号表示单栏排版；</span><br><span class="hljs-keyword">\centering</span><br><span class="hljs-keyword">\resizebox</span>&#123;1.0<span class="hljs-keyword">\textwidth</span>&#125;&#123;!&#125;&#123;	<span class="hljs-comment">% 注意使用resizebox需要\usepackage&#123;graphicx&#125;，\textwidth是设定好的标准的一行的长度数值。如果要被双栏装下，需改成0.5\textwidth,以此类推。</span><br><span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;l|cccc|ccc|ccc|c|c&#125; <span class="hljs-comment">% 需要12列,l,c,r分别代表居左中右对齐，|代表竖杠分割线</span><br><span class="hljs-keyword">\toprule</span> <span class="hljs-comment">%添加表格头部粗线,toptule, midrule和bottomrule 都需要\usepackage&#123;booktabs&#125;宏包</span><br>Method <span class="hljs-built_in">&amp;</span> PPP <span class="hljs-built_in">&amp;</span> PPPP <span class="hljs-built_in">&amp;</span> QQ <span class="hljs-built_in">&amp;</span> QQQ <span class="hljs-built_in">&amp;</span> QQQQ <span class="hljs-built_in">&amp;</span> RRR <span class="hljs-built_in">&amp;</span> RRRR <span class="hljs-built_in">&amp;</span> TTTT <span class="hljs-built_in">&amp;</span> TTTTT <span class="hljs-built_in">&amp;</span> ZZZZZZ <span class="hljs-built_in">&amp;</span> mIoU <span class="hljs-built_in">&amp;</span> FPS <span class="hljs-keyword">\\</span><br> <span class="hljs-comment">%有n个&amp;，就表示该行有n+1列</span><br><span class="hljs-keyword">\hline</span> <span class="hljs-comment">%绘制一条水平横线</span><br> Method-A <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> - <span class="hljs-keyword">\\</span><br><br> Method-B <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> - <span class="hljs-keyword">\\</span><br><br> Method-C <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> - <span class="hljs-keyword">\\</span><br><span class="hljs-keyword">\bottomrule</span> <span class="hljs-comment">%添加表格底部粗线</span><br><span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>&#125;<br><br><span class="hljs-keyword">\caption</span>&#123;XXXXXX Performance.&#125;<br><span class="hljs-keyword">\label</span>&#123;tab1:performance&#125; <span class="hljs-comment">% 添加作为引用的锚点label</span><br><span class="hljs-keyword">\end</span>&#123;table*&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="三线表">三线表</h2>
+<p><img src="https://s2.loli.net/2023/01/08/OLaECYzh54Zd3R6.png" srcset="/img/loading.gif" lazyload alt="Table2" style="zoom:67%;" /></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs Latex"><span class="hljs-keyword">\begin</span>&#123;table&#125;[htbp] <span class="hljs-comment">% 注意在双栏模板中，带*表示跨栏排版，不带星号表示单栏排版；</span><br><span class="hljs-keyword">\small</span> <span class="hljs-comment">% 设置字号</span><br><span class="hljs-keyword">\centering</span><br><span class="hljs-keyword">\resizebox</span>&#123;0.6<span class="hljs-keyword">\textwidth</span>&#125;&#123;!&#125;&#123;	<span class="hljs-comment">% 注意使用resizebox需要\usepackage&#123;graphicx&#125;，\textwidth是设定好的标准的一行的长度数值。如果要被双栏装下，需改成0.5\textwidth,以此类推。</span><br><span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;ccccc&#125; <span class="hljs-comment">% 需要5列,l,c,r分别代表居左中右对齐，|代表竖杠分割线</span><br><span class="hljs-keyword">\toprule</span> <span class="hljs-comment">%添加表格头部粗线</span><br>Method <span class="hljs-built_in">&amp;</span> PPP <span class="hljs-built_in">&amp;</span> PPPP <span class="hljs-built_in">&amp;</span> QQ <span class="hljs-built_in">&amp;</span> QQQ <span class="hljs-keyword">\\</span><br> <span class="hljs-comment">%有n个&amp;，就表示该行有n+1列</span><br><span class="hljs-keyword">\midrule</span>  <span class="hljs-comment">% 三线表中的顶格线</span><br> Method-A <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0 <span class="hljs-built_in">&amp;</span> 100.0  <span class="hljs-keyword">\\</span><br><br> Method-B <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0 <span class="hljs-built_in">&amp;</span> 90.0  <span class="hljs-keyword">\\</span><br><br> Method-C <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0 <span class="hljs-built_in">&amp;</span> 85.0  <span class="hljs-keyword">\\</span><br><span class="hljs-keyword">\bottomrule</span> <span class="hljs-comment">%添加表格底部粗线</span><br><span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>&#125;<br><br><span class="hljs-comment">% \setlength&#123;\abovecaptionskip&#125;&#123;5pt&#125; 设置标题与上方/下方的距离间隔，一定要紧贴`\caption`命令</span><br><span class="hljs-comment">% \setlength&#123;\belowcaptionskip&#125;&#123;6pt&#125;</span><br><span class="hljs-keyword">\caption</span>&#123;XXXXXX Performance.&#125;<br><br><span class="hljs-keyword">\label</span>&#123;tab2:three<span class="hljs-built_in">_</span>line&#125; <span class="hljs-comment">% 添加作为引用的锚点label</span><br><span class="hljs-keyword">\end</span>&#123;table&#125;<br></code></pre></td></tr></table></figure>
+<p>补充：</p>
+<ol type="1">
+<li><p>Latex字号大小<code>\tiny &lt; \scriptsize &lt; \footnotesize &lt; \small &lt; \normalsize &lt; \large &lt; Large &lt; LARGE &lt; huge &lt; Huge</code>
+，
+一般默认是<code>\normalsize</code>。此外，在正文里若想只对一部分文字改变字号，可以<code>{\Large Input your text here}</code></p></li>
+<li><p><code>\resizebox{宽度}{高度}{}</code> 和
+<code>\scalebox{0.65}</code>区别在于高度控制的不同。
+“两者的区别在于高度的控制，前者控制相对高度，后者控制总高度，如果命令中的宽度或高度使用了感叹号代替，表示按照高度或宽度保持宽高比进行缩放”<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="https://www.cnblogs.com/ybl20000418/p/11478324.html">[3]</span></a></sup></p></li>
+<li><p>列宽调整<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="https://www.cnblogs.com/ybl20000418/p/11478324.html">[3]</span></a></sup></p>
+<blockquote>
+<p>将代码中的
+<code>\begin{tabular}{c|ccc}</code>中的每个c改成<code>\begin{tabular}{ p{5pt} &lt;&lt;span class="hljs-cell"&gt;{\centering} | ccc}</code>，
+其中花括号里面填写宽度数值，如果需要该列居中则加入
+<code>&lt;&lt;span class="hljs-cell"&gt;{\centering}</code></p>
+</blockquote></li>
+<li><p>好像三线表中<code>\toprule</code>,
+<code>\bottomrule</code>,如果要用竖线分割时会导致竖线在顶线和底线处断开。目前暂时没找到好的解决方法。如果均换成
+<code>\hline</code>，虽然竖线不会断开但是也没有粗细区别了<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="https://zhuanlan.zhihu.com/p/580123090">[4]</span></a></sup>。</p></li>
+</ol>
+<h2 id="多个子列合并">多个子列合并</h2>
+<p>首先<code>\usepackage{multirow}</code></p>
+<p>下面两个博客讲解的都特别好，因此推荐看原文，就不再赘述。源代码中做了一些小改进，附文在下：</p>
+<p>参考资料:</p>
+<p>https://blog.csdn.net/liu16659/article/details/111656244
+使用latex做三线表</p>
+<iframe src="https://blog.csdn.net/liu16659/article/details/111656244" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame">
+</iframe>
+<hr />
+<p>E.g. 1</p>
+<figure>
+<img src="https://s2.loli.net/2023/01/08/lW82YLAftpSiDKI.png" srcset="/img/loading.gif" lazyload
+alt="Table3" />
+<figcaption aria-hidden="true">Table3</figcaption>
+</figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs LaTex"><span class="hljs-comment">% multirow,multicolumn 使用1</span><br><span class="hljs-keyword">\begin</span>&#123;table&#125;[!htbp] <br>    <span class="hljs-keyword">\centering</span><br>    <span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;ccccccccccc&#125; <span class="hljs-comment">%需要10列</span><br>        <span class="hljs-keyword">\toprule</span> <span class="hljs-comment">%添加表格头部粗线</span><br>        <span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;<span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;Method&#125;&#125;<span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;Homographic&#125;<span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;Hetergraphic&#125;<span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;&#125; <span class="hljs-built_in">&amp;</span> Precision  <span class="hljs-built_in">&amp;</span> Recall <span class="hljs-built_in">&amp;</span> F1 <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span> Precision  <span class="hljs-built_in">&amp;</span>Recall <span class="hljs-built_in">&amp;</span> F1<span class="hljs-keyword">\\</span>  <span class="hljs-comment">%有n个&amp;，就表示该行有n+1列, 这里有7个&amp;，本应该有8列，再加上\multicolumn&#123;3&#125;&#123;c&#125;&#123;&#125;把第一列拆成3列，故共10列</span><br>        <span class="hljs-keyword">\hline</span> <span class="hljs-comment">%绘制一条水平横线</span><br>        <span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;A&#125;<span class="hljs-built_in">&amp;</span> 50  <span class="hljs-built_in">&amp;</span> 0   <span class="hljs-built_in">&amp;</span> 100<span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span>200 <span class="hljs-built_in">&amp;</span> 300 <span class="hljs-built_in">&amp;</span> 300<span class="hljs-keyword">\\</span>   <span class="hljs-comment">% 占两列，列名为A；后面陆续跟着数字</span><br>        <span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;B&#125;<span class="hljs-built_in">&amp;</span> 100 <span class="hljs-built_in">&amp;</span> 100 <span class="hljs-built_in">&amp;</span>0   <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span>100 <span class="hljs-built_in">&amp;</span> 200 <span class="hljs-built_in">&amp;</span> 200<span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;C&#125;<span class="hljs-built_in">&amp;</span> 150 <span class="hljs-built_in">&amp;</span> 200 <span class="hljs-built_in">&amp;</span>100 <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span>0   <span class="hljs-built_in">&amp;</span> 100 <span class="hljs-built_in">&amp;</span> 200<span class="hljs-keyword">\\</span><br>        <span class="hljs-keyword">\bottomrule</span> <span class="hljs-comment">%添加表格底部粗线</span><br>    <span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>    <span class="hljs-keyword">\caption</span>&#123;hihihi&#125;<br><span class="hljs-keyword">\end</span>&#123;table&#125;<br></code></pre></td></tr></table></figure>
+<p>补充:</p>
+<ol type="1">
+<li>注意用到multirow
+和multicol命令时需要使用宏包<code>\usepackage{multirow}</code></li>
+<li>源博客代码中<code>&amp;Recall &amp; F1&amp;\\</code>这里多了一个<code>&amp;</code>，这里去掉了多余的<code>&amp;</code>修复bug</li>
+</ol>
+<hr />
+<p>E.g. 2</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs LaTex"><span class="hljs-comment">% from `tbl/tb1_main_table.tex`</span><br><span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;<br><span class="hljs-comment">% r, c, l means aligned to right, center and left. @&#123;&#125; means delete default column width, and the following p&#123;2.0em&#125; means setting fixed column width while p refers to `parabox`.</span><br>@&#123;&#125;l <br><span class="hljs-comment">% c@&#123;&#125; c@&#123;&#125;p&#123;1.0em&#125;@&#123;&#125;</span><br>c@&#123;<span class="hljs-keyword">\hspace</span>&#123;0.5em&#125;&#125; c@&#123;<span class="hljs-keyword">\hspace</span>&#123;0.5em&#125;&#125; c@&#123;&#125;p&#123;1.0em&#125;@&#123;&#125;<br><span class="hljs-comment">% c@&#123;\hspace&#123;0.5em&#125;&#125;c @&#123;&#125;p&#123;2.0em&#125;@&#123;&#125; </span><br>c@&#123;<span class="hljs-keyword">\hspace</span>&#123;0.5em&#125;&#125; c@&#123;<span class="hljs-keyword">\hspace</span>&#123;0.5em&#125;&#125;c @&#123;&#125;p&#123;1.0em&#125;@&#123;&#125;<br>c@&#123;<span class="hljs-keyword">\hspace</span>&#123;0.5em&#125;&#125; c@&#123;<span class="hljs-keyword">\hspace</span>&#123;0.5em&#125;&#125;c @&#123;&#125;p&#123;1.0em&#125;@&#123;&#125;<br>c@&#123;&#125;<br>&#125;<br><br><span class="hljs-keyword">\toprule</span><br><br><span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;Method&#125; <span class="hljs-built_in">&amp;</span><br><span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;A&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br><span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;<span class="hljs-keyword">\PrivateDatasetOne</span>&#123;&#125;&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br><span class="hljs-keyword">\multicolumn</span>&#123;3&#125;&#123;c&#125;&#123;<span class="hljs-keyword">\PrivateDatasetTwo</span>&#123;&#125;&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br><span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;Avg Rank&#125;<br><span class="hljs-keyword">\\</span><br><br><span class="hljs-built_in">&amp;</span> <br>R1↓ <span class="hljs-built_in">&amp;</span><br>R2↓ <span class="hljs-built_in">&amp;</span> <br>R3↑ <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br>R1↓ <span class="hljs-built_in">&amp;</span><br>R2↓ <span class="hljs-built_in">&amp;</span> <br>R3↑ <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br>R1↓ <span class="hljs-built_in">&amp;</span><br>R2↓ <span class="hljs-built_in">&amp;</span> <br>R3↑<br><span class="hljs-keyword">\\</span><br><br><span class="hljs-keyword">\midrule</span><br><br>Method1~<span class="hljs-keyword">\cite</span>&#123;foo<span class="hljs-built_in">_</span>1&#125; <span class="hljs-built_in">&amp;</span> <br>1.910 <span class="hljs-built_in">&amp;</span> 10.2 <span class="hljs-built_in">&amp;</span> 89.5 <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span> <br> <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br> <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br><span class="hljs-keyword">\\</span><br><br>Method2 ~<span class="hljs-keyword">\cite</span>&#123;foo<span class="hljs-built_in">_</span>2&#125; <span class="hljs-built_in">&amp;</span> <br>1.724 <span class="hljs-built_in">&amp;</span> 9.3 <span class="hljs-built_in">&amp;</span> 91.0 <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span> <br> <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br> <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br><span class="hljs-keyword">\\</span><br><br><br><span class="hljs-keyword">\midrule</span><br><br>Ours <span class="hljs-built_in">&amp;</span><br>1.772 <span class="hljs-built_in">&amp;</span> 8.7 <span class="hljs-built_in">&amp;</span> 91.4  <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br><span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span>   <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br><span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span>  <span class="hljs-keyword">\textbf</span>&#123;1.4&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span><br><br><span class="hljs-keyword">\\</span><br><br><span class="hljs-keyword">\bottomrule</span><br><br><span class="hljs-keyword">\end</span>&#123;tabular&#125;<br><br><br><span class="hljs-comment">% from `main.tex` </span><br><span class="hljs-keyword">\begin</span>&#123;table*&#125;[t!]<br>    <span class="hljs-keyword">\centering</span><br>    <span class="hljs-keyword">\caption</span>&#123;<br>        <span class="hljs-keyword">\textbf</span>&#123;Main Performance&#125;<br>        of <span class="hljs-keyword">\method</span>&#123;&#125; with 123<br>    &#125;<br>    <span class="hljs-keyword">\resizebox</span>&#123;0.9<span class="hljs-keyword">\linewidth</span>&#125;&#123;!&#125;&#123;<br>	<span class="hljs-keyword">\input</span>&#123;tbl/tb1<span class="hljs-built_in">_</span>main<span class="hljs-built_in">_</span>table&#125;<br>	<span class="hljs-keyword">\label</span>&#123;table:main<span class="hljs-built_in">_</span>perform&#125;<br>    &#125;<br>    <span class="hljs-keyword">\\</span><br>    <span class="hljs-keyword">\begin</span>&#123;minipage&#125;&#123;<span class="hljs-keyword">\linewidth</span>&#125;<br>        <span class="hljs-keyword">\scriptsize</span><br>        <span class="hljs-keyword">\vspace</span>&#123;0.4em&#125;<br>        <span class="hljs-keyword">\begin</span>&#123;itemize&#125;<br>        <span class="hljs-keyword">\item</span>[<span class="hljs-built_in">$</span><span class="hljs-built_in">^</span><span class="hljs-keyword">\dagger</span><span class="hljs-built_in">$</span>]<br>        Most baselines are sourced from Fooo<span class="hljs-built_in">_</span>0~<span class="hljs-keyword">\cite</span>&#123;Foo<span class="hljs-built_in">_</span>0&#125;, except for the A benchmark. <br>        <span class="hljs-keyword">\end</span>&#123;itemize&#125;<br>    <span class="hljs-keyword">\end</span>&#123;minipage&#125;<br><span class="hljs-keyword">\end</span>&#123;table*&#125;<br><br></code></pre></td></tr></table></figure>
+<p>补充：</p>
+<ol type="1">
+<li>值得学习的地方：①
+把<code>table</code>环境和<code>tabular</code>环境分开，分到两个文件方便层次化的管理，避免一个文件内内容太杂。②可以在表格末尾插入<code>minipage</code>,
+放一些想要添加的描述说明；表格标题放在<code>tabular</code>的上面。 ③
+通过增加额外的空白列实现一定的分隔效果。④
+使用<code>\makecell{}</code>命令，当单元格内容较长时在该环境里可以实现更轻松的直接换行，不需要外部重新计算<code>multirow</code>或<code>multicolumn</code>拆分为多少个。</li>
+</ol>
+<hr />
+<p>E.g. 3</p>
+<p>https://blog.csdn.net/qq_34823530/article/details/112504329
+Latex复杂三线图的处理</p>
+<iframe src="https://blog.csdn.net/qq_34823530/article/details/112504329" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame">
+</iframe>
+<figure>
+<img src="https://s2.loli.net/2023/01/08/AhXYQdcDwpnTeBK.png" srcset="/img/loading.gif" lazyload
+alt="Table4" />
+<figcaption aria-hidden="true">Table4</figcaption>
+</figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-comment">% multirow,multicolumn 使用</span><br><span class="hljs-comment">% \cline&#123;2-6&#125;  % 这样使用cline能画一条横线在2-6 排之间</span><br><span class="hljs-keyword">\begin</span>&#123;table*&#125;<br>	<span class="hljs-keyword">\centering</span><br>        <span class="hljs-keyword">\resizebox</span>&#123;1.0<span class="hljs-keyword">\textwidth</span>&#125;&#123;!&#125;&#123;<br>    	<span class="hljs-keyword">\begin</span>&#123;tabular&#125;&#123;ccccccc&#125; <span class="hljs-comment">% 控制表格的格式，7列</span><br>    		<span class="hljs-keyword">\toprule</span> <br>    		<span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;Model&#125;&#125; <span class="hljs-built_in">&amp;</span><span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;Skipped&#125;&#125;	<span class="hljs-built_in">&amp;</span>    <span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;Dilated&#125;&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;Attention&#125;&#125;<span class="hljs-built_in">&amp;</span><span class="hljs-keyword">\multirow</span>&#123;2&#125;&#123;*&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;Fine-Tune&#125;&#125;  <span class="hljs-built_in">&amp;</span> <br>    		<span class="hljs-keyword">\multicolumn</span>&#123;2&#125;&#123;c&#125;&#123;<span class="hljs-keyword">\textbf</span>&#123;Accuracy&#125;&#125;<br>    		<span class="hljs-keyword">\\</span><span class="hljs-built_in">&amp;</span><span class="hljs-built_in">&amp;</span><span class="hljs-built_in">&amp;</span><span class="hljs-built_in">&amp;</span><span class="hljs-built_in">&amp;</span>5-way 1-shot  <span class="hljs-built_in">&amp;</span> 5-way 5-shot  <span class="hljs-keyword">\\</span><br>    		<span class="hljs-keyword">\midrule</span><br>    		<span class="hljs-keyword">\textbf</span>&#123;Relation Net &#125;<span class="hljs-built_in">&amp;</span>  <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span>   <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span>   <span class="hljs-built_in">&amp;</span> 0.8449 <span class="hljs-built_in">&amp;</span>0.8325 <span class="hljs-keyword">\\</span><br>    		<span class="hljs-keyword">\textbf</span>&#123;Relation Net&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span>   <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span>  <span class="hljs-built_in">&amp;</span> 0.8950<span class="hljs-built_in">&amp;</span>0.8488 <span class="hljs-keyword">\\</span><br>    		<span class="hljs-keyword">\textbf</span>&#123;Relation Net&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span>  <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span>   <span class="hljs-built_in">&amp;</span>0.8624<span class="hljs-built_in">&amp;</span>0.8450 <span class="hljs-keyword">\\</span><br>    		<span class="hljs-keyword">\textbf</span>&#123;Relation Net&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span>  <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span>  <span class="hljs-built_in">&amp;</span> 0.8866<span class="hljs-built_in">&amp;</span>0.8647 <span class="hljs-keyword">\\</span><br>    		<span class="hljs-keyword">\textbf</span>&#123;Relation Net&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span>  <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span>   <span class="hljs-built_in">&amp;</span> 0.8532<span class="hljs-built_in">&amp;</span>0.8599 <span class="hljs-keyword">\\</span>	<br>    		<span class="hljs-keyword">\textbf</span>&#123;Relation Net&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span>  <span class="hljs-built_in">&amp;</span> 0.9268<span class="hljs-built_in">&amp;</span>0.8925 <span class="hljs-keyword">\\</span>	<br>    		<span class="hljs-keyword">\cline</span>&#123;1-7&#125; <span class="hljs-comment">%画一条横线</span><br>            <span class="hljs-comment">% \hline</span><br>    		<span class="hljs-keyword">\textbf</span>&#123;Our model&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span>  <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-built_in">&amp;</span> 0.8990<span class="hljs-built_in">&amp;</span>0.8537 <span class="hljs-keyword">\\</span>	<br>    		<span class="hljs-keyword">\textbf</span>&#123;Our model&#125; <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span>  <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span> <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\checkmark</span><span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\textbf</span>&#123;0.9486&#125;<span class="hljs-built_in">&amp;</span><span class="hljs-keyword">\textbf</span>&#123;0.9039&#125; <span class="hljs-keyword">\\</span>	<br>    		<span class="hljs-keyword">\bottomrule</span><br>    	<span class="hljs-keyword">\end</span>&#123;tabular&#125;<br>        &#125;<br>	<span class="hljs-keyword">\label</span>&#123;tbl:table1&#125;<br>	<span class="hljs-keyword">\caption</span>&#123;Comparison of different obfuscations in terms of their transformation capabilities&#125;<br><span class="hljs-keyword">\end</span>&#123;table*&#125;<br></code></pre></td></tr></table></figure>
+<p>补充:</p>
+<p>​
+1.为了好看方便对齐，在源代码基础上增加了<code>\resize{}{}{}</code>控制命令。</p>
+<ol start="2" type="1">
+<li><p><code>\cline{}</code>命令和<code>\hline</code>命令不同之处：</p>
+<blockquote>
+<p>The command produces a horizontal line extending across the entire
+table. It can only be issued after a line break \. The command draws a
+horizontal line from the left side of column n to the right side of
+column m. It may only be issued after a line break, and several can be
+issued at
+once.<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="https://instruct.math.lsa.umich.edu/support/latex/tables.tex">[1]</span></a></sup></p>
+</blockquote></li>
+<li><p>注意图表中使用的对号<code>\checkmark</code>命令需要引用<code>\usepackage{amssymb}</code>宏包。此外对号也有不同的风格<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="https://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex">[2]</span></a></sup></p>
+<figure>
+<img src="https://i.stack.imgur.com/Qgpj3.png" srcset="/img/loading.gif" lazyload alt="checkmart" />
+<figcaption aria-hidden="true">checkmart</figcaption>
+</figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;bbding&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;pifont&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;wasysym&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;amssymb&#125;<br><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><br><span class="hljs-comment">% amssymb</span><br><span class="hljs-keyword">\checkmark</span><br><br><span class="hljs-comment">% bbding</span><br><span class="hljs-keyword">\Checkmark</span><br><span class="hljs-keyword">\CheckmarkBold</span><br><br><span class="hljs-comment">% pifont</span><br><span class="hljs-keyword">\ding</span>&#123;51&#125;<br><span class="hljs-keyword">\ding</span>&#123;52&#125;<br><br><span class="hljs-comment">% wasysym</span><br><span class="hljs-keyword">\CheckedBox</span><br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="参考资料">参考资料</h2>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1"
+class="footnote-text"><span>https://instruct.math.lsa.umich.edu/support/latex/tables.tex
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2"
+class="footnote-text"><span>https://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex
+<a href="#fnref:2" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:3"
+class="footnote-text"><span>https://www.cnblogs.com/ybl20000418/p/11478324.html
+<a href="#fnref:3" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:4"
+class="footnote-text"><span>https://zhuanlan.zhihu.com/p/580123090
+<a href="#fnref:4" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTex%E5%AD%A6%E4%B9%A0/" class="category-chain-item">LaTex学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LaTex/" class="print-no-link">#LaTex</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LaTeX讲解系列(1)：如何优雅地插入图表</div>
+      <div>https://oier99.cn/posts/b2b25956/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Oier99</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/5d4e3cda/" title="Music Collection">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Music Collection</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/200e31c0/" title="LaTeX讲解系列(3)：如何插入代码块/伪代码">
+                        <span class="hidden-mobile">LaTeX讲解系列(3)：如何插入代码块/伪代码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <!script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> <script> var now = new Date();  function createtime() {  var grt= new Date("07/25/2021 17:12:09"); now.setTime(now.getTime()+250);  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}  document.getElementById("timeDate").innerHTML = "本网站已在各种夹缝中安全生存 "+dnum+" 天 ";  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";  }  setInterval("createtime()",250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

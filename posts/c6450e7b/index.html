@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  <link rel="icon" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="oier99">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="没想到时隔两年还会有续集，只不过头发更少了(悲)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随笔：一些DL编程中的小&quot;寄&quot;巧(2)">
+<meta property="og:url" content="https://oier99.cn/posts/c6450e7b/index.html">
+<meta property="og:site_name" content="Oier99">
+<meta property="og:description" content="没想到时隔两年还会有续集，只不过头发更少了(悲)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/02/12/1GCEIVwPzmD7Mr4.png">
+<meta property="article:published_time" content="2025-03-14T21:54:28.000Z">
+<meta property="article:modified_time" content="2026-02-12T18:17:00.715Z">
+<meta property="article:author" content="zhangzw12319">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2023/02/12/1GCEIVwPzmD7Mr4.png">
+  
+  
+  
+  <title>随笔：一些DL编程中的小&#34;寄&#34;巧(2) - Oier99</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"oier99.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"7BL86tkKW6DaLSAPakWTB3Az-MdYXbMMI","app_key":"am9pKcTN7A1b0s0E9Y0h1kGd","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tag-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-music"></i>
+                <span>每日音乐</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/music/" target="_self">
+                    
+                    <span>Music Diary</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/posts/5d4e3cda/" target="_self">
+                    
+                    <span>Music Collections</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s2.loli.net/2023/02/12/5WqdIxXCAm8V7Uz.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="随笔：一些DL编程中的小&#34;寄&#34;巧(2)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        oier99
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-15 05:54" pubdate>
+          星期六, 三月 15日 2025, 5:54 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">随笔：一些DL编程中的小&#34;寄&#34;巧(2)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="近期一些dl编程中的小寄巧二">近期一些DL编程中的小”寄”巧(二)</h1>
+<h2 id="六.-续如何真正有效提高显卡利用率">六.
+（续）如何真正有效提高显卡利用率？</h2>
+<p>Follow 下述 checklist?</p>
+<ul class="task-list">
+<li><p><label><input type="checkbox" />1. 你的显卡是否先进？(本质性问题)
+比如某司2024年还在把NVIDIA V100 16G
+x8的卡给实习生用，训练速度感人，其实还不如4张<a
+target="_blank" rel="noopener" href="https://www.autodl.com">AutoDL</a>的virtual V100
+32G速度快。。。甚至用了3-4年的V100SXM
+32G其实远远不如3090，4090，甚至H20/H800(或者更牛的数据中心级GPU芯片)做成多份virtual
+V100分着用都快多了。训练小模型的速度甚至是6天和10h的区别。</label></p></li>
+<li><p><label><input type="checkbox" />2.
+开始讲正事了，在显卡算力平台确定的情况下，尽可能的开大batchsize去占满显存，从而尽量提高利用率，同时batchsize变大更有利于模型的收敛与性能提升。</label></p></li>
+<li><p><label><input type="checkbox" />3.
+执行完第二步后，如果总体预计耗时还是没变甚至稍微更慢了，可以在dataloader部分，整个网路forward部分，backward部分分别计算耗时，平均每100个iteration打印一下平均耗时，看看瓶颈是卡在模型上还是卡在CPU
+load数据上。如果瓶颈卡在CPU
+load数据上：可以适当增加num_workers的数量，比如batch-size开到8后，dataloader读一次数据需要6s,
+但是网络forward一遍只需要0.5s,
+backward一遍只需要1.3s，那么就可以把num_workers的数量从1开到4，8等倍数增加；另外也可以把网络训练的部分注释掉，看看只读取数据耗时是多少。如果瓶颈卡在网络上：通过不断增加被注释的部分定位出耗时间的瓶颈在哪一部分代码，是否可以用C语言代替一些底层运算在粘起来，或者用numba加速，或者使用CuPy等平行库代替Numpy；同时尽量减少在forward过程中间tensor和numpy的互相转化，减少.to(device)或.cuda()的出现，争取都在GPU上完成计算；减少forward中的非必要串行代码的次数(比如嵌套很多层for循环)等。</label></p></li>
+<li><p><label><input type="checkbox" />4.
+检查完第三步，如果时间问题能解决，但是内存一直泄露怎么办？(<a
+href="https://oier99.cn/posts/6492fdf5/#%E5%9B%9B.-pytoch-%E4%B8%AD%E8%8A%82%E7%BA%A6%E6%98%BE%E5%AD%98%E5%BC%80%E9%94%80%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E6%8C%81%E7%BB%AD%E6%B1%87%E6%80%BB">参考上一期</a>)。可以借助一些内存开销分析软件去判断是否出现内存泄漏。分析方法和时间分析一样，分别对dataloader和网络forward部分去做消融实验看看哪个导致内存持续增长。绝大多数内存泄露的本质原因是变量没能及时释放。dataloader部分常见泄漏原因：比如你的dataloader设计了一套很复杂的字典格式作为输出,然后这个字典由于各种原因(OpenCV或Pillow的API使用，导致变量一直不被释放；Transform的一些操作占用变量使用权的潜在bug等)每次循环都不能释放，那么增长曲线就会如下图所示(AutoDL资源看板)：
+<img src="https://s2.loli.net/2025/03/15/cgTvxLsoaOREmbu.png" srcset="/img/loading.gif" lazyload
+alt="mem_leak" /></label></p>
+<p>但是只要简单的在每次iteration末尾加上<code>del inputs, outputs, losses</code>把占用内存多的变量及时删除释放，曲线立马就变成如下了：
+<img src="https://s2.loli.net/2025/03/15/neGiwoYa14HxdsR.png" srcset="/img/loading.gif" lazyload
+alt="steady_mem" /></p></li>
+<li><p><label><input type="checkbox" />5. User:
+Pytorch训练神经网络时发现有明显的内存升高现象，可能有内存泄漏，该如何处理呢
+Kimi: 以下是处理 PyTorch
+训练神经网络时内存泄漏问题的一些方法：</label></p></li>
+</ul>
+<blockquote>
+<h3 id="排查内存泄漏位置">排查内存泄漏位置</h3>
+<ul>
+<li><strong>注释代码</strong>：将数据送入模型的代码全部注释掉，仅保留数据加载部分，观察显存是否上涨。如果上涨，说明内存泄漏出现在
+<code>DataLoader</code>
+部分。若不上涨，再逐步取消注释模型相关代码，定位问题所在。</li>
+<li><strong>分步注释</strong>：在模型训练过程中，分别注释掉输入数据的不同组成部分（如图像、标签、掩码等），观察注释掉哪部分时显存不再泄漏，从而确定具体导致内存泄漏的数据部分。</li>
+</ul>
+<h3 id="释放内存">释放内存</h3>
+<ul>
+<li><strong>删除张量</strong>：在不再需要某些张量时，使用
+<code>del</code> 关键字将其删除，例如
+<code>del tensor</code>，以释放其占用的内存。</li>
+<li><strong>清理缓存</strong>：调用
+<code>torch.cuda.empty_cache()</code> 函数来清理已经删除的张量占用的 GPU
+内存。</li>
+<li><strong>使用
+<code>torch.no_grad()</code></strong>：在推理阶段或不需要计算梯度的部分，使用
+<code>torch.no_grad()</code>
+上下文管理器来避免保存计算图，从而减少内存使用。</li>
+</ul>
+<h3 id="优化数据加载与处理">优化数据加载与处理</h3>
+<ul>
+<li><strong>优化 <code>DataLoader</code></strong>：检查
+<code>DataLoader</code> 的使用，确保其返回的数据类型正确。在
+<code>Dataset</code> 的 <code>__getitem__</code>
+方法中，返回基础数据类型而不是张量，然后在 <code>collate_fn</code>
+中进行转换。</li>
+<li><strong>避免不必要的数据复制</strong>：在数据预处理过程中，避免不必要的数据复制操作，如对大数组进行切片等，这可能会导致内存占用增加。</li>
+<li><strong>使用高效的数据结构</strong>：在处理序列数据时，使用更高效的张量操作，如
+<code>torch.nn.utils.rnn.pack_sequence</code> 和
+<code>torch.nn.utils.rnn.pad_sequence</code>，以减少内存使用。</li>
+</ul>
+<h3 id="优化模型训练过程">优化模型训练过程</h3>
+<ul>
+<li><strong>减少模型复杂度</strong>：如果可能，可以尝试简化模型结构或使用更小的批次大小（batch
+size），以降低内存消耗。</li>
+<li><strong>使用显存优化库</strong>：例如，使用 PyTorch 的
+<code>torch.utils.checkpoint</code> 模块来优化大模型的显存使用。</li>
+<li><strong>正确处理循环引用</strong>：对于复杂模型，可能存在循环引用的问题。这种情况下，可能需要调整模型的架构，避免不必要的存储和引用。</li>
+</ul>
+<h3 id="使用工具辅助分析">使用工具辅助分析</h3>
+<ul>
+<li><strong>PyTorch Profiler</strong>：使用 PyTorch 提供的 Profiler
+工具来分析模型的性能和内存使用情况，找出可能导致内存泄漏的瓶颈。</li>
+<li><strong>内存分析工具</strong>：使用如 NVIDIA 的 Nsight Compute
+等工具来可视化 PyTorch 的显存使用情况，帮助定位内存泄漏的源头。</li>
+</ul>
+<p>通过以上方法，可以有效排查和解决 PyTorch
+训练过程中出现的内存泄漏问题，提高训练的效率和稳定性。</p>
+</blockquote>
+<h2 id="七图像文件读取的bug修复">七、图像文件读取的bug修复</h2>
+<ul>
+<li><p>PIL.IMAGE
+读取png文件时，如果遇到PIL打不开但是线下双击文件能打开的，多半是遇到文件部分损坏的情况。可以加上如下代码或者写个if语句特判一下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> ImageFile<br><br>ImageFile.LOAD_TRUNCATED_IMAGES = <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure></li>
+<li><p>cv2.imread()
+也有可能遇到读取失败报错<code>libpng error: Read Error</code>，但是线下双击能打开，可以采用如下方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2, random<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> ImageFile<br><span class="hljs-keyword">import</span> imghdr<br><br>ImageFile.LOAD_TRUNCATED_IMAGES = <span class="hljs-literal">True</span><br><span class="hljs-keyword">if</span> imghdr.what(name) == <span class="hljs-string">&quot;png&quot;</span>:<br>    Image.<span class="hljs-built_in">open</span>(name).convert(<span class="hljs-string">&quot;RGB&quot;</span>).save(name)<br>img = cv2.imread(name)<br>img = np.array(Image.<span class="hljs-built_in">open</span>(name))<br><br></code></pre></td></tr></table></figure>
+<p><code>Image.save()</code>的方法是可以直接覆盖同名文件的。</p></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/" class="category-chain-item">编程学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/numpy%E5%AD%A6%E4%B9%A0/" class="category-chain-item">numpy学习</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E7%AC%94/" class="category-chain-item">随笔</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>随笔：一些DL编程中的小&#34;寄&#34;巧(2)</div>
+      <div>https://oier99.cn/posts/c6450e7b/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>oier99</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/f55a32b3/" title="LaTeX讲解系列(4)： LaTex Preamble区中usepackage常用总结">
+                        <span class="hidden-mobile">LaTeX讲解系列(4)： LaTex Preamble区中usepackage常用总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <!script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> <script> var now = new Date();  function createtime() {  var grt= new Date("07/25/2021 17:12:09"); now.setTime(now.getTime()+250);  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}  document.getElementById("timeDate").innerHTML = "本网站已在各种夹缝中安全生存 "+dnum+" 天 ";  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";  }  setInterval("createtime()",250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

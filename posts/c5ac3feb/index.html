@@ -1,0 +1,1041 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  <link rel="icon" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Oier99">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="spconv API学习，demo程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spconv编程学习">
+<meta property="og:url" content="https://oier99.cn/posts/c5ac3feb/index.html">
+<meta property="og:site_name" content="Oier99">
+<meta property="og:description" content="spconv API学习，demo程序">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/08/20/rZhT1O9pxNGfibc.jpg">
+<meta property="article:published_time" content="2022-12-07T06:22:18.000Z">
+<meta property="article:modified_time" content="2026-02-12T18:17:00.651Z">
+<meta property="article:author" content="zhangzw12319">
+<meta property="article:tag" content="Python,PyTorch,Spconv">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/08/20/rZhT1O9pxNGfibc.jpg">
+  
+  
+  
+  <title>Spconv编程学习 - Oier99</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"oier99.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"7BL86tkKW6DaLSAPakWTB3Az-MdYXbMMI","app_key":"am9pKcTN7A1b0s0E9Y0h1kGd","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tag-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-music"></i>
+                <span>每日音乐</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/music/" target="_self">
+                    
+                    <span>Music Diary</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/posts/5d4e3cda/" target="_self">
+                    
+                    <span>Music Collections</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://i.loli.net/2021/08/20/rZhT1O9pxNGfibc.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spconv编程学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Oier99
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-07 14:22" pubdate>
+          星期三, 十二月 7日 2022, 2:22 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          804 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Spconv编程学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="spconv-编程学习">Spconv 编程学习</h1>
+<p>spconv版本：2.x</p>
+<p>参考链接:
+https://github.com/traveller59/spconv/blob/master/docs/USAGE.md
+官方repo给的教程</p>
+<p>下文大部分直接粘贴，然后加上自己实验后修改补充的一些中文讲解内容。</p>
+<h2 id="short-api-description">Short API description</h2>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs elm"><span class="hljs-keyword">import</span> spconv.pytorch <span class="hljs-keyword">as</span> spconv<br><span class="hljs-title">from</span> spconv.pytorch <span class="hljs-keyword">import</span> functional <span class="hljs-keyword">as</span> Fsp<br><span class="hljs-title">from</span> torch <span class="hljs-keyword">import</span> nn<br><span class="hljs-title">from</span> spconv.pytorch.utils <span class="hljs-keyword">import</span> PointToVoxel<br><span class="hljs-title">from</span> spconv.pytorch.hash <span class="hljs-keyword">import</span> HashTable<br></code></pre></td></tr></table></figure>
+<table>
+
+<thead>
+<tr>
+<th>Layer APIs</th>
+<th>Common Usage</th>
+<th>Dense Version</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spconv.SparseConv3d</code></td>
+<td>Downsample</td>
+<td><code>nn.Conv3d</code></td>
+<td>Use <code>indice_key</code> to save data for inverse</td>
+</tr>
+<tr>
+<td><code>spconv.SubMConv3d</code></td>
+<td>Convolution</td>
+<td>N/A</td>
+<td>Use <code>indice_key</code> to save data for reuse</td>
+</tr>
+<tr>
+<td><code>spconv.SparseInverseConv3d</code></td>
+<td>Upsample</td>
+<td>N/A</td>
+<td>Use pre-saved <code>indice_key</code> to upsample</td>
+</tr>
+<tr>
+<td><code>spconv.SparseConvTranspose3d</code></td>
+<td>Upsample (don’t use this)</td>
+<td><code>nn.ConvTranspose3d</code></td>
+<td>VERY SLOW and CAN’T RECOVER ORIGIN POINT CLOUD</td>
+</tr>
+<tr>
+<td><code>spconv.SparseMaxPool3d</code></td>
+<td>Downsample</td>
+<td><code>nn.MaxPool3d</code></td>
+<td>Use <code>indice_key</code> to save data for inverse</td>
+</tr>
+<tr>
+<td><code>spconv.SparseSequential</code></td>
+<td>Container</td>
+<td><code>nn.Sequential</code></td>
+<td>support layers above and
+<code>nn.ReLU, nn.BatchNorm, ...</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+
+<thead>
+<tr>
+<th>Functional APIs</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Fsp.sparse_add</code></td>
+<td>Add sparse tensors with same shape and different indices</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Input APIs</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PointToVoxel</code></td>
+<td>point cloud to voxels</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Misc APIs</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HashTable</code></td>
+<td>hash table, one-slot</td>
+</tr>
+</tbody>
+</table>
+<table>
+
+<thead>
+<tr>
+<th>Layer APIs</th>
+<th><a
+target="_blank" rel="noopener" href="https://github.com/mit-han-lab/torchsparse">torchsparse</a></th>
+<th><a
+target="_blank" rel="noopener" href="https://github.com/NVIDIA/MinkowskiEngine">MinkowskiEngine</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spconv.SparseConv3d</code></td>
+<td><code>Conv3d(stride!=1, transpose=False)</code></td>
+<td><code>MinkowskiConvolution(stride!=1)</code></td>
+</tr>
+<tr>
+<td><code>spconv.SubMConv3d</code></td>
+<td><code>Conv3d(stride=1, transpose=False)</code></td>
+<td><code>MinkowskiConvolution(stride=1)</code></td>
+</tr>
+<tr>
+<td><code>spconv.SparseInverseConv3d</code></td>
+<td><code>Conv3d(stride!=1, transpose=True)</code></td>
+<td><code>MinkowskiConvolutionTranspose</code></td>
+</tr>
+<tr>
+<td><code>spconv.SparseConvTranspose3d</code></td>
+<td>N/A</td>
+<td><code>MinkowskiConvolutionTranspose</code></td>
+</tr>
+<tr>
+<td><code>spconv.SparseMaxPool3d</code></td>
+<td>N/A</td>
+<td><code>MinkowskiMaxPooling</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="concept">Concept</h2>
+<ul>
+<li>Sparse Conv Tensor: like hybird <a
+target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/sparse.html#sparse-coo-docs">torch.sparse_coo_tensor</a>
+but only have two difference: 1. SparseConvTensor only have one dense
+dim, 2. indice of SparseConvTensor is transposed. see torch doc for more
+details.</li>
+<li>Sparse Convolution: equivalent to perform dense convolution when you
+convert SparseConvTensor to dense. Sparse Convolution only run
+calculation on valid data.</li>
+<li>Submanifold Convolution (SubMConv): like Sparse Convolution but
+indices keeps same. imagine that you copy same spatial structure to
+output, then iterate them, get input coordinates by conv rule, finally
+apply convolution <strong>ONLY</strong> in these output
+coordinates.</li>
+</ul>
+<h2 id="sparseconvtensor">SparseConvTensor</h2>
+<ul>
+<li>features: <code>[N, num_channels]</code> tensor.</li>
+<li>indices: <code>[N, (batch_idx + x + y + z)]</code> coordinate tensor
+with batch axis. note that the coordinates xyz order MUST match spatial
+shape and conv params such as kernel size</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> spconv.pytorch <span class="hljs-keyword">as</span> spconv<br>features = <span class="hljs-comment"># your features with shape [N, num_channels]</span><br>indices = <span class="hljs-comment"># your indices/coordinates with shape [N, ndim + 1], batch index must be put in indices[:, 0]</span><br>spatial_shape = <span class="hljs-comment"># spatial shape of your sparse tensor, spatial_shape[i] is shape of indices[:, 1 + i].</span><br>batch_size = <span class="hljs-comment"># batch size of your sparse tensor.</span><br>x = spconv.SparseConvTensor(features, indices, spatial_shape, batch_size)<br>x_dense_NCHW = x.dense() <span class="hljs-comment"># convert sparse tensor to dense NCHW tensor.</span><br></code></pre></td></tr></table></figure>
+<h3 id="sparse-convolution">Sparse Convolution</h3>
+<p>注：此处代码有改动</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br>os.environ[<span class="hljs-string">&#x27;SPCONV_DEBUG_SAVE_PATH&#x27;</span>]=<span class="hljs-string">&quot;./spconv.log&quot;</span><br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> spconv.pytorch <span class="hljs-keyword">as</span> spconv<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleNet</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, shape</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.net = spconv.SparseSequential(<br>        <span class="hljs-comment"># API Paramemter: in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, </span><br>        <span class="hljs-comment"># groups=1, bias=True, padding_mode=&#x27;zeros&#x27;, device=None, dtype=None</span><br>            spconv.SparseConv3d(<span class="hljs-number">32</span>, <span class="hljs-number">64</span>, <span class="hljs-number">3</span>, padding=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)), <span class="hljs-comment"># just like nn.Conv3d but don&#x27;t support group</span><br>            nn.BatchNorm1d(<span class="hljs-number">64</span>), <span class="hljs-comment"># non-spatial layers can be used directly in SparseSequential.</span><br>            nn.ReLU(),<br>            <span class="hljs-comment"># Kerner是3的时候，注意设置Padding为1，才能保持尺寸一致</span><br>            spconv.SubMConv3d(<span class="hljs-number">64</span>, <span class="hljs-number">64</span>, <span class="hljs-number">3</span>, padding=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),indice_key=<span class="hljs-string">&quot;subm0&quot;</span>),<br>            nn.BatchNorm1d(<span class="hljs-number">64</span>),<br>            nn.ReLU(),<br>        <span class="hljs-comment"># when use submanifold convolutions, their indices can be shared to save indices generation time.</span><br>            spconv.SubMConv3d(<span class="hljs-number">64</span>, <span class="hljs-number">64</span>, <span class="hljs-number">3</span>, indice_key=<span class="hljs-string">&quot;subm0&quot;</span>),<br>            nn.BatchNorm1d(<span class="hljs-number">64</span>),<br>            nn.ReLU(),<br>        )<br>        <span class="hljs-variable language_">self</span>.conv1 = spconv.SparseConv3d(<span class="hljs-number">32</span>, <span class="hljs-number">64</span>, <span class="hljs-number">3</span>)<br>        <span class="hljs-variable language_">self</span>.bn1 = nn.BatchNorm1d(<span class="hljs-number">64</span>)<br>        <span class="hljs-variable language_">self</span>.relu1 = nn.ReLU()<br>        <span class="hljs-variable language_">self</span>.shape = shape<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, features, coors, batch_size</span>):<br>        coors = coors.<span class="hljs-built_in">int</span>() <span class="hljs-comment"># unlike torch, this library only accept int coordinates.</span><br>        x = spconv.SparseConvTensor(features, coors, <span class="hljs-variable language_">self</span>.shape, batch_size)<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.net(x)<br>    <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    points_feature_np = np.array(np.random.random(size=<span class="hljs-number">1000</span>))<br>    points_feature_np = points_feature_np[:, np.newaxis]<br>    <span class="hljs-comment"># 目前Spconv版本要求 变量类型是float32</span><br>    points_feature = torch.from_numpy(points_feature_np).to(torch.float32)<br>    points_feature = points_feature.expand_as(torch.zeros((<span class="hljs-number">1000</span>, <span class="hljs-number">32</span>)))<br>    points_indices_np = np.array([np.zeros(<span class="hljs-number">1000</span>), np.random.randint(<span class="hljs-number">360</span>, size=<span class="hljs-number">1000</span>), np.random.randint(<span class="hljs-number">480</span>, size=<span class="hljs-number">1000</span>), np.random.randint(<span class="hljs-number">32</span>, size=<span class="hljs-number">1000</span>)]).transpose()<br>    points_indices = torch.from_numpy(points_indices_np).to(torch.int32)<br>    <br>    model = ExampleNet(shape=[<span class="hljs-number">360</span>, <span class="hljs-number">480</span>, <span class="hljs-number">32</span>]).cuda()<br>    <span class="hljs-comment"># 注意此处向量需要连续化.contiguous()</span><br>    output_points_feature = model(points_feature.cuda().contiguous(), points_indices.cuda().contiguous(), <span class="hljs-number">1</span>)<br>    <span class="hljs-built_in">print</span>(output_points_feature.features.shape)<br>        <br>        <br></code></pre></td></tr></table></figure>
+<h3 id="inverse-convolution">Inverse Convolution</h3>
+<p>Inverse sparse convolution means “inv” of sparse convolution. the
+output of inverse convolution contains same indices as input of sparse
+convolution.</p>
+<p><strong>WARNING</strong> <code>SparseInverseConv</code> isn’t
+equivalent to <code>SparseConvTranspose</code>. SparseConvTranspose is
+equivalent to <code>ConvTranspose</code> in pytorch, but
+SparseInverseConv isn’t.</p>
+<p>Inverse convolution usually used in semantic segmentation.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleNet</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, shape</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.net = spconv.SparseSequential(<br>            spconv.SparseConv3d(<span class="hljs-number">32</span>, <span class="hljs-number">64</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, indice_key=<span class="hljs-string">&quot;cp0&quot;</span>),<br>            spconv.SparseInverseConv3d(<span class="hljs-number">64</span>, <span class="hljs-number">32</span>, <span class="hljs-number">3</span>, indice_key=<span class="hljs-string">&quot;cp0&quot;</span>), <span class="hljs-comment"># need provide kernel size to create weight</span><br>        )<br>        <span class="hljs-variable language_">self</span>.shape = shape<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, features, coors, batch_size</span>):<br>        coors = coors.<span class="hljs-built_in">int</span>()<br>        x = spconv.SparseConvTensor(features, coors, <span class="hljs-variable language_">self</span>.shape, batch_size)<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.net(x)<br></code></pre></td></tr></table></figure>
+<h4 id="common-mistake">Common Mistake</h4>
+<ul>
+<li>issue <a
+target="_blank" rel="noopener" href="https://github.com/traveller59/spconv/issues/467">#467</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">WrongNet</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, shape</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.Encoder = spconv.SparseConv3d(channels, channels, kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>, indice_key=<span class="hljs-string">&quot;cp1&quot;</span>,algo=algo)<br>        <span class="hljs-variable language_">self</span>.Sparse_Conv = spconv.SparseConv3d(channels, channels, kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>,algo=algo)<br>        <span class="hljs-variable language_">self</span>.Decoder = spconv.SparseInverseConv3d(channels, channels, kernel_size=<span class="hljs-number">3</span>, indice_key=<span class="hljs-string">&quot;cp1&quot;</span>,algo=algo)   <br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, sparse_tensor</span>):<br>        encoded = <span class="hljs-variable language_">self</span>.Encoder(sparse_tensor)<br>        s_conv = <span class="hljs-variable language_">self</span>.Sparse_Conv(encoded)<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.Decoder(s_conv).features<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CorrectNet</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, shape</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.Encoder = spconv.SparseConv3d(channels, channels, kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>, indice_key=<span class="hljs-string">&quot;cp1&quot;</span>,algo=algo)<br>        <span class="hljs-variable language_">self</span>.Sparse_Conv = spconv.SparseConv3d(channels, channels, kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, indice_key=<span class="hljs-string">&quot;cp2&quot;</span>,algo=algo)<br>        <span class="hljs-variable language_">self</span>.Sparse_Conv_Decoder = spconv.SparseInverseConv3d(channels, channels, kernel_size=<span class="hljs-number">3</span>, indice_key=<span class="hljs-string">&quot;cp2&quot;</span>,algo=algo)   <br>        <span class="hljs-variable language_">self</span>.Decoder = spconv.SparseInverseConv3d(channels, channels, kernel_size=<span class="hljs-number">3</span>, indice_key=<span class="hljs-string">&quot;cp1&quot;</span>,algo=algo)   <br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, sparse_tensor</span>):<br>        encoded = <span class="hljs-variable language_">self</span>.Encoder(sparse_tensor)<br>        s_conv = <span class="hljs-variable language_">self</span>.Sparse_Conv(encoded)<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.Decoder(<span class="hljs-variable language_">self</span>.Sparse_Conv_Decoder(s_conv)).features<br></code></pre></td></tr></table></figure>
+<p>The <code>Sparse_Conv</code> in <code>ExampleNet</code> Change
+spatial structure of output of <code>Encoder</code>, so we can’t inverse
+back to input of <code>Encoder</code> via <code>Decoder</code>, we need
+to inverse from <code>Sparse_Conv.output</code> to
+<code>Encoder.output</code> via <code>Sparse_Conv_Decoder</code>, then
+inverse from <code>Encoder.output</code> to <code>Encoder.input</code>
+via <code>Decoder</code>.</p>
+<h3 id="sparse-add">Sparse Add</h3>
+<p>In sematic segmentation network, we may use conv1x3, 3x1 and 3x3 in a
+block, but it’s impossible to sum result from these layers because
+regular add requires same indices.</p>
+<p>spconv &gt;= 2.1.17 provide a operation to add sparse tensors with
+different indices (shape must same), but with limits:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> spconv.pytorch <span class="hljs-keyword">import</span> functional <span class="hljs-keyword">as</span> Fsp<br>res_1x3 = conv1x3(x)<br>res_3x1 = conv3x1(x)<br><span class="hljs-comment"># WRONG</span><br><span class="hljs-comment"># because we can&#x27;t &quot;inverse&quot; this operation</span><br>wrong_usage_cant_inverse = Fsp.sparse_add(res_1x3, res_3x1)<br><br><span class="hljs-comment"># CORRECT</span><br><span class="hljs-comment"># res_3x3 already contains all indices of res_1x3 and res_3x1, </span><br><span class="hljs-comment"># so output spatial structure isn&#x27;t changed, we can &quot;inverse&quot; back.</span><br>res_3x3 = conv3x3(x)<br>correct = Fsp.sparse_add(res_1x3, res_3x1, res_3x3)<br></code></pre></td></tr></table></figure>
+<p>If you use a network without <code>SparseInverseConv</code>, limits
+above aren’t exists, the only drawback of <code>sparse_add</code> is
+that it run slower than simple aligned add.</p>
+<h3 id="fast-mixed-percision-training">Fast Mixed Percision
+Training</h3>
+<p>see example/mnist_sparse. we support <code>torch.cuda.amp</code>.</p>
+<h3 id="utility-functions">Utility functions</h3>
+<ul>
+<li>convert point cloud to voxel</li>
+</ul>
+<p>voxel generator in spconv generate indices in <strong>ZYX</strong>
+order, the params format are <strong>XYZ</strong>.</p>
+<p>generated indices don’t include batch axis, you need to add it by
+yourself.</p>
+<p>see examples/voxel_gen.py for examples.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> spconv.pytorch.utils <span class="hljs-keyword">import</span> PointToVoxel, gather_features_by_pc_voxel_id<br><span class="hljs-comment"># this generator generate ZYX indices.</span><br>gen = PointToVoxel(<br>    vsize_xyz=[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.1</span>], <br>    coors_range_xyz=[-<span class="hljs-number">80</span>, -<span class="hljs-number">80</span>, -<span class="hljs-number">2</span>, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>, <span class="hljs-number">6</span>], <br>    num_point_features=<span class="hljs-number">3</span>, <br>    max_num_voxels=<span class="hljs-number">5000</span>, <br>    max_num_points_per_voxel=<span class="hljs-number">5</span>)<br>pc = np.random.uniform(-<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, size=[<span class="hljs-number">1000</span>, <span class="hljs-number">3</span>])<br>pc_th = torch.from_numpy(pc)<br>voxels, coords, num_points_per_voxel = gen(pc_th, empty_mean=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<p>If you want to get label for every point of your pc, you need to use
+another function to get pc_voxel_id and gather features from sematic
+segmentation result:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">voxels, coords, num_points_per_voxel, pc_voxel_id = gen.generate_voxel_with_id(pc_th, empty_mean=<span class="hljs-literal">True</span>)<br>seg_features = YourSegNet(...)<br><span class="hljs-comment"># if voxel id is invalid (point out of range, or no space left in a voxel)</span><br><span class="hljs-comment"># features will be zero.</span><br>point_features = gather_features_by_pc_voxel_id(seg_features, pc_voxel_id)<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/" class="category-chain-item">编程学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/%E7%82%B9%E4%BA%91/" class="category-chain-item">点云</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python-PyTorch-Spconv/" class="print-no-link">#Python,PyTorch,Spconv</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Spconv编程学习</div>
+      <div>https://oier99.cn/posts/c5ac3feb/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Oier99</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/29446e2a/" title="charts_example">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">charts_example</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/a69f9b72/" title="论文十问：GASN(ECCV2022)">
+                        <span class="hidden-mobile">论文十问：GASN(ECCV2022)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <!script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> <script> var now = new Date();  function createtime() {  var grt= new Date("07/25/2021 17:12:09"); now.setTime(now.getTime()+250);  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}  document.getElementById("timeDate").innerHTML = "本网站已在各种夹缝中安全生存 "+dnum+" 天 ";  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";  }  setInterval("createtime()",250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

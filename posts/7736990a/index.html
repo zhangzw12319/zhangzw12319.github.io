@@ -1,0 +1,1062 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  <link rel="icon" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="oier99">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="选课前是谁给我灌输的“矩阵理论课给分高，都是学过的知识”？我居然信了，还把这门课计入了GPA。 结果第一节课老师板书了3*4&#x3D;12块黑板，我记了11页笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程笔记：矩阵理论(1)——线性代数知识回顾(下)">
+<meta property="og:url" content="https://oier99.cn/posts/7736990a/index.html">
+<meta property="og:site_name" content="Oier99">
+<meta property="og:description" content="选课前是谁给我灌输的“矩阵理论课给分高，都是学过的知识”？我居然信了，还把这门课计入了GPA。 结果第一节课老师板书了3*4&#x3D;12块黑板，我记了11页笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/09/25/Y6W8Ie54P1onyvA.jpg">
+<meta property="article:published_time" content="2021-10-10T21:01:39.000Z">
+<meta property="article:modified_time" content="2026-02-12T18:17:00.688Z">
+<meta property="article:author" content="zhangzw12319">
+<meta property="article:tag" content="矩阵，线性代数">
+<meta property="article:tag" content="课程笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/09/25/Y6W8Ie54P1onyvA.jpg">
+  
+  
+  
+  <title>课程笔记：矩阵理论(1)——线性代数知识回顾(下) - Oier99</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"oier99.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"7BL86tkKW6DaLSAPakWTB3Az-MdYXbMMI","app_key":"am9pKcTN7A1b0s0E9Y0h1kGd","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tag-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-music"></i>
+                <span>每日音乐</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/music/" target="_self">
+                    
+                    <span>Music Diary</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/posts/5d4e3cda/" target="_self">
+                    
+                    <span>Music Collections</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://i.loli.net/2021/09/25/NGX9KzhdUfDwCx3.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="课程笔记：矩阵理论(1)——线性代数知识回顾(下)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        oier99
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-11 05:01" pubdate>
+          星期一, 十月 11日 2021, 5:01 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">课程笔记：矩阵理论(1)——线性代数知识回顾(下)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1
+id="课程笔记矩阵理论1线性代数知识回顾下">课程笔记：矩阵理论(1)——线性代数知识回顾(下)</h1>
+<p>📚书籍：《矩阵理论与应用》张跃辉 Chap 1</p>
+<h2 id="相似矩阵">相似矩阵</h2>
+<p><span
+class="math display"><strong>A</strong><em>x</em> = <em>λ</em><em>x</em></span></p>
+<ol type="1">
+<li><span class="math display"><strong>A</strong></span>
+是方阵(所有有关特征值和特征响亮的讨论是对方阵而言的)</li>
+<li><span class="math display"><em>x</em> ≠ 0</span></li>
+</ol>
+<p>则称<span class="math display"><em>x</em></span>是属于特征值 <span
+class="math display"><em>λ</em></span> 的 <span
+class="math display"><strong>A</strong></span> 上的特征向量</p>
+<h3 id="特征多项式">特征多项式</h3>
+<p><span class="math display">$$
+\begin{align}
+(\mathbf{A} - \lambda I)x &amp;= 0 \\
+\end{align}
+$$</span></p>
+<p>由于<span class="math display"><em>x</em> ≠ 0</span>,若有满足该等式的
+<span class="math display"><em>λ</em></span>
+值，则必为降秩矩阵(奇异矩阵)，故记 <span
+class="math display"><em>f</em>(<em>λ</em>) = |<strong>A</strong> − <em>λ</em><strong>I</strong>| = 0</span>
+成为特征多项式。</p>
+<p><strong>谱半径</strong>：数值(复数模长)最大的特征值 <span
+class="math display"><em>ρ</em>(<strong>A</strong>) = max {|<em>λ</em>| : <em>λ</em> ∈ <em>σ</em>(<strong>A</strong>)}</span></p>
+<p>从几何上看，所有的特征值都落在以原点为圆心，谱半径 <span
+class="math display"><em>ρ</em>(<strong>A</strong>)</span>
+为半径的圆盘内</p>
+<p><strong>矩阵的特征值 <span
+class="math display"><em>λ</em></span>的特征子空间</strong>：给定 <span
+class="math display"><em>λ</em></span>后 <span
+class="math display">(<strong>A</strong> − <em>λ</em><strong>I</strong>)<em>x</em> = 0</span>
+这个齐次方程的解空间，记为 <span
+class="math display"><em>V</em><sub><em>λ</em></sub></span>
+。该解空间的维度<span
+class="math display">dim (<em>V</em><sub><em>λ</em></sub>) = <em>n</em> − <em>r</em>(<strong>A</strong>)</span>
+称为特征值 <span class="math display"><em>λ</em></span>
+的<strong>几何重数</strong></p>
+<p><strong>代数重数</strong>：将特征多项式因式分解后， <span
+class="math display"><em>f</em>(<em>λ</em>) = |<strong>A</strong> − <em>λ</em><strong>I</strong>| = ∏<sub><em>i</em></sub>(<em>λ</em> − <em>λ</em><sub><em>i</em></sub>)<sup><em>n</em><sub><em>i</em></sub></sup> = 0</span>，每个特征值的对应的<span
+class="math display"><em>n</em><sub><em>i</em></sub></span></p>
+<p><strong><u><em>任何特征值的几何重数不会超过其代数重数</em></u></strong></p>
+<h3 id="特征值的性质">特征值的性质</h3>
+<ol type="1">
+<li><span
+class="math display">|<strong>A</strong>| = ∏<sub><em>i</em></sub>(<em>λ</em><sub><em>i</em></sub>)<sup><em>n</em><sub><em>i</em></sub></sup></span></li>
+<li><span
+class="math display">tr(<strong>A</strong>) = ∑<sub><em>i</em></sub><em>n</em><sub><em>i</em></sub><em>λ</em><sub><em>i</em></sub></span></li>
+<li><span class="math display"><strong>A</strong></span>可逆 <span
+class="math display">⇔</span> 0不是其特征值</li>
+<li><span class="math display"><em>λ</em></span> 是 <span
+class="math display"><strong>A</strong></span> 的特征值，则 <span
+class="math display"><em>f</em>(<em>λ</em>)</span> 是 <span
+class="math display"><em>f</em>(<strong>A</strong>)</span>
+的特征值，特征向量不变</li>
+<li>设 <span class="math display"><strong>A</strong></span>
+可逆，其特征多项式为 <span
+class="math display">|<strong>A</strong><sup>−1</sup> − <em>λ</em><strong>I</strong>| = ∏<sub><em>i</em></sub>(<em>λ</em> − <em>λ</em><sub><em>i</em></sub><sup>−1</sup>)<sup><em>n</em><sub><em>i</em></sub></sup></span>
+, <span class="math display"><em>λ</em><sup>−1</sup></span>
+也是特征值，而且对应特征向量不变</li>
+<li><strong>相似矩阵具有相同的特征多项式，因此具有相同的特征值</strong></li>
+</ol>
+<h3 id="特征向量的性质">特征向量的性质</h3>
+<ol type="1">
+<li>属于不同特征值的特征向量线性无关</li>
+<li><span class="math display"><strong>A</strong></span> 可以对角化
+<span class="math display">⇔</span> <span
+class="math display"><strong>A</strong></span> 有 <span
+class="math display"><em>n</em></span>
+个线性无关的<strong>特征向量</strong> <span
+class="math display">⇔</span> <span
+class="math display">𝔽<sup><em>n</em></sup></span> 有一组由 <span
+class="math display"><strong>A</strong></span> 特征向量组成的基**
+<u><strong>(Que?)</strong></u></li>
+</ol>
+<h3 id="对角化主定理">对角化主定理</h3>
+<p>一个 <span class="math display"><em>n</em></span> 阶矩阵可以对角化
+<span class="math display">⇔</span>
+矩阵的每个特征值代数重数与几何重数相等</p>
+<p class="note note-info">
+1.特别地，若矩阵有 <span class="math display"><em>n</em></span>
+个不同的特征值，则可以对角化</br>
+2.实对称矩阵一定可以正交化。而且对于一个实对称矩阵 <span
+class="math display"><strong>A</strong></span> , 存在正交矩阵 <span
+class="math display"><strong>P</strong></span> ，使得 <span
+class="math display"><strong>A</strong> = <em>P</em><sup>−1</sup><em>D</em><em>P</em> = <em>P</em><sup><em>T</em></sup></span>
+,即通过正交变换变成对角阵， <span
+class="math display"><strong>A</strong></span> 正交相似于对角阵。
+</p>
+<p>Note: 此处要填坑，系统复习一下相似矩阵那一章的证明</p>
+<h2 id="矩阵分解">矩阵分解</h2>
+<h3 id="满秩分解">满秩分解</h3>
+<p>任何一个矩阵都可以被分解为列满秩矩阵 <span
+class="math display">×</span> 行满秩矩阵。</p>
+<p>E.g. <span class="math display">$$
+\mathbf{A}_{n \times m} = \left[\begin{matrix} \mathbf{P}_{n \times
+r(\mathbf{A})} &amp; 0 \end{matrix} \right] \left[\begin{matrix}
+\mathbf{Q}_{r(\mathbf{A}) \times m} \\ 0  \end{matrix}\right]
+$$</span> 一个比较简单的求解方法是，把 <span
+class="math display"><strong>Q</strong></span>
+搞成一个Hermitte标准形，这样 <span
+class="math display"><strong>P</strong></span> 直接可以得出结果：取矩阵
+<span class="math display"><strong>A</strong></span> 的前<span
+class="math display"><em>r</em>(<em>A</em>)</span> 列即可。</p>
+<h3 id="lu分解">LU分解</h3>
+<h3 id="奇异值svd分解">奇异值(SVD)分解</h3>
+<h2 id="线性空间">线性空间</h2>
+<ol type="1">
+<li>回顾加群(Abel群)</li>
+</ol>
+<ul>
+<li>封闭性</li>
+<li>结合律</li>
+<li>交换律</li>
+<li>有单位元(0元)</li>
+<li>有逆元(-a)</li>
+</ul>
+<ol start="2" type="1">
+<li><p><strong>线性空间的直观理解</strong>：<span
+class="math display">(<em>V</em>, +)</span> 是一个加群，定义数域 <span
+class="math display">𝔽</span> 上的数乘运算，则 <span
+class="math display">(<em>V</em>, +, ⋅)</span> 是 <span
+class="math display">𝔽</span> 上的一个线性空间。 <span
+class="math display">𝔽</span> 叫做基域。<span
+class="math display">(ℝ<sup>3</sup>, +, ⋅)</span> 是 <span
+class="math display">ℝ</span> 的一个线性空间(有限维度的一个线性空间)</p>
+<p>例如，<span
+class="math display"><em>f</em> ∈ <em>c</em>[<em>a</em>, <em>b</em>]</span>上的所有连续函数，则
+<span
+class="math display">(<em>c</em>[<em>a</em>, <em>b</em>], +, ⋅)</span>
+是一个线性空间(无穷维度)(有泛函的观点了，只要是线性无关的函数就能构成一组基底)。</p>
+<p>例如，矩阵加法和数乘能构成一个线性空间，其一组基为全体基础矩阵<span
+class="math display">𝔼<sub><em>i</em><em>j</em></sub></span>。特别地，全体<span
+class="math display"><em>n</em></span> 阶方阵组成<span
+class="math display"><em>n</em><sup>2</sup></span>维线性空间；全体 <span
+class="math display"><em>n</em> × 1</span> 阶矩阵，即全体<span
+class="math display"><em>n</em></span>维向量，构成了<span
+class="math display">𝔽</span>上的一个<span
+class="math display"><em>n</em></span>维线性空间，其一组基由所有的标准向量组成即
+<span
+class="math display"><em>e</em><sub>1</sub>, <em>e</em><sub>2</sub>, …, <em>e</em><sub><em>n</em></sub></span></p></li>
+<li><p><strong>线性空间的基向量定义：</strong>若 <span
+class="math display"><em>V</em></span> 中存在<span
+class="math display"><em>n</em></span>个线性无关的向量，使得 <span
+class="math display"><em>V</em></span>
+中任意向量都与他们线性相关，则称<span
+class="math display"><em>V</em></span>是<span
+class="math display"><em>n</em></span>线性空间。</p></li>
+<li><p>V中任意向量均能唯一的表为<span
+class="math display"><em>α</em></span>的线性组合，<span
+class="math display"><em>α</em> = <em>k</em><sub>1</sub><em>α</em><sub>1</sub> + <em>k</em><sub>2</sub><em>α</em><sub>2</sub> + … + <em>k</em><sub><em>n</em></sub><em>α</em><sub><em>n</em></sub> = (<em>α</em><sub>1</sub>, <em>α</em><sub>2</sub>, …, <em>α</em><sub><em>n</em></sub>)<em>k</em></span>，则称为向量<span
+class="math display"><em>α</em></span>关于基的坐标<span
+class="math display">(<em>k</em><sub>1</sub>, <em>k</em><sub>2</sub>, …, <em>k</em><sub><em>n</em></sub>)<sup><em>T</em></sup></span>。</p>
+<p>线性空间的基一般不唯一，但线性空间的维数是唯一确定的。所以不同基向量包含的向量个数相同。</p></li>
+<li><p><strong>基扩充定理</strong>:</p></li>
+<li><p>过渡矩阵：设<span
+class="math display"><em>n</em></span>维线性空间的一组基<span
+class="math display">(<em>α</em><sub>1</sub>, <em>α</em><sub>2</sub>, …, <em>α</em><sub><em>n</em></sub>)</span>与另一组基<span
+class="math display">(<em>β</em><sub>1</sub>, <em>β</em><sub>2</sub>, …, <em>β</em><sub><em>n</em></sub>)</span>如果存在如下关系:</p>
+<p><span class="math display">$$
+\left[\begin{matrix} \beta_1&amp; \beta_2 &amp; \dots \beta_n
+\end{matrix} \right] = \left[\begin{matrix} \alpha_1&amp; \alpha_2 &amp;
+\dots \alpha_n \end{matrix} \right] \mathbf{P}
+$$</span></p>
+<p>所以可见，每个列向量 <span
+class="math display"><em>β</em><sub><em>i</em></sub></span> 都是 <span
+class="math display"><em>α</em><sub><em>j</em></sub></span>
+的线性组合，组合系数由<span
+class="math display"><em>P</em><sub><em>i</em></sub></span>列向量控制。</p></li>
+</ol>
+<p><img src="https://i.loli.net/2021/10/11/UiXGb2vNnJfgFus.jpg" srcset="/img/loading.gif" lazyload style="zoom: 33%;" /></p>
+<h2 id="内积空间">内积空间</h2>
+<ol type="1">
+<li><p>背景：内积的引入和“长度“有关。在线性空间中引入内积的概念，衡量两个向量的“远近”。如果内积归一化后，就是通过两个单位向量的夹角来衡量两个向量的距离。</p></li>
+<li><p><strong>内积空间</strong>：设<span
+class="math display"><em>V</em><em>是</em></span><span
+class="math display">𝔽</span>上的线性空间，若对<span
+class="math display"><em>V</em></span>中的任意两个向量，都定义了<span
+class="math display">𝔽</span>中的一个数<span
+class="math display">(<em>α</em>, <em>β</em>)</span>,使得满足</p>
+<ul>
+<li><p>(共轭对称性) <span class="math display">$$(\alpha, \beta) =
+\overline{(\beta, \alpha)}$$</span></p></li>
+<li><p>(正定性）<span
+class="math display">(<em>α</em>, <em>α</em>) ≥ 0</span></p></li>
+<li><p>(双线性) <span
+class="math display">(<em>a</em><em>α</em> + <em>b</em><em>β</em>，<em>γ</em>) = <em>a</em>(<em>α</em>, <em>γ</em>) + <em>b</em>(<em>β</em>, <em>γ</em>)</span>
+(共轭双线性)<span class="math display">$$(\alpha, a \beta + b \gamma) =
+a(\alpha, \beta) + \overline{b}(\alpha, \beta)$$</span></p>
+<p>则称其为内积空间。</p></li>
+</ul></li>
+<li><p>内积与范数性质</p>
+<p>比较重要的且容易忘记的，Cauchy-Schwards不等式， 三角不等式</p></li>
+<li><p>内积的作用：从代数上，两个向量的角度，两个向量在线性空间中的距离都可以由内积来定义。有了角度和长度，从几何上更好解释向量之间的位置关系。比如两个向量正交是垂直(角度90°)，实数域的线性空间上两个向量线性相关当且仅当夹角为0或<span
+class="math display"><em>π</em></span>。</p></li>
+<li><p>Gram-Schmidt正交化方法: 已知线性无关组<span
+class="math display"><em>α</em><sub>1</sub>, …, <em>α</em><sub><em>n</em></sub></span>,求标准正交组</p>
+<p><span
+class="math display"><em>β</em><sub><em>k</em></sub> = <em>α</em><sub><em>k</em></sub> − ∑<sub><em>i</em></sub>(<em>α</em><sub><em>i</em></sub>, <em>γ</em><sub><em>i</em></sub>)<em>γ</em><sub><em>i</em></sub></span></p>
+<p><span class="math display">$$
+\gamma_k = \frac{\beta_k}{||\beta_k||}
+$$</span></p>
+<p>几何意义：再求第<span
+class="math display"><em>k</em></span>个标准正交基时，投影到<span
+class="math display"><em>γ</em><sub>1</sub>…<em>γ</em><sub><em>k</em> − 1</sub></span>个标准正交基构成的”超平面“上的投影等于其在各个<span
+class="math display"><em>γ</em><sub><em>i</em></sub></span>分量上的投影向量之和。所以减去后自然就与<span
+class="math display"><em>γ</em><sub>1</sub>…<em>γ</em><sub><em>k</em> − 1</sub></span>正交，最后再单位化。</p></li>
+<li><p>酉矩阵<span
+class="math display"><strong>A</strong><sup><em>H</em></sup><strong>A</strong> = <strong>I</strong></span>,
+在实数域上就是正交矩阵<span
+class="math display"><strong>A</strong><sup><em>T</em></sup><strong>A</strong> = <strong>I</strong></span>。该矩阵的每个行(列)向量两两正交，且为单位向量。正交矩阵的集合意义几乎就是旋转变换，利用正交矩阵做旋转变换可以去掉二次型中的交叉项，变成标准形式。</p>
+<p><img src="https://i.loli.net/2021/10/11/BWxoCmdMzDG9c12.png" srcset="/img/loading.gif" lazyload alt="image-20211011195300299" style="zoom: 67%;" /></p></li>
+</ol>
+<p><img src="https://i.loli.net/2021/10/11/agG4bAcnJCmlEeW.png" srcset="/img/loading.gif" lazyload alt="image-20211011195358735" style="zoom: 60%;" /></p>
+<h2 id="参考文献">参考文献</h2>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>《线性代数》 第二版 居余马
+清华大学出版社
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>《矩阵理论与应用》 张跃辉
+上海交通大学出版社
+<a href="#fnref:2" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="category-chain-item">课程笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%9F%A9%E9%98%B5%E7%90%86%E8%AE%BA/" class="category-chain-item">矩阵理论</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="print-no-link">#课程笔记</a>
+      
+        <a href="/tags/%E7%9F%A9%E9%98%B5%EF%BC%8C%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#矩阵，线性代数</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>课程笔记：矩阵理论(1)——线性代数知识回顾(下)</div>
+      <div>https://oier99.cn/posts/7736990a/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>oier99</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/7e08a53a/" title="课程专题：矩阵理论(a)——矩阵对角化的条件汇总">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">课程专题：矩阵理论(a)——矩阵对角化的条件汇总</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/84284e51/" title="课程笔记：矩阵理论(2)——矩阵与线性变换">
+                        <span class="hidden-mobile">课程笔记：矩阵理论(2)——矩阵与线性变换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <!script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> <script> var now = new Date();  function createtime() {  var grt= new Date("07/25/2021 17:12:09"); now.setTime(now.getTime()+250);  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}  document.getElementById("timeDate").innerHTML = "本网站已在各种夹缝中安全生存 "+dnum+" 天 ";  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";  }  setInterval("createtime()",250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

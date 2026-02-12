@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  <link rel="icon" href="https://s2.loli.net/2023/01/03/kyOJCl5TN86VD7L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Oier99">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="LaTex常用代码插入&#x2F;伪代码描述使用方法在这里！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX讲解系列(3)：如何插入代码块&#x2F;伪代码">
+<meta property="og:url" content="https://oier99.cn/posts/200e31c0/index.html">
+<meta property="og:site_name" content="Oier99">
+<meta property="og:description" content="LaTex常用代码插入&#x2F;伪代码描述使用方法在这里！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/07/11/vwKHlxUWBsYJMhC.jpg">
+<meta property="article:published_time" content="2022-12-29T02:17:16.000Z">
+<meta property="article:modified_time" content="2026-02-12T18:17:00.620Z">
+<meta property="article:author" content="zhangzw12319">
+<meta property="article:tag" content="LaTex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2023/07/11/vwKHlxUWBsYJMhC.jpg">
+  
+  
+  
+  <title>LaTeX讲解系列(3)：如何插入代码块/伪代码 - Oier99</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"oier99.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"7BL86tkKW6DaLSAPakWTB3Az-MdYXbMMI","app_key":"am9pKcTN7A1b0s0E9Y0h1kGd","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tag-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-music"></i>
+                <span>每日音乐</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/music/" target="_self">
+                    
+                    <span>Music Diary</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/posts/5d4e3cda/" target="_self">
+                    
+                    <span>Music Collections</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s2.loli.net/2023/07/11/vwKHlxUWBsYJMhC.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LaTeX讲解系列(3)：如何插入代码块/伪代码"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Oier99
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-29 10:17" pubdate>
+          星期四, 十二月 29日 2022, 10:17 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LaTeX讲解系列(3)：如何插入代码块/伪代码</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="latex讲解系列3-如何插入代码块伪代码">LaTeX讲解系列(3)：
+如何插入代码块/伪代码</h1>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="520" height="86" src="//music.163.com/outchain/player?type=2&amp;id=28708806&amp;auto=0&amp;height=66">
+</iframe>
+<div class="note note-primary">
+            <p>资料更新：用LaTeX优雅地书写伪代码——Algorithm2e简明指南</p><p>https://zhuanlan.zhihu.com/p/166418214</p><p>这篇网上找到的知乎讲的非常好，简明常用优雅~建议阅读</p>
+          </div>
+<h2 id="一latex-插入代码块的方法">一、LaTex 插入代码块的方法</h2>
+<p>参考资料：overleaf官方文档(https://www.overleaf.com/learn/latex/Code_listing)</p>
+<p><strong>方法1 使用verbatim环境</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;verbatim&#125;<span class="hljs-string"></span><br><span class="hljs-string">% 插入你的代码</span><br><span class="hljs-string"></span><span class="hljs-keyword">\end</span>&#123;verbatim&#125;<br></code></pre></td></tr></table></figure>
+<p>但是这种方式插入的效果是最朴素的，没有代码高亮、关键字边框，字体大小和行间距调整等格式设置。就是朴素的单倍行距显示，比较丑陋。</p>
+<p><strong>方法2 使用listings环境进行优化</strong></p>
+<p>step-1 引入宏包 <code>\usepackage&#123;listings&#125;</code>,
+颜色宏包<code>\usepackage&#123;xcolor&#125;</code>.</p>
+<p>step-2 设置格式，下方通过宏定义的方式定义了<code>mystyle</code></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\lstdefinestyle</span>&#123;mystyle&#125;&#123;<br>    <span class="hljs-comment">% backgroundcolor=\color&#123;backcolour&#125;,		% 背景色   </span><br>    keywordstyle= <span class="hljs-keyword">\color</span>&#123; blue!70&#125;,			<span class="hljs-comment">% 关键字/程序语言中的保留字颜色</span><br>    commentstyle= <span class="hljs-keyword">\color</span>&#123;red!50!green!50!blue!50&#125;,		<span class="hljs-comment">% 程序中注释的颜色</span><br>    <span class="hljs-comment">% commentstyle= \color[RGB]&#123;40, 400, 255&#125;</span><br>    numberstyle=<span class="hljs-keyword">\tiny</span><span class="hljs-keyword">\color</span>&#123;codegray&#125;,		<span class="hljs-comment">% 左侧行号显示的颜色</span><br>    stringstyle=<span class="hljs-keyword">\color</span>&#123;codepurple&#125;,<br>    basicstyle=<span class="hljs-keyword">\ttfamily</span><span class="hljs-keyword">\footnotesize</span>,<br>    breakatwhitespace=false,         <br>    breaklines=true,		<span class="hljs-comment">% 对过长的代码自动换行                </span><br>    captionpos=b,                    <br>    keepspaces=true,                 <br>    numbers=left,		<span class="hljs-comment">% 在左侧显示行号                 </span><br>    numbersep=5pt,                  <br>    showspaces=false,                <br>    showstringspaces=false,		<span class="hljs-comment">% 不显示字符串中的空格</span><br>    showtabs=false,                  <br>    tabsize=2,<br>    <span class="hljs-comment">% frame=none,		% 不显示边框</span><br>    frame=shadowbox,	<span class="hljs-comment">% 边框阴影</span><br>    <span class="hljs-comment">%   escapebegin=\begin&#123;CJK*&#125;,escapeend=\end&#123;CJK*&#125;,      % 代码中出现中文必须加上，否则报错</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>step -3 导入代码</strong></p>
+<p>可以从源文件导入，只需要一行命令如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\lstinputlisting</span>[language=Python, style=mystyle ]&#123;ReduceClass.py&#125;<br></code></pre></td></tr></table></figure>
+<p>填写好语言项(<code>languange=Python</code>),
+选择需要的格式(<code>style=mystyle</code>,
+假如定义了多个style可以选择一个来用)，最后在花括号里选择引用的代码文件。</p>
+<p>也可以选择创建一个环境，如下：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>[languange=Python]&#123;lstlisting&#125;<br><span class="hljs-comment">% 代码块</span><br><span class="hljs-keyword">\end</span>&#123;lstlisting&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="二latex中插入伪代码的方法">二、LaTex中插入伪代码的方法</h2>
+<h3 id="易出错的地方总结">2.1 易出错的地方总结</h3>
+<ol type="1">
+<li>注意换行的时候， <span
+style="color:orange"><strong>可以末尾用<code>\;</code>，或者多空一行，但是不要像写公式换行一行用<code>//</code></strong>
+</span>。<code>//</code>只是段内增加一行，不会开启新一行的编号。往往太长了放不下的时候可以<code>//</code>，如果要写下一行code还是用上述前两种方法。</li>
+</ol>
+<h3 id="插入伪代码的方法">2.2 插入伪代码的方法</h3>
+<p>常用的伪代码宏包有<code>algorithm</code>, <code>algorithm2e</code>,
+<code>algorithmic</code>等等。那么如何选择使用呢？首先，如果有论文投稿计划的话，按照相关期刊/会议要求LaTex使用伪代码的规定使用哪些宏包；如果没有明确规定，那么怎么顺手怎么来。</p>
+<p><strong><code>algorithm</code>宏包</strong>，支持简单的伪代码格式。</p>
+<p>基本格式如下:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;algorithm&#125;[htbp]<br>	<span class="hljs-keyword">\KwIn</span>&#123;XXX&#125;		<span class="hljs-comment">% 算法输入</span><br>    <span class="hljs-keyword">\KwOut</span>&#123;XXX&#125;		<span class="hljs-comment">% 算法输出</span><br>    <span class="hljs-keyword">\BlankLine</span><br>    <span class="hljs-keyword">\caption</span>&#123;XXX&#125;	<span class="hljs-comment">% 算法标题</span><br>    <span class="hljs-keyword">\label</span>&#123;&#125; <span class="hljs-comment">% 定义该段算法的标签</span><br>    <br>    <span class="hljs-comment">%写伪代码</span><br><span class="hljs-keyword">\end</span>&#123;algorithm&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-danger">
+            <p>algorithm算法环境中<code>\label{}</code>尽量紧跟在<code>\caption{}</code>后面,而且五个命令的顺序尽可能和示例中一样，不然使用<code>\cref{}</code>时可能会出现奇怪的问题。</p><p>聪明的联网版GPT4o给的解释是:在 LaTeX 中，<code>\label</code>的位置很重要，因为它引用的是最近的编号对象。如果 <code>\label</code> 在<code>\caption</code>之前，可能会默认引用到前一个环境的编号或行号，导致错误。放在<code>\caption</code>后面可以确保它引用的是当前算法的编号。这样就能正确地使用<code>cleveref</code> 进行引用。确保 <code>\label</code>紧跟在产生编号的命令之后是个好习惯，以避免类似问题。</p>
+          </div>
+<p><strong><code>algorithm2e</code>宏包</strong></p>
+<p>详细讲解强烈推荐这篇博客：https://blog.csdn.net/qq_43486745/article/details/124344365</p>
+<p>部分内容从该博客里“借鉴”，结合本人一些实践经验补充。</p>
+<p>Step-0 宏包参数使用</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\usepackage</span>[linesnumbered,ruled,vlined]&#123;algorithm2e&#125;<br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>linesnumbered</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>ruled</td>
+<td>标题显示在上方，不加就默认显示在下方</td>
+</tr>
+<tr>
+<td>vlined</td>
+<td>代码段中用线连接</td>
+</tr>
+<tr>
+<td>boxed</td>
+<td>将算法插入在一个盒子里</td>
+</tr>
+</tbody>
+</table>
+<div class="note note-warning">
+            <p>如果遇到一篇文档里有多段伪代码，第二段伪代码的行号没有重新开始计数的情况时，可以采用如下办法(Poweredby smart GPT4o)：</p><ul><li>如果是在algorithm2e环境中，可以在每段伪代码前加入<code>\setcounter{AlgoLine}{0}</code></li><li>如果是在algorithmic环境中，可以在每段伪代码前加入<code>\setcounter{ALC@line}{0}</code></li></ul>
+          </div>
+<p>step-1
+包裹在<code>algorithm</code>环境中(同时也要有<code>algorithm宏包</code>)</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\usepackage</span>[vlined,ruled,linesnumbered]&#123;algorithm2e&#125;<br></code></pre></td></tr></table></figure>
+<p>step-2 For循环怎么写</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs LaTex"><span class="hljs-keyword">\For</span>&#123;<span class="hljs-built_in">$</span>i <span class="hljs-keyword">\leftarrow</span> 1<span class="hljs-built_in">$</span> to <span class="hljs-built_in">$</span>100<span class="hljs-built_in">$</span>&#125;&#123;<br>    XXX		<span class="hljs-comment">% 循环体内容</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>step-3 While循环怎么写</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\While</span>&#123;a &gt; 0&#125;&#123;<br>XXX		<span class="hljs-comment">% 循环体内容</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>step-4 If-else 判断语句</p>
+<p>if…then…</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\If</span>&#123;<span class="hljs-built_in">$</span>i&gt;1<span class="hljs-built_in">$</span>&#125;&#123;<span class="hljs-built_in">$</span><span class="hljs-keyword">\operatorname</span>&#123;QuickSort&#125;(A[1,<span class="hljs-keyword">\cdots</span>,i-1])<span class="hljs-built_in">$</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>if…then…else…</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\eIf</span>&#123;<span class="hljs-built_in">$</span>j<span class="hljs-built_in">$</span> is odd&#125;&#123;<br>if执行以及<br>&#125;&#123;else执行语句&#125;<br></code></pre></td></tr></table></figure>
+<p>step-5 定义子函数</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\SetKwFunction</span>&#123;FMain&#125;&#123;你定义的函数名，如gcd&#125;<br><span class="hljs-keyword">\SetKwProg</span>&#123;Fn&#125;&#123;Function&#125;&#123;:&#125;&#123;&#125;<br><span class="hljs-keyword">\Fn</span>&#123;<span class="hljs-keyword">\FMain</span>&#123;函数的参变量,如int a, int b&#125;&#125;&#123;<br>XXX		<span class="hljs-comment">% 函数内容</span><br>&#125;<br><span class="hljs-keyword">\textbf</span>&#123;End Function&#125;<br>...<br>c <span class="hljs-keyword">\leftarrow</span> gcd(a, b) <span class="hljs-comment">% 在某个地方调用</span><br></code></pre></td></tr></table></figure>
+<p>step-6 其他</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">代码</th>
+<th style="text-align: center;">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">;</td>
+<td style="text-align: center;">行末添加行号并自动换行</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">插入算法名称</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">显示“Data：输入信息”</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">显示“Output：输出信息”</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">显示“Result：输出信息”</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">For循环</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">If条件判断</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">If-else判断语句</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">While循环</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">ForEach遍历</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">显示“* 注释 *”</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">显示“\注释”</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">显示“每个结尾的end”</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">显示行号</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>step-7 修改算法部分为中文</p>
+<p>使用以下语句可将默认的“Algorithm”修改为中文“算法”</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs LaTex"><span class="hljs-keyword">\renewcommand</span>&#123;<span class="hljs-keyword">\algorithmcfname</span>&#125;&#123;算法&#125;<br></code></pre></td></tr></table></figure>
+<p>修改Input、Output为中文</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\SetKwInOut</span>&#123;KwIn&#125;&#123;输入&#125;<br><span class="hljs-keyword">\SetKwInOut</span>&#123;KwOut&#125;&#123;输出&#125;<br></code></pre></td></tr></table></figure>
+<p>自定义算法编号</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs LaTex"><span class="hljs-keyword">\renewcommand</span>&#123;<span class="hljs-keyword">\thealgocf</span>&#125;&#123;3-1&#125;<br></code></pre></td></tr></table></figure>
+<p>添加算法目录</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs LaTex"><span class="hljs-keyword">\renewcommand</span>&#123;<span class="hljs-keyword">\listalgorithmcfname</span>&#125;&#123;算<span class="hljs-keyword">\ </span>法<span class="hljs-keyword">\ </span>目<span class="hljs-keyword">\ </span>录&#125;<br><span class="hljs-comment">% 生成算法目录命令</span><br><span class="hljs-keyword">\listofalgorithms</span><br></code></pre></td></tr></table></figure>
+<hr />
+<p>e.g.1. 冒泡排序</p>
+<p>效果图：</p>
+<p><img src="https://s2.loli.net/2022/12/29/p3NC4QEujBvq9Fd.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" /></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;algorithm&#125;[H]<br>    <span class="hljs-keyword">\KwIn</span>&#123;An array <span class="hljs-built_in">$</span>A[1,<span class="hljs-keyword">\dots</span>,n]<span class="hljs-built_in">$</span>&#125;<br>    <span class="hljs-keyword">\KwOut</span>&#123;<span class="hljs-built_in">$</span>A<span class="hljs-built_in">$</span> sorted nondecreasingly&#125;<br>    <span class="hljs-keyword">\BlankLine</span><br>    <span class="hljs-keyword">\caption</span>&#123;BubbleSort&#125;<span class="hljs-keyword">\label</span>&#123;Alg-Bubble&#125;<br><br>    <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\leftarrow</span> 1<span class="hljs-built_in">$</span>; <span class="hljs-built_in">$</span>sorted<span class="hljs-keyword">\leftarrow</span> false<span class="hljs-built_in">$</span><span class="hljs-keyword">\;</span><br><br>    <span class="hljs-keyword">\While</span>&#123;<span class="hljs-built_in">$</span>i<span class="hljs-keyword">\leq</span> n-1<span class="hljs-built_in">$</span> <span class="hljs-keyword">\textbf</span>&#123;and not&#125; <span class="hljs-built_in">$</span>sorted<span class="hljs-built_in">$</span>&#125;&#123;<br>        <span class="hljs-built_in">$</span>sorted<span class="hljs-keyword">\leftarrow</span> true<span class="hljs-built_in">$</span><span class="hljs-keyword">\;</span><br>        <span class="hljs-keyword">\For</span>&#123;<span class="hljs-built_in">$</span>j<span class="hljs-keyword">\leftarrow</span> n <span class="hljs-built_in">$</span> <span class="hljs-keyword">\textbf</span>&#123;downto&#125; <span class="hljs-built_in">$</span>i+1<span class="hljs-built_in">$</span>&#125;&#123;<br>            <span class="hljs-keyword">\If</span>&#123;<span class="hljs-built_in">$</span>A[j]&lt;A[j-1]<span class="hljs-built_in">$</span>&#125;&#123;<br>                interchange <span class="hljs-built_in">$</span>A[j]<span class="hljs-built_in">$</span> and <span class="hljs-built_in">$</span>A[j-1]<span class="hljs-built_in">$</span><span class="hljs-keyword">\;</span><br>                <span class="hljs-built_in">$</span>sorted<span class="hljs-keyword">\leftarrow</span> false<span class="hljs-built_in">$</span><span class="hljs-keyword">\;</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\leftarrow</span> i+1<span class="hljs-built_in">$</span><span class="hljs-keyword">\;</span><br>    &#125;<br><span class="hljs-keyword">\end</span>&#123;algorithm&#125;<br></code></pre></td></tr></table></figure>
+<p>e.g.2. 大数据分析中经典的AMS-F2估计算法(并使用Median Trick, Average
+Trick)</p>
+<p>效果图：</p>
+<p><img src="https://s2.loli.net/2022/12/29/oOpJuM1kHL3mbcr.png" srcset="/img/loading.gif" lazyload style="zoom: 80%;" /></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;algorithm&#125;[H]<br>        <span class="hljs-keyword">\KwIn</span>&#123;4-wise independent hash family <span class="hljs-built_in">$</span>h<span class="hljs-built_in">$</span>, stream <span class="hljs-built_in">$</span>a<span class="hljs-built_in">_</span>i <span class="hljs-keyword">\in</span> [n]<span class="hljs-built_in">$</span>, <span class="hljs-built_in">$</span><span class="hljs-keyword">\epsilon</span><span class="hljs-built_in">$</span>, <span class="hljs-built_in">$</span><span class="hljs-keyword">\eta</span><span class="hljs-built_in">$</span>, <span class="hljs-built_in">$</span><span class="hljs-keyword">\delta</span><span class="hljs-built_in">$</span>&#125;<br>        <span class="hljs-keyword">\KwOut</span>&#123;<span class="hljs-built_in">$</span>z<span class="hljs-built_in">^</span>2<span class="hljs-built_in">$</span>&#125;<br>        <span class="hljs-keyword">\BlankLine</span><br>        <span class="hljs-keyword">\caption</span>&#123;AMS Scheme for <span class="hljs-built_in">$</span>F<span class="hljs-built_in">_</span>2<span class="hljs-built_in">$</span>&#125;<br>        <br>        <span class="hljs-comment">% 设置子函数</span><br>        <span class="hljs-keyword">\SetKwFunction</span>&#123;FMain&#125;&#123;AMS-F2&#125;<br>        <span class="hljs-keyword">\SetKwProg</span>&#123;Fn&#125;&#123;Function&#125;&#123;:&#125;&#123;&#125;<br>        <span class="hljs-keyword">\Fn</span>&#123;<span class="hljs-keyword">\FMain</span>&#123;stream <span class="hljs-built_in">$</span>a<span class="hljs-built_in">_</span>i<span class="hljs-built_in">$</span>, hash family <span class="hljs-built_in">$</span>h(<span class="hljs-keyword">\cdot</span>)<span class="hljs-built_in">$</span>&#125;&#125;&#123;<br>            <span class="hljs-built_in">$</span> z <span class="hljs-keyword">\longleftarrow</span> 0 <span class="hljs-built_in">$</span><span class="hljs-keyword">\;</span>  <br><br>            <span class="hljs-keyword">\While</span>&#123;stream <span class="hljs-built_in">$</span>a<span class="hljs-built_in">_</span>i<span class="hljs-built_in">$</span> is not empty&#125;&#123;<br>                <span class="hljs-built_in">$</span>a<span class="hljs-built_in">_</span>i<span class="hljs-built_in">$</span> is current item<span class="hljs-keyword">\;</span><br><br>                <span class="hljs-built_in">$</span>z <span class="hljs-keyword">\longleftarrow</span> z + h(a<span class="hljs-built_in">_</span>i)<span class="hljs-built_in">$</span><span class="hljs-keyword">\;</span><br>            &#125;<br><br>            <span class="hljs-keyword">\textbf</span>&#123;return&#125; <span class="hljs-built_in">$</span> z<span class="hljs-built_in">^</span>2<span class="hljs-built_in">$</span> <br>        &#125;<br>        <span class="hljs-keyword">\textbf</span>&#123;End Function&#125;<br><br>// apply average trick<br><br><span class="hljs-built_in">$</span>q <span class="hljs-keyword">\longleftarrow</span> <span class="hljs-keyword">\lceil</span> <span class="hljs-keyword">\frac</span>&#123;4&#125;&#123;<span class="hljs-keyword">\eta</span> <span class="hljs-keyword">\epsilon</span><span class="hljs-built_in">^</span>2&#125; <span class="hljs-keyword">\rceil</span><span class="hljs-built_in">$</span><span class="hljs-keyword">\;</span><br><br><span class="hljs-built_in">$</span>sum<span class="hljs-built_in">_</span>1 <span class="hljs-keyword">\longleftarrow</span> 0<span class="hljs-built_in">$</span><br><br><span class="hljs-keyword">\For</span>&#123;<span class="hljs-built_in">$</span>j <span class="hljs-keyword">\leftarrow</span> 1<span class="hljs-built_in">$</span> to <span class="hljs-built_in">$</span>q<span class="hljs-built_in">$</span>&#125;&#123;<br>    <span class="hljs-built_in">$</span>sum<span class="hljs-built_in">_</span>1 <span class="hljs-keyword">\longleftarrow</span> sum<span class="hljs-built_in">_</span>1 +<span class="hljs-built_in">$</span> AMS-F2(stream <span class="hljs-built_in">$</span>a<span class="hljs-built_in">_</span>i<span class="hljs-built_in">$</span>, <span class="hljs-built_in">$</span>h(<span class="hljs-keyword">\cdot</span>)<span class="hljs-built_in">$</span>)<br>&#125;<br><br><span class="hljs-built_in">$</span>avg <span class="hljs-keyword">\longleftarrow</span> sum<span class="hljs-built_in">_</span>1 / q<span class="hljs-built_in">$</span><br><br>//apply median trick<br><br><span class="hljs-built_in">$</span>s <span class="hljs-keyword">\longleftarrow</span> <span class="hljs-keyword">\lceil</span> <span class="hljs-keyword">\frac</span>&#123;3<span class="hljs-keyword">\eta</span><span class="hljs-built_in">^</span>2&#125;&#123;(<span class="hljs-keyword">\frac</span>&#123;1&#125;&#123;2&#125; - <span class="hljs-keyword">\eta</span>)<span class="hljs-built_in">^</span>2&#125;<span class="hljs-keyword">\ln</span><span class="hljs-keyword">\frac</span>&#123;2&#125;&#123;<span class="hljs-keyword">\delta</span>&#125; <span class="hljs-keyword">\rceil</span><span class="hljs-built_in">$</span><br><br>create a empty set <span class="hljs-built_in">$</span><span class="hljs-keyword">\Phi</span><span class="hljs-built_in">$</span><br><br><span class="hljs-keyword">\For</span>&#123;<span class="hljs-built_in">$</span>j <span class="hljs-keyword">\leftarrow</span> 1<span class="hljs-built_in">$</span> to <span class="hljs-built_in">$</span>s<span class="hljs-built_in">$</span>&#125;&#123;<br>    Add the result of AMS-F2(stream <span class="hljs-built_in">$</span>a<span class="hljs-built_in">_</span>i<span class="hljs-built_in">$</span>, <span class="hljs-built_in">$</span>h(<span class="hljs-keyword">\cdot</span>)<span class="hljs-built_in">$</span>) into set <span class="hljs-built_in">$</span><span class="hljs-keyword">\Phi</span><span class="hljs-built_in">$</span><br>&#125;<br><br><span class="hljs-built_in">$</span>med <span class="hljs-keyword">\longleftarrow</span><span class="hljs-built_in">$</span> the smallest median of <span class="hljs-built_in">$</span><span class="hljs-keyword">\Phi</span><span class="hljs-built_in">$</span><br><br><span class="hljs-keyword">\Return</span>&#123;<span class="hljs-built_in">$</span>avg<span class="hljs-built_in">$</span>, <span class="hljs-built_in">$</span>med<span class="hljs-built_in">$</span>&#125; <span class="hljs-keyword">\;</span><br><span class="hljs-keyword">\end</span>&#123;algorithm&#125;<br></code></pre></td></tr></table></figure>
+<p><strong><code>algorithmic</code>宏包</strong></p>
+<p>占个坑，以后填</p>
+<p>(感觉这个宏包不太方便定义指令)</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LaTex%E5%AD%A6%E4%B9%A0/" class="category-chain-item">LaTex学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LaTex/" class="print-no-link">#LaTex</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LaTeX讲解系列(3)：如何插入代码块/伪代码</div>
+      <div>https://oier99.cn/posts/200e31c0/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Oier99</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/b2b25956/" title="LaTeX讲解系列(1)：如何优雅地插入图表">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LaTeX讲解系列(1)：如何优雅地插入图表</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/77084934/" title="一种简单优雅的Map-Reduce手工实现方式(Python)">
+                        <span class="hidden-mobile">一种简单优雅的Map-Reduce手工实现方式(Python)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <!script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> <script> var now = new Date();  function createtime() {  var grt= new Date("07/25/2021 17:12:09"); now.setTime(now.getTime()+250);  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}  document.getElementById("timeDate").innerHTML = "本网站已在各种夹缝中安全生存 "+dnum+" 天 ";  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";  }  setInterval("createtime()",250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
